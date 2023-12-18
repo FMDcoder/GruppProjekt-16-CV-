@@ -12,7 +12,7 @@ namespace GruppProjekt_Grupp16_CV.Models
         [Column(Order = 1)]
         public int RecievedUserId { get; set; }
 
-        public virtual ICollection<Message> MessagesList { get; set; } = new List<Message>();
+        public virtual ICollection<Message> MessagesList { get; set; } = null!;
 
         [ForeignKey(nameof(SentUserId))]
         public virtual User SentUserObject { get; set; } = null!;
