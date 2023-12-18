@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\GruppProjekt Grupp16 CV.props" />
+</Project>

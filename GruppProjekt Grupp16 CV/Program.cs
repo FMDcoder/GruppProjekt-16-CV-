@@ -1,7 +1,13 @@
+using GruppProjekt_Grupp16_CV.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<CvContext>(options =>
+    options.UseLazyLoadingProxies().UseSqlServer(builder.Configuration.GetConnectionString("CvContext")));
 
 var app = builder.Build();
 
