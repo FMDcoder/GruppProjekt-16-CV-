@@ -26,7 +26,7 @@ namespace GruppProjekt_Grupp16_CV.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<MessageBox>()
-                .HasKey(mb => new { mb.SentUserId, mb.RecievedUserId});
+                .HasKey(mb => new { mb.SentUserId, mb.RecievedUserId, mb.MessageId});
 
             modelBuilder.Entity<MessageBox>()
                 .HasOne(mb => mb.SentUserObject)
@@ -38,6 +38,12 @@ namespace GruppProjekt_Grupp16_CV.Models
                 .HasOne(mb => mb.RecievedUserObject)
                 .WithMany()
                 .HasForeignKey(mb => mb.RecievedUserId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            modelBuilder.Entity<MessageBox>()
+                .HasOne(mb => mb.MessageObject)
+                .WithMany()
+                .HasForeignKey(mb => mb.MessageId)
                 .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<ReadMessages>()

@@ -37,12 +37,26 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Message",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Message", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Profession",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Titel = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Time = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -56,7 +70,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Titel = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true)
                 },
                 constraints: table =>
@@ -83,7 +97,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Titel = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                    Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -96,7 +110,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Titel = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -131,11 +145,17 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                 columns: table => new
                 {
                     SentUserId = table.Column<int>(type: "int", nullable: false),
-                    RecievedUserId = table.Column<int>(type: "int", nullable: false)
+                    RecievedUserId = table.Column<int>(type: "int", nullable: false),
+                    MessageId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MessageBox", x => new { x.SentUserId, x.RecievedUserId });
+                    table.PrimaryKey("PK_MessageBox", x => new { x.SentUserId, x.RecievedUserId, x.MessageId });
+                    table.ForeignKey(
+                        name: "FK_MessageBox_Message_MessageId",
+                        column: x => x.MessageId,
+                        principalTable: "Message",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_MessageBox_User_RecievedUserId",
                         column: x => x.RecievedUserId,
@@ -146,6 +166,54 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                         column: x => x.SentUserId,
                         principalTable: "User",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ReadMessages",
+                columns: table => new
+                {
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    MessageId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ReadMessages", x => new { x.UserId, x.MessageId });
+                    table.ForeignKey(
+                        name: "FK_ReadMessages_Message_MessageId",
+                        column: x => x.MessageId,
+                        principalTable: "Message",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ReadMessages_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RemovedMessages",
+                columns: table => new
+                {
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    MessageId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RemovedMessages", x => new { x.UserId, x.MessageId });
+                    table.ForeignKey(
+                        name: "FK_RemovedMessages_Message_MessageId",
+                        column: x => x.MessageId,
+                        principalTable: "Message",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RemovedMessages_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -259,79 +327,10 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "Message",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Titel = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
-                    MessageBoxRecievedUserId = table.Column<int>(type: "int", nullable: true),
-                    MessageBoxSentUserId = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Message", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Message_MessageBox_MessageBoxSentUserId_MessageBoxRecievedUserId",
-                        columns: x => new { x.MessageBoxSentUserId, x.MessageBoxRecievedUserId },
-                        principalTable: "MessageBox",
-                        principalColumns: new[] { "SentUserId", "RecievedUserId" });
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ReadMessages",
-                columns: table => new
-                {
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    MessageId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ReadMessages", x => new { x.UserId, x.MessageId });
-                    table.ForeignKey(
-                        name: "FK_ReadMessages_Message_MessageId",
-                        column: x => x.MessageId,
-                        principalTable: "Message",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ReadMessages_User_UserId",
-                        column: x => x.UserId,
-                        principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "RemovedMessages",
-                columns: table => new
-                {
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    MessageId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_RemovedMessages", x => new { x.UserId, x.MessageId });
-                    table.ForeignKey(
-                        name: "FK_RemovedMessages_Message_MessageId",
-                        column: x => x.MessageId,
-                        principalTable: "Message",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_RemovedMessages_User_UserId",
-                        column: x => x.UserId,
-                        principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
-                name: "IX_Message_MessageBoxSentUserId_MessageBoxRecievedUserId",
-                table: "Message",
-                columns: new[] { "MessageBoxSentUserId", "MessageBoxRecievedUserId" });
+                name: "IX_MessageBox_MessageId",
+                table: "MessageBox",
+                column: "MessageId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MessageBox_RecievedUserId",
@@ -388,6 +387,9 @@ namespace GruppProjekt_Grupp16_CV.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "MessageBox");
+
+            migrationBuilder.DropTable(
                 name: "ReadMessages");
 
             migrationBuilder.DropTable(
@@ -425,9 +427,6 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
             migrationBuilder.DropTable(
                 name: "Skills");
-
-            migrationBuilder.DropTable(
-                name: "MessageBox");
 
             migrationBuilder.DropTable(
                 name: "User");
