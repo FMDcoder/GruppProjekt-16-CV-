@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.Identity.Client;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GruppProjekt_Grupp16_CV.Models
@@ -27,5 +28,20 @@ namespace GruppProjekt_Grupp16_CV.Models
 
         [ForeignKey(nameof(StatusId))]
         public virtual Status statusObject { get; set; } = null!;
+
+        public virtual List<UserExperince> UserExperinces { get; set; } = null!;
+
+        public virtual List<UserEducation> UserEducations { get; set; } = null!;
+
+        public virtual List<UserProject> UserProjects { get; set; } = null!;
+
+        public virtual List<UserSkills> UserSkills { get; set; } = null!;
+
+        public virtual List<RemovedMessages> RemovedMessages { get; set; } = null!;
+
+        public virtual List<MessageBox> RecievedMessageBoxes { get; set; } = null!;
+        public virtual List<MessageBox> SentMessageBoxes { get; set; } = null!;
+
+        public virtual List<ReadMessages> ReadMessages { get; set; } = null!;
     }
 }

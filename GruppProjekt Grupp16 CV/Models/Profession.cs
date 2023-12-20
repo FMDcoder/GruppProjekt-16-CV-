@@ -13,5 +13,7 @@ namespace GruppProjekt_Grupp16_CV.Models
 
         [Range(0, 100, ErrorMessage = "Utbildningen kan inte vara mindre än 0 eller högre än 100!")]
         public int Time { get; set; }
+
+        public virtual List<UserEducation> UserEducations { get; set; } = null!;
     }
 }

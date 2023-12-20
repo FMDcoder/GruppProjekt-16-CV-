@@ -13,5 +13,11 @@ namespace GruppProjekt_Grupp16_CV.Models
 
         [StringLength(1000, ErrorMessage = "Meddelandet får inte ha mer än 1000 karaktärer!")]
         public string? Description { get; set; }
+
+        public virtual List<RemovedMessages> RemovedMessages { get; set; } = null!;
+
+        public virtual List<MessageBox> MessageBoxes { get; set; } = null!;
+
+        public virtual List<ReadMessages> ReadMessages { get; set; } = null!;
     }
 }

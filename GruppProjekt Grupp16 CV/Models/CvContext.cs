@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
 
 namespace GruppProjekt_Grupp16_CV.Models
 {
@@ -25,24 +26,25 @@ namespace GruppProjekt_Grupp16_CV.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Fixar så att tabeller med fler än en primär nyckel funkar
             modelBuilder.Entity<MessageBox>()
                 .HasKey(mb => new { mb.SentUserId, mb.RecievedUserId, mb.MessageId});
 
             modelBuilder.Entity<MessageBox>()
                 .HasOne(mb => mb.SentUserObject)
-                .WithMany()
+                .WithMany(t => t.SentMessageBoxes)
                 .HasForeignKey(mb => mb.SentUserId)
                 .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<MessageBox>()
                 .HasOne(mb => mb.RecievedUserObject)
-                .WithMany()
+                .WithMany(t => t.RecievedMessageBoxes)
                 .HasForeignKey(mb => mb.RecievedUserId)
                 .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<MessageBox>()
                 .HasOne(mb => mb.MessageObject)
-                .WithMany()
+                .WithMany(t => t.MessageBoxes)
                 .HasForeignKey(mb => mb.MessageId)
                 .OnDelete(DeleteBehavior.NoAction);
 
@@ -64,7 +66,96 @@ namespace GruppProjekt_Grupp16_CV.Models
             modelBuilder.Entity<UserSkills>()
                 .HasKey(mb => new { mb.UserId, mb.SkillsId});
 
+            // Fixar så att tabeller funkar med navigerings egenskaper och främmande nycklar
+           /* modelBuilder.Entity<MessageBox>()
+                .HasOne(s => s.SentUserObject)
+                .WithMany(t => t.MessageBoxes)
+                .HasForeignKey(s => s.SentUserId);
+
+            modelBuilder.Entity<MessageBox>()
+                .HasOne(s => s.RecievedUserObject)
+                .WithMany(t => t.MessageBoxes)
+                .HasForeignKey(s => s.RecievedUserId);
+
+            modelBuilder.Entity<MessageBox>()
+                .HasOne(s => s.MessageObject)
+                .WithMany(t => t.MessageBoxes)
+                .HasForeignKey(s => s.MessageId);
+
+            modelBuilder.Entity<ReadMessages>()
+                .HasOne(s => s.UserObject)
+                .WithMany(t => t.ReadMessages)
+                .HasForeignKey(s => s.UserId);
+
+            modelBuilder.Entity<ReadMessages>()
+                .HasOne(s => s.MessageObject)
+                .WithMany(t => t.ReadMessages)
+                .HasForeignKey(s => s.MessageId);
+
+            modelBuilder.Entity<RemovedMessages>()
+               .HasOne(s => s.UserObject)
+               .WithMany(t => t.RemovedMessages)
+               .HasForeignKey(s => s.UserId);
+
+            modelBuilder.Entity<RemovedMessages>()
+                .HasOne(s => s.MessageObject)
+                .WithMany(t => t.RemovedMessages)
+                .HasForeignKey(s => s.MessageId);
+
+            modelBuilder.Entity<UserEducation>()
+                .HasOne(s => s.UserObject)
+                .WithMany(t => t.UserEducations)
+                .HasForeignKey(s => s.UserId);
+
+            modelBuilder.Entity<UserEducation>()
+                .HasOne(s => s.ProfesssionObject)
+                .WithMany(t => t.UserEducations)
+                .HasForeignKey(s => s.ProfessionId);
+
+            modelBuilder.Entity<UserEducation>()
+                .HasOne(s => s.SchoolObject)
+                .WithMany(t => t.UserEducations)
+                .HasForeignKey(s => s.SchoolId);
+
+            modelBuilder.Entity<UserExperince>()
+                .HasOne(s => s.UserObject)
+                .WithMany(t => t.UserExperinces)
+                .HasForeignKey(s => s.UserId);
+
+            modelBuilder.Entity<UserExperince>()
+                .HasOne(s => s.JobObject)
+                .WithMany(t => t.UserExperinces)
+                .HasForeignKey(s => s.JobId);
+
+            modelBuilder.Entity<UserExperince>()
+                .HasOne(s => s.CompanyObject)
+                .WithMany(t => t.UserExperinces)
+                .HasForeignKey(s => s.CompanyId);
+
+            modelBuilder.Entity<UserProject>()
+                .HasOne(s => s.UserObject)
+                .WithMany(t => t.UserProjects)
+                .HasForeignKey(s => s.UserId);
+
+            modelBuilder.Entity<UserProject>()
+                .HasOne(s => s.ProjectObject)
+                .WithMany(t => t.UserProject)
+                .HasForeignKey(s => s.ProjectId);
+
+            modelBuilder.Entity<UserSkills>()
+               .HasOne(s => s.UserObject)
+               .WithMany(t => t.UserSkills)
+               .HasForeignKey(s => s.UserId);
+
+            modelBuilder.Entity<UserSkills>()
+               .HasOne(s => s.SkillsObject)
+               .WithMany(t => t.UserSkills)
+               .HasForeignKey(s => s.SkillsId);*/
+
             base.OnModelCreating(modelBuilder);
+
+            // Exempel Data
+
         }
     }
 }

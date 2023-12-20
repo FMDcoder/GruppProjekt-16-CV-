@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GruppProjekt_Grupp16_CV.Migrations
 {
     [DbContext(typeof(CvContext))]
-    [Migration("20231219195947_InitialMigration")]
+    [Migration("20231220192047_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -358,19 +358,19 @@ namespace GruppProjekt_Grupp16_CV.Migrations
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.MessageBox", b =>
                 {
                     b.HasOne("GruppProjekt_Grupp16_CV.Models.Message", "MessageObject")
-                        .WithMany()
+                        .WithMany("MessageBoxes")
                         .HasForeignKey("MessageId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("GruppProjekt_Grupp16_CV.Models.User", "RecievedUserObject")
-                        .WithMany()
+                        .WithMany("RecievedMessageBoxes")
                         .HasForeignKey("RecievedUserId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("GruppProjekt_Grupp16_CV.Models.User", "SentUserObject")
-                        .WithMany()
+                        .WithMany("SentMessageBoxes")
                         .HasForeignKey("SentUserId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
@@ -385,13 +385,13 @@ namespace GruppProjekt_Grupp16_CV.Migrations
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.ReadMessages", b =>
                 {
                     b.HasOne("GruppProjekt_Grupp16_CV.Models.Message", "MessageObject")
-                        .WithMany()
+                        .WithMany("ReadMessages")
                         .HasForeignKey("MessageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("GruppProjekt_Grupp16_CV.Models.User", "UserObject")
-                        .WithMany()
+                        .WithMany("ReadMessages")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -404,13 +404,13 @@ namespace GruppProjekt_Grupp16_CV.Migrations
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.RemovedMessages", b =>
                 {
                     b.HasOne("GruppProjekt_Grupp16_CV.Models.Message", "MessageObject")
-                        .WithMany()
+                        .WithMany("RemovedMessages")
                         .HasForeignKey("MessageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("GruppProjekt_Grupp16_CV.Models.User", "UserObject")
-                        .WithMany()
+                        .WithMany("RemovedMessages")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -423,7 +423,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.User", b =>
                 {
                     b.HasOne("GruppProjekt_Grupp16_CV.Models.Status", "statusObject")
-                        .WithMany()
+                        .WithMany("UserStatus")
                         .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -434,19 +434,19 @@ namespace GruppProjekt_Grupp16_CV.Migrations
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.UserEducation", b =>
                 {
                     b.HasOne("GruppProjekt_Grupp16_CV.Models.Profession", "ProfesssionObject")
-                        .WithMany()
+                        .WithMany("UserEducations")
                         .HasForeignKey("ProfessionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("GruppProjekt_Grupp16_CV.Models.School", "SchoolObject")
-                        .WithMany()
+                        .WithMany("UserEducations")
                         .HasForeignKey("SchoolId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("GruppProjekt_Grupp16_CV.Models.User", "UserObject")
-                        .WithMany()
+                        .WithMany("UserEducations")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -461,19 +461,19 @@ namespace GruppProjekt_Grupp16_CV.Migrations
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.UserExperince", b =>
                 {
                     b.HasOne("GruppProjekt_Grupp16_CV.Models.Company", "CompanyObject")
-                        .WithMany()
+                        .WithMany("UserExperinces")
                         .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("GruppProjekt_Grupp16_CV.Models.Job", "JobObject")
-                        .WithMany()
+                        .WithMany("UserExperinces")
                         .HasForeignKey("JobId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("GruppProjekt_Grupp16_CV.Models.User", "UserObject")
-                        .WithMany()
+                        .WithMany("UserExperinces")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -488,13 +488,13 @@ namespace GruppProjekt_Grupp16_CV.Migrations
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.UserProject", b =>
                 {
                     b.HasOne("GruppProjekt_Grupp16_CV.Models.Project", "ProjectObject")
-                        .WithMany()
+                        .WithMany("UserProject")
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("GruppProjekt_Grupp16_CV.Models.User", "UserObject")
-                        .WithMany()
+                        .WithMany("UserProjects")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -507,13 +507,13 @@ namespace GruppProjekt_Grupp16_CV.Migrations
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.UserSkills", b =>
                 {
                     b.HasOne("GruppProjekt_Grupp16_CV.Models.Skills", "SkillsObject")
-                        .WithMany()
+                        .WithMany("UserSkills")
                         .HasForeignKey("SkillsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("GruppProjekt_Grupp16_CV.Models.User", "UserObject")
-                        .WithMany()
+                        .WithMany("UserSkills")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -521,6 +521,69 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                     b.Navigation("SkillsObject");
 
                     b.Navigation("UserObject");
+                });
+
+            modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.Company", b =>
+                {
+                    b.Navigation("UserExperinces");
+                });
+
+            modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.Job", b =>
+                {
+                    b.Navigation("UserExperinces");
+                });
+
+            modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.Message", b =>
+                {
+                    b.Navigation("MessageBoxes");
+
+                    b.Navigation("ReadMessages");
+
+                    b.Navigation("RemovedMessages");
+                });
+
+            modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.Profession", b =>
+                {
+                    b.Navigation("UserEducations");
+                });
+
+            modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.Project", b =>
+                {
+                    b.Navigation("UserProject");
+                });
+
+            modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.School", b =>
+                {
+                    b.Navigation("UserEducations");
+                });
+
+            modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.Skills", b =>
+                {
+                    b.Navigation("UserSkills");
+                });
+
+            modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.Status", b =>
+                {
+                    b.Navigation("UserStatus");
+                });
+
+            modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.User", b =>
+                {
+                    b.Navigation("ReadMessages");
+
+                    b.Navigation("RecievedMessageBoxes");
+
+                    b.Navigation("RemovedMessages");
+
+                    b.Navigation("SentMessageBoxes");
+
+                    b.Navigation("UserEducations");
+
+                    b.Navigation("UserExperinces");
+
+                    b.Navigation("UserProjects");
+
+                    b.Navigation("UserSkills");
                 });
 #pragma warning restore 612, 618
         }
