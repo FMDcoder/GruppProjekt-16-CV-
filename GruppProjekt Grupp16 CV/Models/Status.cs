@@ -8,6 +8,6 @@ namespace GruppProjekt_Grupp16_CV.Models
         public int Id { get; set; }
         public string Title { get; set; } = null!;
 
-        public virtual List<User> UserStatus { get; set; } = null!;
+        public virtual List<User> UserStatus { get; set; } = new List<User>();
     }
 }
