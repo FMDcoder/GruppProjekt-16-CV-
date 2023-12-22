@@ -100,8 +100,6 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
                     b.HasIndex("MessageId");
 
-                    b.HasIndex("RecievedUserId");
-
                     b.ToTable("MessageBox");
                 });
 
@@ -252,6 +250,10 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -362,7 +364,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
                     b.HasOne("GruppProjekt_Grupp16_CV.Models.User", "RecievedUserObject")
                         .WithMany("RecievedMessageBoxes")
-                        .HasForeignKey("RecievedUserId")
+                        .HasForeignKey("MessageId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 

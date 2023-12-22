@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GruppProjekt_Grupp16_CV.Migrations
 {
     [DbContext(typeof(CvContext))]
-    [Migration("20231220192047_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20231222024550_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -102,8 +102,6 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                     b.HasKey("SentUserId", "RecievedUserId", "MessageId");
 
                     b.HasIndex("MessageId");
-
-                    b.HasIndex("RecievedUserId");
 
                     b.ToTable("MessageBox");
                 });
@@ -255,6 +253,10 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -365,7 +367,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
                     b.HasOne("GruppProjekt_Grupp16_CV.Models.User", "RecievedUserObject")
                         .WithMany("RecievedMessageBoxes")
-                        .HasForeignKey("RecievedUserId")
+                        .HasForeignKey("MessageId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 

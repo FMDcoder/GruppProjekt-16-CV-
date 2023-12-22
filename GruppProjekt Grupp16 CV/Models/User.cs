@@ -23,6 +23,10 @@ namespace GruppProjekt_Grupp16_CV.Models
 
         [RegularExpression(@"^(http(s?)://)?([\w-]+\.)+[\w-]+(/[\w- ;,./?%&=]*)?$", ErrorMessage = "Ogiltigt url för profil bild! Endast jpg eller png!")]
         public string? ProfilePicture { get; set; }
+
+        [Required(ErrorMessage = "Varje användare måste ha ett lösenord!")]
+        public string Password { get; set; } = null!;
+
         public int StatusId { get; set; }
 
 

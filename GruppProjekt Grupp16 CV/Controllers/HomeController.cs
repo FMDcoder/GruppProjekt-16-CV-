@@ -13,7 +13,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
         public List<Profession> professions { get; set; } = new List<Profession>();
         public List<Project> projects { get; set; } = new List<Project>();
         public List<ReadMessages> readMessages { get; set; } = new List<ReadMessages>();
-        public List<RemovedMessages> RemovedMessages { get; set; } = new List<RemovedMessages>();
+        public List<RemovedMessages> removedMessages { get; set; } = new List<RemovedMessages>();
         public List<School> schools { get; set; } = new List<School>();
         public List<Skills> skills { get; set; } = new List<Skills>();
         public List<Status> status { get; set; } = new List<Status>();

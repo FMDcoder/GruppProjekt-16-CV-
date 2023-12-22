@@ -1,5 +1,7 @@
-﻿using GruppProjekt_Grupp16_CV.Models;
+﻿using GruppProjekt_Grupp16_CV;
+using GruppProjekt_Grupp16_CV.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,29 +32,12 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-using (CvContext cvContext = app.Services.CreateScope().ServiceProvider.GetRequiredService<CvContext>())
+using (CvContext cvContext = app.Services.CreateScope()
+        .ServiceProvider.GetRequiredService<CvContext>())
 {
-    cvContext.Status.RemoveRange(cvContext.Status);
-
-    cvContext.Status.Add(new Status
+    if (cvContext.Status.Count() == 0)
     {
-        Title = "Offentlig"
-    });
-
-    cvContext.Status.Add(new Status
-    {
-        Title = "Privat"
-    });
-
-    Console.WriteLine("Saving Data...");
-    try
-    {
-        cvContext.SaveChanges();
-        Console.WriteLine($"Saved! {cvContext.Status.Count()}");
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine(ex.Message);
+        DataHandler.uploadData(cvContext);
     }
 }
 
