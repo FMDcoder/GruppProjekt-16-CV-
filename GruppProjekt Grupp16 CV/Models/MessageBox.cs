@@ -5,15 +5,13 @@ namespace GruppProjekt_Grupp16_CV.Models
 {
     public class MessageBox
     {
-        [Key]
-        [Column(Order = 0)]
+        [Key, Column(Order = 0)]
         public int SentUserId { get; set; }
-        [Key]
-        [Column(Order = 1)]
+
+        [Key, Column(Order = 1)]
         public int RecievedUserId { get; set; }
 
-        [Key]
-        [Column(Order = 2)]
+        [Key, Column(Order = 2)]
         public int MessageId { get; set; }
 
         [ForeignKey(nameof(SentUserId))]

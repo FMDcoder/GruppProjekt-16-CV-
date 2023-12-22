@@ -44,6 +44,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
         {
             return View();
         }
+
         public IActionResult Account()
         {
             return View();
@@ -58,6 +59,13 @@ namespace GruppProjekt_Grupp16_CV.Controllers
             return View();
 
         }
+
+        public IActionResult Project()
+        {
+            return View();
+
+        }
+
         public IActionResult Users()
         {
             return View();

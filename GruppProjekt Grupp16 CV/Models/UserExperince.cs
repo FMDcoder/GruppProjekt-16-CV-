@@ -5,14 +5,13 @@ namespace GruppProjekt_Grupp16_CV.Models
 {
     public class UserExperince
     {
-        [Key]
-        [Column(Order = 0)]
+        [Key, Column(Order = 0)]
         public int UserId { get; set; }
-        [Key]
-        [Column(Order = 1)]
+
+        [Key, Column(Order = 1)]
         public int JobId { get; set; }
-        [Key]
-        [Column(Order = 2)]
+
+        [Key, Column(Order = 2)]
         public int CompanyId { get; set; }
         public int TotalTime { get; set; }
 

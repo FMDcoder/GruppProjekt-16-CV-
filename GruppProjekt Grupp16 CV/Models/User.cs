@@ -1,12 +1,11 @@
-﻿using Microsoft.Identity.Client;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GruppProjekt_Grupp16_CV.Models
 {
     public class User
     {
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity),]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Varje användare måste ha en namn!")]

@@ -5,14 +5,13 @@ namespace GruppProjekt_Grupp16_CV.Models
 {
     public class UserEducation
     {
-        [Key]
-        [Column(Order = 0)]
+        [Key, Column(Order = 0)]
         public int UserId { get; set; }
-        [Key]
-        [Column(Order = 1)]
+
+        [Key, Column(Order = 1)]
         public int ProfessionId { get; set; }
-        [Key]
-        [Column(Order = 2)]
+
+        [Key, Column(Order = 2)]
         public int SchoolId { get; set; }
 
         [ForeignKey(nameof(UserId))]
