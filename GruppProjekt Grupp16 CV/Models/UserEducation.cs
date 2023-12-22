@@ -15,12 +15,12 @@ namespace GruppProjekt_Grupp16_CV.Models
         public int SchoolId { get; set; }
 
         [ForeignKey(nameof(UserId))]
-        public virtual User UserObject { get; set; } = null!;
+        public virtual User UserObject { get; set; }
 
         [ForeignKey(nameof(ProfessionId))]
-        public virtual Profession ProfesssionObject { get; set; } = null!;
+        public virtual Profession ProfesssionObject { get; set; }
 
         [ForeignKey(nameof(SchoolId))]
-        public virtual School SchoolObject { get; set; } = null!;
+        public virtual School SchoolObject { get; set; }
     }
 }

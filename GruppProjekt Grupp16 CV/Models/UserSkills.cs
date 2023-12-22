@@ -12,9 +12,9 @@ namespace GruppProjekt_Grupp16_CV.Models
         public int SkillsId { get; set; }
 
         [ForeignKey(nameof(UserId))]
-        public virtual User UserObject { get; set; } = null!;
+        public virtual User UserObject { get; set; }
 
         [ForeignKey(nameof(SkillsId))]
-        public virtual Skills SkillsObject { get; set; } = null!;
+        public virtual Skills SkillsObject { get; set; }
     }
 }

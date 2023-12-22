@@ -32,13 +32,13 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-/*using (CvContext cvContext = app.Services.CreateScope()
+using (CvContext cvContext = app.Services.CreateScope()
         .ServiceProvider.GetRequiredService<CvContext>())
 {
     if (cvContext.Status.Count() == 0)
     {
         DataHandler.uploadData(cvContext);
     }
-}*/
+}
 
 app.Run();

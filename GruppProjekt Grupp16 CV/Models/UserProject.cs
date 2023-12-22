@@ -12,9 +12,9 @@ namespace GruppProjekt_Grupp16_CV.Models
         public int ProjectId { get; set; }
 
         [ForeignKey(nameof(UserId))]
-        public virtual User UserObject { get; set; } = null!;
+        public virtual User UserObject { get; set; }
 
         [ForeignKey(nameof(ProjectId))]
-        public virtual Project ProjectObject { get; set; } = null!;
+        public virtual Project ProjectObject { get; set; }
     }
 }

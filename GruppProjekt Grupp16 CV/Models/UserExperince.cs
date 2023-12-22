@@ -16,12 +16,12 @@ namespace GruppProjekt_Grupp16_CV.Models
         public int TotalTime { get; set; }
 
         [ForeignKey(nameof(UserId))]
-        public virtual User UserObject { get; set; } = null!;
+        public virtual User UserObject { get; set; }
 
         [ForeignKey(nameof(JobId))]
-        public virtual Job JobObject { get; set; } = null!;
+        public virtual Job JobObject { get; set; }
 
         [ForeignKey(nameof(CompanyId))]
-        public virtual Company CompanyObject { get; set; } = null!;
+        public virtual Company CompanyObject { get; set; }
     }
 }

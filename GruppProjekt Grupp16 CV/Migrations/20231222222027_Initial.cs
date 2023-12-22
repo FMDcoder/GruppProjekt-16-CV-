@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -71,7 +72,8 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true)
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
+                    created = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -158,8 +160,8 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                         principalTable: "Message",
                         principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_MessageBox_User_MessageId",
-                        column: x => x.MessageId,
+                        name: "FK_MessageBox_User_RecievedUserId",
+                        column: x => x.RecievedUserId,
                         principalTable: "User",
                         principalColumn: "Id");
                     table.ForeignKey(
@@ -332,6 +334,11 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                 name: "IX_MessageBox_MessageId",
                 table: "MessageBox",
                 column: "MessageId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MessageBox_RecievedUserId",
+                table: "MessageBox",
+                column: "RecievedUserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ReadMessages_MessageId",

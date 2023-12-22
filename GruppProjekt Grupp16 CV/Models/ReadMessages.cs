@@ -12,9 +12,9 @@ namespace GruppProjekt_Grupp16_CV.Models
         public int MessageId { get; set; }
 
         [ForeignKey(nameof(UserId))]
-        public virtual User UserObject { get; set; } = null!;
+        public virtual User UserObject { get; set; }
 
         [ForeignKey(nameof(MessageId))]
-        public virtual Message MessageObject { get; set; } = null!;
+        public virtual Message MessageObject { get; set; }
     }
 }

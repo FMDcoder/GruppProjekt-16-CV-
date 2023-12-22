@@ -224,60 +224,67 @@ namespace GruppProjekt_Grupp16_CV
         public static void uploadData(CvContext cvContext)
         {
             String[] Companies = { "Facebook", "Face2Face", "Marabo" };
-            foreach (var title in Companies)
+            for(var i = 0; i < Companies.Length; i++)
             {
-                cvContext.Add(new Company
+                cvContext.Company.Add(new Company
                 {
-                    Title = title
+                    Title = Companies[i]
                 });
             }
+            cvContext.SaveChanges();
+
 
             String[] jobs = { "IT", "Städare", "Elektriker", "Försäljare"};
-            foreach (var title in jobs)
+            for (var i = 0; i < jobs.Length; i++)
             {
-                cvContext.Add(new Job
+                cvContext.Job.Add(new Job
                 {
-                    Title = title
+                    Title = jobs[i]
                 });
             }
+            cvContext.SaveChanges();
 
             String[] ProfessionTitle = { "IT Tekniker", "Logoped", "Ingenjör", "Kok" };
             int[] ProfessionTime = { 5, 7, 4, 3 };
             for(var i = 0; i < ProfessionTitle.Length; i++)
             {
-                cvContext.Add(new Profession
+                cvContext.Profession.Add(new Profession
                 {
                     Title = ProfessionTitle[i],
                     Time = ProfessionTime[i]
                 });
             }
+            cvContext.SaveChanges();
 
             String[] SchoolTitle = { "Lindeskolan", "Örebros Universitet", "Grenadjärskolan"};
             for (var i = 0; i < SchoolTitle.Length; i++)
             {
-                cvContext.Add(new School
+                cvContext.School.Add(new School
                 {
                     Title = SchoolTitle[i],
                 });
             }
+            cvContext.SaveChanges();
 
             String[] SkillsTitle = { "Social Kompetens", "Problemlösare", "Datorkunskaper", "Stavnings kunskaper" };
             for (var i = 0; i < SkillsTitle.Length; i++)
             {
-                cvContext.Add(new Skills
+                cvContext.Skills.Add(new Skills
                 {
                     Title = SkillsTitle[i],
                 });
             }
+            cvContext.SaveChanges();
 
             String[] statusTitle = { "Privat", "Offentlig" };
             for (var i = 0; i < statusTitle.Length; i++)
             {
-                cvContext.Add(new Status
+                cvContext.Status.Add(new Status
                 {
                     Title = statusTitle[i],
                 });
             }
+            cvContext.SaveChanges();
 
             String[] UsersName = { "Jennifer Nilsson", "Carlos Neilberg", "Vanessa Van Con", "Jacob Helmström" };
             String[] UserPhone = { "46472346294", "46622204351", "46263934522", "46322932150"};
@@ -299,7 +306,7 @@ namespace GruppProjekt_Grupp16_CV
 
             for (var i = 0; i < Passwords.Length; i++)
             {
-                cvContext.Add(new User
+                cvContext.User.Add(new User
                 {
                     Name = UsersName[i],
                     PhoneNumber = UserPhone[i],
@@ -309,59 +316,62 @@ namespace GruppProjekt_Grupp16_CV
                     StatusId = 1 // Offentlig
                 });
             }
+            cvContext.SaveChanges();
 
             String[] projectTitles = { "CyberProg", "Hyper AI", "Dali K" };
             String[] projectDescription = {"Hyper säkert system", "Första generalla AI", "AI med känslor"};
             for(var i= 0; i < projectTitles.Length; i++)
             {
-                cvContext.Add(new Project
+                cvContext.Project.Add(new Project
                 {
                     Title = projectTitles[i],
                     Description = projectDescription[i]
                 });
             }
+            cvContext.SaveChanges();
 
             String[] messageTitle = { "Hej Världen", "Hej Hej", "Juste Glömde!" };
             String[] messageDesc = { "Detta är ett test meddelande", "Hejdå!", "Jag glömde bort..." };
 
             for(var i = 0; i < messageTitle.Length;i++) 
             {
-                cvContext.Add(new Message
+                cvContext.Message.Add(new Message
                 {
                     Title = messageTitle[i],
                     Description = messageDesc[i]
                 });
             }
+            cvContext.SaveChanges();
+            Console.WriteLine(cvContext.Message);
 
-            int[,] msgSent = { { 0, 1, 0 }, { 0, 2, 1 }, { 2, 3, 2 } };
-            for(var i = 0; i < messageDesc.GetLength(0); i++)
+            int[,] msgSent = {{ 1, 3, 2 }, { 3, 4, 1 }, { 1, 2, 3 } };
+            for(var i = 0; i < msgSent.GetLength(0); i++)
             {
-                cvContext.Add(new MessageBox
+                cvContext.MessageBox.Add(new MessageBox
                 {
                     RecievedUserId = msgSent[i, 0],
                     SentUserId = msgSent[i, 1],
                     MessageId = msgSent[i, 2]
                 });
-
-
             }
+            cvContext.SaveChanges();
 
-            int[,] UserEducationValues = { { 0, 0, 0 }, { 1, 1, 1 }, { 2, 1, 1 }, { 3, 2, 2}};
+            int[,] UserEducationValues = { { 1, 1, 1 }, { 2, 2, 2 }, { 3, 2, 2 }, { 4, 3, 3}};
             for (var i = 0; i < UserEducationValues.GetLength(0); i++)
             {
-                Console.WriteLine(i);
-                cvContext.Add(new UserEducation
+                cvContext.UserEducation.Add(new UserEducation
                 {
                     UserId = UserEducationValues[i, 0],
                     ProfessionId = UserEducationValues[i, 1],
                     SchoolId = UserEducationValues[i, 2]
                 });
             }
+            cvContext.SaveChanges();
 
-            int[,] UserExperinceValues = { { 0, 0, 0 }, { 1, 1, 1 }, { 2, 1, 1 }, { 3, 2, 2 } };
+            int[,] UserExperinceValues = { { 1, 1, 1 }, { 2, 2, 2 }, { 3, 2, 2 }, { 4, 3, 3 } };
             for (var i = 0; i < UserExperinceValues.GetLength(0); i++)
             {
-                cvContext.Add(new UserExperince
+                cvContext.UserExperince.Add(new UserExperince
                 {
                     UserId = UserExperinceValues[i, 0],
                     JobId = UserExperinceValues[i, 1],
@@ -369,30 +379,38 @@ namespace GruppProjekt_Grupp16_CV
                     TotalTime = new Random().Next(20),
                 });
             }
+            cvContext.SaveChanges();
 
-            int[,] UserProjectValues = { {0, 0}, { 0, 1}, { 1, 0 }, { 1, 1 }, { 2, 1 }, { 3, 0 }, { 3, 1 }};
+            int[,] UserProjectValues = { {1, 1}, { 1, 2}, { 2, 1 }, { 2, 2 }, { 3, 2 }, { 4, 1 }, { 4, 2 }};
             for (var i = 0; i < UserProjectValues.GetLength(0); i++)
             {
-                cvContext.Add(new UserProject
+                cvContext.UserProject.Add(new UserProject
                 {
                     UserId = UserProjectValues[i, 0],
                     ProjectId = UserProjectValues[i, 1],
                 });
             }
+            cvContext.SaveChanges();
 
-            int[,] UserSkillsValues = { { 0, 0 }, { 0, 1 }, { 1, 0 }, { 1, 1 }, { 2, 1 }, { 3, 0 }, { 3, 2 } };
+            int[,] UserSkillsValues = { { 1, 1 }, { 1, 2 }, { 2, 1 }, { 2, 2 }, { 3, 2 }, { 4, 1 }, { 4, 3 } };
             for (var i = 0; i < UserSkillsValues.GetLength(0); i++)
             {
-                cvContext.Add(new UserSkills
+                cvContext.UserSkills.Add(new UserSkills
                 {
                     UserId = UserSkillsValues[i, 0],
                     SkillsId = UserSkillsValues[i, 1],
                 });
             }
-
-            fixNavigationKeys(cvContext);
-
             cvContext.SaveChanges();
+
+            Console.WriteLine("Printing... "+ cvContext.MessageBox.Count());
+            foreach (var o in cvContext.MessageBox)
+            {
+                Console.WriteLine(o.MessageObject.Title);
+                Console.WriteLine(o.MessageObject.Description);
+                Console.WriteLine("--------");
+            }
+            Console.WriteLine("Printed!");
         }
     }
 }

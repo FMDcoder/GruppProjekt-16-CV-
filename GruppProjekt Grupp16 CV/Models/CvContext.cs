@@ -11,7 +11,7 @@ namespace GruppProjekt_Grupp16_CV.Models
         }
 
         public DbSet<Company> Company { get; set; }
-        public DbSet<Job> Job { get; set; }
+        public DbSet<Job> Job { get; set; }     
         public DbSet<Message> Message { get; set; }
         public DbSet<MessageBox> MessageBox { get; set; }
         public DbSet<Profession> Profession { get; set; }
@@ -39,7 +39,7 @@ namespace GruppProjekt_Grupp16_CV.Models
             modelBuilder.Entity<MessageBox>()
                 .HasKey(mb => new { mb.SentUserId, mb.RecievedUserId, mb.MessageId});
 
-            modelBuilder.Entity<MessageBox>()
+            /*modelBuilder.Entity<MessageBox>()
                 .HasOne(mb => mb.SentUserObject)
                 .WithMany(t => t.SentMessageBoxes)
                 .HasForeignKey(mb => mb.SentUserId)
@@ -55,7 +55,7 @@ namespace GruppProjekt_Grupp16_CV.Models
                 .HasOne(mb => mb.MessageObject)
                 .WithMany(t => t.MessageBoxes)
                 .HasForeignKey(mb => mb.MessageId)
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.NoAction);*/
 
             modelBuilder.Entity<ReadMessages>()
                 .HasKey(mb => new { mb.UserId, mb.MessageId});
@@ -78,17 +78,20 @@ namespace GruppProjekt_Grupp16_CV.Models
             modelBuilder.Entity <MessageBox>()
                 .HasOne(mb => mb.RecievedUserObject)
                 .WithMany(t => t.RecievedMessageBoxes)
-                .HasForeignKey(mb => mb.MessageId).IsRequired();
+                .HasForeignKey(mb => mb.RecievedUserId)
+                .IsRequired().OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<MessageBox>()
                 .HasOne(mb => mb.SentUserObject)
                 .WithMany(t => t.SentMessageBoxes)
-                .HasForeignKey(mb => mb.SentUserId).IsRequired();
+                .HasForeignKey(mb => mb.SentUserId)
+                .IsRequired().OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<MessageBox>()
                 .HasOne(mb => mb.MessageObject)
                 .WithMany(t => t.MessageBoxes)
-                .HasForeignKey(mb => mb.MessageId).IsRequired();
+                .HasForeignKey(mb => mb.MessageId)
+                .IsRequired().OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<ReadMessages>()
                 .HasOne(mb => mb.UserObject)

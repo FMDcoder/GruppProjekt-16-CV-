@@ -10,41 +10,41 @@ namespace GruppProjekt_Grupp16_CV.Models
 
         [Required(ErrorMessage = "Varje användare måste ha en namn!")]
         [StringLength(100, ErrorMessage = "Namnet på användaren får inte vara längre än 100 karaktärer!")]
-        public string Name { get; set; } = null!;
+        public string Name { get; set; } 
 
         [Required(ErrorMessage = "Varje användare måste ha ett telefonnummer!")]
         [RegularExpression(@"^\+?[0-9]*$", ErrorMessage = "Telefonnummret får endast vara siffror!")]
-        public string PhoneNumber { get; set; } = null!;
+        public string PhoneNumber { get; set; } 
 
         [Required(ErrorMessage = "Varje användare måste ha ett email!")]
         [EmailAddress(ErrorMessage = "Ogiltigt email!")]
-        public string Email { get; set; } = null!;
+        public string Email { get; set; } 
 
         [RegularExpression(@"^(http(s?)://)?([\w-]+\.)+[\w-]+(/[\w- ;,./?%&=]*)?$", ErrorMessage = "Ogiltigt url för profil bild! Endast jpg eller png!")]
         public string? ProfilePicture { get; set; }
 
         [Required(ErrorMessage = "Varje användare måste ha ett lösenord!")]
-        public string Password { get; set; } = null!;
+        public string Password { get; set; } 
 
         public int StatusId { get; set; }
 
 
         [ForeignKey(nameof(StatusId))]
-        public virtual Status statusObject { get; set; } = null!;
+        public virtual Status statusObject { get; set; } 
 
-        public virtual List<UserExperince> UserExperinces { get; set; } = null!;
+        public virtual List<UserExperince> UserExperinces { get; set; } = new List<UserExperince>();
 
-        public virtual List<UserEducation> UserEducations { get; set; } = null!;
+        public virtual List<UserEducation> UserEducations { get; set; } = new List<UserEducation>();
 
-        public virtual List<UserProject> UserProjects { get; set; } = null!;
+        public virtual List<UserProject> UserProjects { get; set; } = new List<UserProject>();
 
-        public virtual List<UserSkills> UserSkills { get; set; } = null!;
+        public virtual List<UserSkills> UserSkills { get; set; } = new List<UserSkills>();
 
-        public virtual List<RemovedMessages> RemovedMessages { get; set; } = null!;
+        public virtual List<RemovedMessages> RemovedMessages { get; set; } = new List<RemovedMessages>();
 
-        public virtual List<MessageBox> RecievedMessageBoxes { get; set; } = null!;
-        public virtual List<MessageBox> SentMessageBoxes { get; set; } = null!;
+        public virtual List<MessageBox> RecievedMessageBoxes { get; set; } = new List<MessageBox>();
+        public virtual List<MessageBox> SentMessageBoxes { get; set; } = new List<MessageBox>();
 
-        public virtual List<ReadMessages> ReadMessages { get; set; } = null!;
+        public virtual List<ReadMessages> ReadMessages { get; set; } = new List<ReadMessages>();
     }
 }

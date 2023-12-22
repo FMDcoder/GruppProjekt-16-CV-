@@ -101,6 +101,8 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
                     b.HasIndex("MessageId");
 
+                    b.HasIndex("RecievedUserId");
+
                     b.ToTable("MessageBox");
                 });
 
@@ -368,7 +370,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
                     b.HasOne("GruppProjekt_Grupp16_CV.Models.User", "RecievedUserObject")
                         .WithMany("RecievedMessageBoxes")
-                        .HasForeignKey("MessageId")
+                        .HasForeignKey("RecievedUserId")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
