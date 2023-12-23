@@ -37,7 +37,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(_cvContext.User.ToList());
         }
 
         public IActionResult Privacy()

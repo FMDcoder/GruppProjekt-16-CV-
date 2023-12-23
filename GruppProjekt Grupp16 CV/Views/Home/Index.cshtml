@@ -9,4 +9,15 @@
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
-<aps:Button  
+@foreach(var user in Model)
+{
+    <h1>@user.Name</h1>
+    @foreach (var userProject in user.UserProjects)
+    {
+        <div>
+            <h4>@userProject.ProjectObject.Title</h4>
+            <sup>@userProject.ProjectObject.created</sup>
+            <p>@userProject.ProjectObject.Description</p>
+        </div>
+    }
+}
