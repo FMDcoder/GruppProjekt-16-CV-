@@ -37,25 +37,7 @@ namespace GruppProjekt_Grupp16_CV.Models
         {
             // Fixar så att tabeller med fler än en primär nyckel funkar
             modelBuilder.Entity<MessageBox>()
-                .HasKey(mb => new { mb.SentUserId, mb.RecievedUserId, mb.MessageId});
-
-            /*modelBuilder.Entity<MessageBox>()
-                .HasOne(mb => mb.SentUserObject)
-                .WithMany(t => t.SentMessageBoxes)
-                .HasForeignKey(mb => mb.SentUserId)
-                .OnDelete(DeleteBehavior.NoAction);
-
-            modelBuilder.Entity<MessageBox>()
-                .HasOne(mb => mb.RecievedUserObject)
-                .WithMany(t => t.RecievedMessageBoxes)
-                .HasForeignKey(mb => mb.RecievedUserId)
-                .OnDelete(DeleteBehavior.NoAction);
-
-            modelBuilder.Entity<MessageBox>()
-                .HasOne(mb => mb.MessageObject)
-                .WithMany(t => t.MessageBoxes)
-                .HasForeignKey(mb => mb.MessageId)
-                .OnDelete(DeleteBehavior.NoAction);*/
+                .HasKey(mb => new { mb.SentUserId, mb.RecievedUserId, mb.MessageId });
 
             modelBuilder.Entity<ReadMessages>()
                 .HasKey(mb => new { mb.UserId, mb.MessageId});
@@ -147,6 +129,12 @@ namespace GruppProjekt_Grupp16_CV.Models
                 .HasOne(mb => mb.UserObject)
                 .WithMany(t => t.UserProjects)
                 .HasForeignKey(mb => mb.UserId).IsRequired();
+
+            modelBuilder.Entity<Project>()
+               .HasOne(mb => mb.CreatorObject)
+               .WithMany(t => t.CreatedUserProjects)
+               .HasForeignKey(mb => mb.CreatorId)
+               .IsRequired().OnDelete(DeleteBehavior.NoAction); ;
 
             modelBuilder.Entity<UserProject>()
                 .HasOne(mb => mb.ProjectObject)

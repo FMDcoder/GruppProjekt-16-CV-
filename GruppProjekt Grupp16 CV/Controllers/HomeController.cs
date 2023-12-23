@@ -29,15 +29,10 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
         }
 
-        protected void btnSubmit_Click(object sender, EventArgs e)
-        {
-            // Code executed when the button is clicked
-            Console.WriteLine("Clicked!");
-        }
-
         public IActionResult Index()
         {
-            return View(_cvContext.User.ToList());
+			Console.WriteLine("A");
+			return View(_cvContext.User.ToList());
         }
 
         public IActionResult Privacy()

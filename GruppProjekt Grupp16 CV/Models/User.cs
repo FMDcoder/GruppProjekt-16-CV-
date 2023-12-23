@@ -9,11 +9,12 @@ namespace GruppProjekt_Grupp16_CV.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Varje användare måste ha en namn!")]
+        [RegularExpression(@"^[a-zA-Z0-9åäöÅÄÖ]+$", ErrorMessage = "Namnet får inte ha något special tecken!")]
         [StringLength(100, ErrorMessage = "Namnet på användaren får inte vara längre än 100 karaktärer!")]
         public string Name { get; set; } 
 
         [Required(ErrorMessage = "Varje användare måste ha ett telefonnummer!")]
-        [RegularExpression(@"^\+?[0-9]*$", ErrorMessage = "Telefonnummret får endast vara siffror!")]
+        [RegularExpression(@"^[0-9]+$", ErrorMessage = "Telefonnummret får endast vara siffror!")]
         public string PhoneNumber { get; set; } 
 
         [Required(ErrorMessage = "Varje användare måste ha ett email!")]
@@ -37,6 +38,8 @@ namespace GruppProjekt_Grupp16_CV.Models
         public virtual List<UserEducation> UserEducations { get; set; } = new List<UserEducation>();
 
         public virtual List<UserProject> UserProjects { get; set; } = new List<UserProject>();
+
+        public virtual List<Project> CreatedUserProjects { get; set; } = new List<Project>();
 
         public virtual List<UserSkills> UserSkills { get; set; } = new List<UserSkills>();
 

@@ -1,7 +1,6 @@
 ﻿using GruppProjekt_Grupp16_CV;
 using GruppProjekt_Grupp16_CV.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 
 var builder = WebApplication.CreateBuilder(args);
 

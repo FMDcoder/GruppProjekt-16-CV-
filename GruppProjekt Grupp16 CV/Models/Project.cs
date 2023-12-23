@@ -15,8 +15,13 @@ namespace GruppProjekt_Grupp16_CV.Models
         [StringLength(1000, ErrorMessage = "Projektets beskrivning får inte vara längre än 1000 karaktärer!")]
         public string? Description { get; set; }
 
-        public DateTime created { get; set; }
+        public DateTime Created { get; set; }
+
+        public int CreatorId { get; set; }
 
         public virtual List<UserProject> UserProject { get; set; } = new List<UserProject>();
+
+        [ForeignKey(nameof(CreatorId))]
+        public virtual User CreatorObject { get; set; }
     }
 }
