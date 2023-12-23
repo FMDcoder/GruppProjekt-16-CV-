@@ -78,3 +78,21 @@ body {
     font-size:12px;
 }
 
+.button {
+    width: 200px;
+    height: 30px;
+    background-color: white;
+    border: 3px solid #dddddd;
+    margin: 10px;
+    border-radius:5px;
+
+    font-weight: 700;
+}
+
+.button:hover {
+    border: 3px solid #bbbbbb;
+}
+
+.button:active {
+    border: 3px solid #999999;
+}

@@ -31,7 +31,6 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
         public IActionResult Index()
         {
-			Console.WriteLine("A");
 			return View(_cvContext.User.ToList());
         }
 

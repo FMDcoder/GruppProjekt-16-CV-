@@ -8,21 +8,20 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <link rel="stylesheet" href="~/GruppProjekt_Grupp16_CV.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid" id="app">
-                <form method="get" asp-action="Users" class="form-group" id="search-form">
+                <form method="get" asp-controller="Home" asp-action="Users" class="form-group" id="search-form">
                     <input type="text" id="search-bar" name="search" placeholder="sök på personner" />
                     <input type="submit" id="search-button"/>
                 </form>
-                <a class="icon-button" asp-area="" asp-controller="Home" asp-action="Messages">
+                <a class="icon-button" asp-controller="Home" asp-action="Messages">
                     <i class="fas fa-envelope"></i>
                     <div id="total-messages">+9</div>
                 </a>
-                <a class="icon-button" asp-area="" asp-controller="Home" asp-action="Account">
+                <a class="icon-button" asp-controller="Home" asp-action="Account">
                     <i class="fas fa-user"></i>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"

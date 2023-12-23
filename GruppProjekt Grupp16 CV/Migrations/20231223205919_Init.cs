@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace GruppProjekt_Grupp16_CV.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -63,21 +63,6 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Profession", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Project",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
-                    created = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Project", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -167,6 +152,27 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                     table.ForeignKey(
                         name: "FK_MessageBox_User_SentUserId",
                         column: x => x.SentUserId,
+                        principalTable: "User",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Project",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatorId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Project", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Project_User_CreatorId",
+                        column: x => x.CreatorId,
                         principalTable: "User",
                         principalColumn: "Id");
                 });
@@ -283,30 +289,6 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserProject",
-                columns: table => new
-                {
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    ProjectId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_UserProject", x => new { x.UserId, x.ProjectId });
-                    table.ForeignKey(
-                        name: "FK_UserProject_Project_ProjectId",
-                        column: x => x.ProjectId,
-                        principalTable: "Project",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_UserProject_User_UserId",
-                        column: x => x.UserId,
-                        principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "UserSkills",
                 columns: table => new
                 {
@@ -330,6 +312,30 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "UserProject",
+                columns: table => new
+                {
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    ProjectId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserProject", x => new { x.UserId, x.ProjectId });
+                    table.ForeignKey(
+                        name: "FK_UserProject_Project_ProjectId",
+                        column: x => x.ProjectId,
+                        principalTable: "Project",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserProject_User_UserId",
+                        column: x => x.UserId,
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_MessageBox_MessageId",
                 table: "MessageBox",
@@ -339,6 +345,11 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                 name: "IX_MessageBox_RecievedUserId",
                 table: "MessageBox",
                 column: "RecievedUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Project_CreatorId",
+                table: "Project",
+                column: "CreatorId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ReadMessages_MessageId",

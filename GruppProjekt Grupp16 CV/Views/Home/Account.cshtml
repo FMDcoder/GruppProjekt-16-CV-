@@ -2,6 +2,22 @@
 	ViewData["Title"] = "Account";
 }
 
+<link rel="stylesheet" href="~/css/account.css" asp-append-version="true" />
+
+@{
+	// LogIn / Registera
+}
+
 <div id="framework">
-	<h2>a</h2>
+	@if (ViewData["loggedIn"] == null)
+	{
+		<div id="option-box">
+			<button class="button">
+				Logga In
+			</button>
+			<button class="button">
+				Registera dig
+			</button>
+		</div>
+	}
 </div>

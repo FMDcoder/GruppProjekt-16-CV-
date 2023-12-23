@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GruppProjekt_Grupp16_CV.Migrations
 {
     [DbContext(typeof(CvContext))]
-    [Migration("20231222222027_Initial")]
-    partial class Initial
+    [Migration("20231223205919_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -138,6 +138,12 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("CreatorId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
@@ -147,10 +153,9 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateTime>("created")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("CreatorId");
 
                     b.ToTable("Project");
                 });
@@ -390,6 +395,17 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                     b.Navigation("SentUserObject");
                 });
 
+            modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.Project", b =>
+                {
+                    b.HasOne("GruppProjekt_Grupp16_CV.Models.User", "CreatorObject")
+                        .WithMany("CreatedUserProjects")
+                        .HasForeignKey("CreatorId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("CreatorObject");
+                });
+
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.ReadMessages", b =>
                 {
                     b.HasOne("GruppProjekt_Grupp16_CV.Models.Message", "MessageObject")
@@ -577,6 +593,8 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.User", b =>
                 {
+                    b.Navigation("CreatedUserProjects");
+
                     b.Navigation("ReadMessages");
 
                     b.Navigation("RecievedMessageBoxes");
