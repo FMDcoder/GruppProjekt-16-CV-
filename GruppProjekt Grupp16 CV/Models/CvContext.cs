@@ -1,10 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace GruppProjekt_Grupp16_CV.Models
 {
-    public class CvContext : DbContext
+    public class CvContext : IdentityDbContext<User>
     {
         public CvContext(DbContextOptions<CvContext> options) : base(options) { 
             

@@ -191,15 +191,6 @@ namespace GruppProjekt_Grupp16_CV
                 });
             }
             cvContext.SaveChanges();
-
-            Console.WriteLine("Printing... "+ cvContext.MessageBox.Count());
-            foreach (var o in cvContext.MessageBox)
-            {
-                Console.WriteLine(o.MessageObject.Title);
-                Console.WriteLine(o.MessageObject.Description);
-                Console.WriteLine("--------");
-            }
-            Console.WriteLine("Printed!");
         }
     }
 }

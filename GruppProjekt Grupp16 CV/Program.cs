@@ -1,5 +1,6 @@
 ﻿using GruppProjekt_Grupp16_CV;
 using GruppProjekt_Grupp16_CV.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<CvContext>(options =>
     options.UseLazyLoadingProxies().UseSqlServer(builder.Configuration.GetConnectionString("CvContext")));
+builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<CvContext>().AddDefaultTokenProviders();
 
 var app = builder.Build();
 

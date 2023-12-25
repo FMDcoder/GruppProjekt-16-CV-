@@ -28,15 +28,19 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			companies = new Repository<Company>(cvContext);
 			jobs = new Repository<Job>(cvContext);
 			messages = new Repository<Message>(cvContext);
+
 			professions = new Repository<Profession>(cvContext);
 			projects = new Repository<Project>(cvContext);
 			readMessages = new Repository<ReadMessages>(cvContext);
+
 			removedMessages = new Repository<RemovedMessages>(cvContext);
 			schools = new Repository<School>(cvContext);
 			skills = new Repository<Skills>(cvContext);
+
 			status = new Repository<Status>(cvContext);
 			users = new Repository<User>(cvContext);
 			userEducations = new Repository<UserEducation>(cvContext);
+
 			userExperinces = new Repository<UserExperince>(cvContext);
 			userProjects = new Repository<UserProject>(cvContext);
 			userSkills = new Repository<UserSkills>(cvContext);
@@ -57,7 +61,23 @@ namespace GruppProjekt_Grupp16_CV.Controllers
             return View();
         }
 
-        public IActionResult CVsite()
+		public IActionResult LogIn()
+		{
+			return View();
+		}
+
+		public IActionResult Register()
+		{
+			return View();
+		}
+
+		public IActionResult Profile()
+		{
+			return View();
+		}
+
+
+		public IActionResult CVsite()
         {
             return View();
         }
