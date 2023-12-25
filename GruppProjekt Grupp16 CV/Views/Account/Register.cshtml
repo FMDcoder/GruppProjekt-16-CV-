@@ -8,66 +8,70 @@
 
 <div class="col-lg-6 col-12">
 	<h2>Registera Konto</h2>
-	<div asp-validation-summary="All" class="text-danger"></div>
+	<div asp-validation-summary="All" class="text-danger side-hanger"></div>
 	<form method="post" asp-action="Register">
 		<div class="form-group row space">
-			<div class="col-12">
+			<div class="col-4">
 				<label>Namn:</label>
 			</div>
-			<div class="col-sm-4">
+			<div class="col-sm-6">
 				<input asp-for="UserName" class="form-control" />
 			</div>
 		</div>
 		<div class="form-group row space">
-			<div class="col-12">
+			<div class="col-4">
 				<label>Telefonnummer:</label>
 			</div>
-			<div class="col-sm-4">
+			<div class="col-sm-6">
 				<input asp-for="PhoneNumber" class="form-control" />
 			</div>
 		</div>
 		<div class="form-group row space">
-			<div class="col-12">
+			<div class="col-4">
 				<label>Profilbild URL:</label>
 			</div>
-			<div class="col-sm-4 space">
+			<div class="col-sm-6">
 				<input asp-for="ProfilePicture" class="form-control" />
 			</div>
 		</div>
 		<div class="form-group row space">
-			<div class="col-12">
+			<div class="col-4">
 				<label>Email:</label>
 			</div>
-			<div class="col-sm-4 space">
+			<div class="col-sm-6">
 				<input asp-for="Email" class="form-control" />
 			</div>
 		</div>
 		<div class="form-group row space">
-			<div class="col-12">
+			<div class="col-4">
 				<label>Bekräfta Email:</label>
 			</div>
-			<div class="col-sm-4">
+			<div class="col-sm-6">
 				<input asp-for="ConfirmEmail" class="form-control" />
 			</div>
 		</div>
 		<div class="form-group row space">
-			<div class="col-12">
+			<div class="col-4">
 				<label>Lösenord:</label>
 			</div>
-			<div class="col-sm-4">
+			<div class="col-sm-6">
 				<input asp-for="Password" class="form-control" />
 			</div>
 		</div>
 		<div class="form-group row space">
-			<div class="col-12">
+			<div class="col-4">
 				<label>Bekräfta Lösenord:</label>
 			</div>
-			<div class="col-sm-4">
+			<div class="col-sm-6">
 				<input asp-for="ConfirmPassword" class="form-control" />
 			</div>
+		</div
+		<div class="form-group row space">
+			<label>Offentlig:</label>
+			<input asp-for="Status" type="checkbox" checked="checked"/>
 		</div>
 		<div class="form-group row space">
-			<div class="col-sm-4">
+			<div class="col-sm-6">
 				<button type="submit" class="btn btn-primary">Registera användare</button>
 			</div>
 		</div>

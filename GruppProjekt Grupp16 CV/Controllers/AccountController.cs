@@ -1,6 +1,7 @@
 ﻿using GruppProjekt_Grupp16_CV.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Models;
 
 namespace GruppProjekt_Grupp16_CV.Controllers
 {
@@ -15,9 +16,30 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			this.SignInManager = signInManager;
 		}
 
-		public IActionResult Register()
+		public async Task<IActionResult> Register(UserRegisterValidate UserRegVal)
 		{
-			return View();
+            if(ModelState.IsValid)
+            {
+				User client = new User();
+				client.UserName = UserRegVal.UserName;
+				client.Email = UserRegVal.Email;
+				client.EmailConfirmed = true;
+				client.StatusId = UserRegVal.Status ? 2 : 1;
+				client.ProfilePicture = UserRegVal.ProfilePicture;
+				client.PhoneNumber = UserRegVal.PhoneNumber;
+				var res = await UserManager.CreateAsync(client, UserRegVal.Password);
+				if(res.Succeeded)
+				{
+					await SignInManager.SignInAsync(client, isPersistent: true);
+					return RedirectToAction("Index", "Home");
+				}
+
+				foreach(var error in res.Errors)
+				{
+					ModelState.AddModelError("", error.Description);
+				}
+            }
+            return View(UserRegVal);
 		}
 
 		public IActionResult LogIn()

@@ -30,10 +30,12 @@ namespace Models
 		[RegularExpression(@"^(http(s?)://)?([\w-]+\.)+[\w-]+(/[\w- ;,./?%&=]*)?$", ErrorMessage = "Ogiltigt url för profil bild! Endast jpg eller png!")]
 		public string? ProfilePicture { get; set; }
 
+		[DataType(DataType.Password)]
 		[StringLength(100, ErrorMessage = "Lösenordet på användaren får inte vara längre än 100 karaktärer!")]
 		[Required(ErrorMessage = "Varje användare måste ha ett lösenord!")]
 		public string Password { get; set; }
 
+		[DataType(DataType.Password)]
 		[Compare("Password", ErrorMessage = "Bekräftelse lösenordet måste matcha varandra")]
 		public string ConfirmPassword { get; set; }
 
