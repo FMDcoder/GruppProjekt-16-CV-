@@ -9,8 +9,8 @@ namespace GruppProjekt_Grupp16_CV.Models
         public int Id { get; set; }
 
 
-        [Required(ErrorMessage = "Varje jobb måste ha en titel!")]
-        [StringLength(100, ErrorMessage = "Titeln på jobbet får inte vara längre än 100 karaktärer!")]
+        [Required]
+        [StringLength(100)]
         public string Title { get; set; } 
 
         public virtual List<UserExperince> UserExperinces { get; set; } = new List<UserExperince>();

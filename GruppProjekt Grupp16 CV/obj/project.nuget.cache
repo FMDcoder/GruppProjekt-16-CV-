@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "GS/eZr8+WDVQkx9Zc0mTUTHMkSzeM8LTRZIUU6Q5ng36/T8WnFLYJaJawWaQfhX0498jRt3bEcXFHct935SFqQ==",
+  "dgSpecHash": "D70a9t8NXrnP6jWJ3lqOlTM33u8LM6Ols3r1UtEukaO43tJxfl2dHgJZlY/I+6CHjBeUSpbG9j55DDbwbU0aPw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\GruppProjekt Grupp16 CV\\GruppProjekt Grupp16 CV.csproj",
+  "projectFilePath": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\GruppProjekt Grupp16 CV\\GruppProjekt_Grupp16_CV.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nilss\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\nilss\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

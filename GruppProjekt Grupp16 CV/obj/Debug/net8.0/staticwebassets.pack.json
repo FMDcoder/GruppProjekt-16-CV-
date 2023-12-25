@@ -1,8 +1,8 @@
 {
   "Files": [
     {
-      "Id": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\GruppProjekt Grupp16 CV\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\GruppProjekt Grupp16 CV.bundle.scp.css",
-      "PackagePath": "staticwebassets\\GruppProjekt Grupp16 CV.bundle.scp.css"
+      "Id": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\GruppProjekt Grupp16 CV\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\GruppProjekt_Grupp16_CV.bundle.scp.css",
+      "PackagePath": "staticwebassets\\GruppProjekt_Grupp16_CV.bundle.scp.css"
     },
     {
       "Id": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\GruppProjekt Grupp16 CV\\wwwroot\\css\\account.css",
@@ -249,20 +249,20 @@
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
     },
     {
-      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.GruppProjekt Grupp16 CV.Microsoft.AspNetCore.StaticWebAssets.props",
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.GruppProjekt_Grupp16_CV.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },
     {
-      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.GruppProjekt Grupp16 CV.props",
-      "PackagePath": "build\\GruppProjekt Grupp16 CV.props"
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.GruppProjekt_Grupp16_CV.props",
+      "PackagePath": "build\\GruppProjekt_Grupp16_CV.props"
     },
     {
-      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.GruppProjekt Grupp16 CV.props",
-      "PackagePath": "buildMultiTargeting\\GruppProjekt Grupp16 CV.props"
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.GruppProjekt_Grupp16_CV.props",
+      "PackagePath": "buildMultiTargeting\\GruppProjekt_Grupp16_CV.props"
     },
     {
-      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.GruppProjekt Grupp16 CV.props",
-      "PackagePath": "buildTransitive\\GruppProjekt Grupp16 CV.props"
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.GruppProjekt_Grupp16_CV.props",
+      "PackagePath": "buildTransitive\\GruppProjekt_Grupp16_CV.props"
     }
   ],
   "ElementsToRemove": []

@@ -1,0 +1,6 @@
+C:\Users\nilss\source\repos\GruppProjekt Grupp16 CV\Models\obj\Debug\net8.0\Models.csproj.AssemblyReference.cache
+C:\Users\nilss\source\repos\GruppProjekt Grupp16 CV\Models\obj\Debug\net8.0\Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nilss\source\repos\GruppProjekt Grupp16 CV\Models\obj\Debug\net8.0\Models.AssemblyInfoInputs.cache
+C:\Users\nilss\source\repos\GruppProjekt Grupp16 CV\Models\obj\Debug\net8.0\Models.AssemblyInfo.cs
+C:\Users\nilss\source\repos\GruppProjekt Grupp16 CV\Models\obj\Debug\net8.0\Models.csproj.CoreCompileInputs.cache
+C:\Users\nilss\source\repos\GruppProjekt Grupp16 CV\Models\obj\Debug\net8.0\Models.sourcelink.json

@@ -1,4 +1,5 @@
 ﻿using GruppProjekt_Grupp16_CV.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -6,6 +7,7 @@ namespace GruppProjekt_Grupp16_CV
 {
     public class DataHandler
     {
+        [HttpPost]
         public static void uploadData(CvContext cvContext)
         {
             String[] Companies = { "Facebook", "Face2Face", "Marabo" };
@@ -111,8 +113,9 @@ namespace GruppProjekt_Grupp16_CV
                 {
                     Title = projectTitles[i],
                     Description = projectDescription[i],
+                    LatestUpdate = new DateTime(),
                     CreatorId = 2
-                });
+                }) ;
             }
             cvContext.SaveChanges();
 

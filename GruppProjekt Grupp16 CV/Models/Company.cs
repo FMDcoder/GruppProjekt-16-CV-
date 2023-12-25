@@ -8,8 +8,8 @@ namespace GruppProjekt_Grupp16_CV.Models
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Varje företag måste ha ett namn!")]
-        [StringLength(100, ErrorMessage = "Namnet på företaget får inte vara längre än 100 karaktärer!")]
+        [Required]
+        [StringLength(100)]
         public string Title { get; set; } 
 
         public virtual List<UserExperince> UserExperinces { get; set; } = new List<UserExperince>();

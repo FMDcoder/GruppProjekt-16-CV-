@@ -8,14 +8,14 @@ namespace GruppProjekt_Grupp16_CV.Models
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Projektet måste ha ett namn!")]
-        [StringLength(100, ErrorMessage = "Projektets Titel får inte vara längre än 100 karaktärer!")]
+        [Required]
+        [StringLength(100)]
         public string Title { get; set; } 
 
-        [StringLength(1000, ErrorMessage = "Projektets beskrivning får inte vara längre än 1000 karaktärer!")]
+        [StringLength(1000)]
         public string? Description { get; set; }
 
-        public DateTime Created { get; set; }
+        public DateTime LatestUpdate { get; set; }
 
         public int CreatorId { get; set; }
 

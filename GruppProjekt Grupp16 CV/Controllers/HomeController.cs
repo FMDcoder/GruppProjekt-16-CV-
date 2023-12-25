@@ -1,42 +1,55 @@
 using GruppProjekt_Grupp16_CV.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-
 namespace GruppProjekt_Grupp16_CV.Controllers
 {
     public class HomeController : Controller
     {
         private readonly CvContext _cvContext;
-        public List<Company> companies { get; set; } = new List<Company>();
-        public List<Job> jobs { get; set; } = new List<Job>();
-        public List<Message> messages { get; set; } = new List<Message>();
-        public List<Profession> professions { get; set; } = new List<Profession>();
-        public List<Project> projects { get; set; } = new List<Project>();
-        public List<ReadMessages> readMessages { get; set; } = new List<ReadMessages>();
-        public List<RemovedMessages> removedMessages { get; set; } = new List<RemovedMessages>();
-        public List<School> schools { get; set; } = new List<School>();
-        public List<Skills> skills { get; set; } = new List<Skills>();
-        public List<Status> status { get; set; } = new List<Status>();
-        public List<User> users { get; set; } = new List<User>();
-        public List<UserEducation> userEducations { get; set; } = new List<UserEducation>();
-        public List<UserExperince> userExperinces { get; set; } = new List<UserExperince>();
-        public List<UserProject> userProjects { get; set; } = new List<UserProject>();
-        public List<UserSkills> userSkills { get; set; } = new List<UserSkills>();
+        public Repository<Company> companies { get; set; }
+        public Repository<Job> jobs { get; set; }
+        public Repository<Message> messages { get; set; }
+        public Repository<Profession> professions { get; set; } 
+        public Repository<Project> projects { get; set; }
+        public Repository<ReadMessages> readMessages { get; set; }
+        public Repository<RemovedMessages> removedMessages { get; set; }
+        public Repository<School> schools { get; set; }
+        public Repository<Skills> skills { get; set; }
+        public Repository<Status> status { get; set; }
+        public Repository<User> users { get; set; }
+        public Repository<UserEducation> userEducations { get; set; } 
+        public Repository<UserExperince> userExperinces { get; set; }
+        public Repository<UserProject> userProjects { get; set; }
+        public Repository<UserSkills> userSkills { get; set; }
 
-        public HomeController(CvContext cvContext)
-        {
-            _cvContext = cvContext;
+		public HomeController(CvContext cvContext)
+		{
+			_cvContext = cvContext;
+			companies = new Repository<Company>(cvContext);
+			jobs = new Repository<Job>(cvContext);
+			messages = new Repository<Message>(cvContext);
+			professions = new Repository<Profession>(cvContext);
+			projects = new Repository<Project>(cvContext);
+			readMessages = new Repository<ReadMessages>(cvContext);
+			removedMessages = new Repository<RemovedMessages>(cvContext);
+			schools = new Repository<School>(cvContext);
+			skills = new Repository<Skills>(cvContext);
+			status = new Repository<Status>(cvContext);
+			users = new Repository<User>(cvContext);
+			userEducations = new Repository<UserEducation>(cvContext);
+			userExperinces = new Repository<UserExperince>(cvContext);
+			userProjects = new Repository<UserProject>(cvContext);
+			userSkills = new Repository<UserSkills>(cvContext);
+		}
 
-        }
-
-        public IActionResult Index()
+		public IActionResult Index()
         {
 			return View(_cvContext.User.ToList());
         }
 
         public IActionResult Privacy()
         {
-            return View();
+            return View(users.GetAll());
         }
 
         public IActionResult Account()

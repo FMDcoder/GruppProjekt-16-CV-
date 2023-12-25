@@ -8,11 +8,11 @@ namespace GruppProjekt_Grupp16_CV.Models
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Det måste finnas en titel för utbildningen!")]
-        [StringLength(100, ErrorMessage = "Titeln på utbildningen får inte vara längre än 100 karaktärer!")]
+        [Required]
+        [StringLength(100)]
         public string Title { get; set; } 
 
-        [Range(0, 100, ErrorMessage = "Utbildningen kan inte vara mindre än 0 eller högre än 100!")]
+        [Range(0, 100)]
         public int Time { get; set; }
 
         public virtual List<UserEducation> UserEducations { get; set; } = new List<UserEducation>();
