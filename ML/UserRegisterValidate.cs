@@ -12,7 +12,7 @@ namespace Models
 		[Required(ErrorMessage = "Varje användare måste ha en namn!")]
 		[StringLength(100, ErrorMessage = "Namnet på användaren får inte vara längre än 100 karaktärer!")]
 		[RegularExpression(@"^[a-zA-Z0-9åäöÅÄÖ]{3,}$", ErrorMessage = "Namnet får inte ha något special tecken och måste vara minst 3 karaktärer lång!")]
-		public string Name { get; set; }
+		public string UserName { get; set; }
 
 		[Required(ErrorMessage = "Varje användare måste ha ett telefonnummer!")]
 		[StringLength(10, ErrorMessage = "Telefonnumret på användaren får inte vara längre än 100 karaktärer!")]
@@ -23,6 +23,9 @@ namespace Models
 		[StringLength(100, ErrorMessage = "Emailet på användaren får inte vara längre än 100 karaktärer!")]
 		[EmailAddress(ErrorMessage = "Ogiltigt email!")]
 		public string Email { get; set; }
+
+		[Compare(nameof(Email), ErrorMessage = "Emailen stämmer inte ihop!")]
+		public string ConfirmEmail { get; set; }
 
 		[RegularExpression(@"^(http(s?)://)?([\w-]+\.)+[\w-]+(/[\w- ;,./?%&=]*)?$", ErrorMessage = "Ogiltigt url för profil bild! Endast jpg eller png!")]
 		public string? ProfilePicture { get; set; }

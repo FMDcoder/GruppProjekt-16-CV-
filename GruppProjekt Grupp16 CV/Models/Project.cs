@@ -17,7 +17,7 @@ namespace GruppProjekt_Grupp16_CV.Models
 
         public DateTime LatestUpdate { get; set; }
 
-        public int CreatorId { get; set; }
+        public string CreatorId { get; set; }
 
         public virtual List<UserProject> UserProject { get; set; } = new List<UserProject>();
 

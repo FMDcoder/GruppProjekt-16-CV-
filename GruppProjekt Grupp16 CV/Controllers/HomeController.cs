@@ -21,6 +21,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
         public Repository<UserExperince> userExperinces { get; set; }
         public Repository<UserProject> userProjects { get; set; }
         public Repository<UserSkills> userSkills { get; set; }
+		public Repository<VisitedCV> userVisits { get; set; }
 
 		public HomeController(CvContext cvContext)
 		{
@@ -44,6 +45,8 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			userExperinces = new Repository<UserExperince>(cvContext);
 			userProjects = new Repository<UserProject>(cvContext);
 			userSkills = new Repository<UserSkills>(cvContext);
+
+			userVisits = new Repository<VisitedCV>(cvContext);
 		}
 
 		public IActionResult Index()
@@ -60,16 +63,6 @@ namespace GruppProjekt_Grupp16_CV.Controllers
         {
             return View();
         }
-
-		public IActionResult LogIn()
-		{
-			return View();
-		}
-
-		public IActionResult Register()
-		{
-			return View();
-		}
 
 		public IActionResult Profile()
 		{

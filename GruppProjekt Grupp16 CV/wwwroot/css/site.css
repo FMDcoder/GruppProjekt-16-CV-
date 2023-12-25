@@ -86,13 +86,30 @@ body {
     margin: 10px;
     border-radius:5px;
 
+    text-decoration:none;
+    color:black;
+
     font-weight: 700;
 }
 
 .button:hover {
+    color:gray;
     border: 3px solid #bbbbbb;
 }
 
 .button:active {
+    color: lightgray;
     border: 3px solid #999999;
+}
+
+.centered {
+    width:100%;
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.space {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

@@ -5,17 +5,12 @@
 <link rel="stylesheet" href="~/css/account.css" asp-append-version="true" />
 
 <div id="framework">
-	@if (ViewData["loggedIn"] == null)
-	{
-		<div id="option-box">
-			<a class="button" asp-controller="Home" asp-action="LogIn">
-				Logga In
-			</a>
-			<a class="button" asp-controller="Home" asp-action="Register">
-				Registera dig
-			</a>
-		</div>
-	} else {
-	
-	}
-</div>
+	<div id="option-box">
+		<a class="button" asp-controller="Account" asp-action="LogIn">
+			Logga In
+		</a>
+		<a class="button" asp-controller="Account" asp-action="Register">
+			Registera dig
+		</a>
+	</div>
+</div> 

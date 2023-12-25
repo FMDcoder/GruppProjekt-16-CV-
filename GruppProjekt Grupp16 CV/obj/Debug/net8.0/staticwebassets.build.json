@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "GawCXhCeNjdH9uAJDO+13//CMIKZg4NJV3eQcz4E9FY=",
+  "Hash": "v+iaMtAzxwT1OZriBkApHUcApFc2gW7WJqXhkAe9+2A=",
   "Source": "GruppProjekt_Grupp16_CV",
   "BasePath": "_content/GruppProjekt_Grupp16_CV",
   "Mode": "Default",
@@ -72,6 +72,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\account.css"
+    },
+    {
+      "Identity": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\GruppProjekt Grupp16 CV\\wwwroot\\css\\register.css",
+      "SourceId": "GruppProjekt_Grupp16_CV",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\GruppProjekt Grupp16 CV\\wwwroot\\",
+      "BasePath": "_content/GruppProjekt_Grupp16_CV",
+      "RelativePath": "css/register.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\register.css"
     },
     {
       "Identity": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\GruppProjekt Grupp16 CV\\wwwroot\\css\\site.css",

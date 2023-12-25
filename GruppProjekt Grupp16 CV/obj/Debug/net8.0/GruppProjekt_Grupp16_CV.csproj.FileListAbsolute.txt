@@ -139,3 +139,4 @@ C:\Users\nilss\source\repos\GruppProjekt Grupp16 CV\GruppProjekt Grupp16 CV\obj\
 C:\Users\nilss\source\repos\GruppProjekt Grupp16 CV\GruppProjekt Grupp16 CV\obj\Debug\net8.0\ref\GruppProjekt_Grupp16_CV.dll
 C:\Users\nilss\source\repos\GruppProjekt Grupp16 CV\GruppProjekt Grupp16 CV\bin\Debug\net8.0\ML.dll
 C:\Users\nilss\source\repos\GruppProjekt Grupp16 CV\GruppProjekt Grupp16 CV\bin\Debug\net8.0\ML.pdb
+C:\Users\nilss\source\repos\GruppProjekt Grupp16 CV\GruppProjekt Grupp16 CV\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll

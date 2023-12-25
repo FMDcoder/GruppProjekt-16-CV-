@@ -95,11 +95,11 @@ namespace GruppProjekt_Grupp16_CV
             {
                 cvContext.User.Add(new User
                 {
-                    Name = UsersName[i],
+                    UserName = UsersName[i],
                     PhoneNumber = UserPhone[i],
                     Email = Gmail[i],
                     ProfilePicture = Profilepic[i],
-                    Password = Passwords[i],
+                    PasswordHash = Passwords[i],
                     StatusId = 1 // Offentlig
                 });
             }
@@ -114,7 +114,7 @@ namespace GruppProjekt_Grupp16_CV
                     Title = projectTitles[i],
                     Description = projectDescription[i],
                     LatestUpdate = new DateTime(),
-                    CreatorId = 2
+                    CreatorId = cvContext.User.ToList()[1].Id
                 }) ;
             }
             cvContext.SaveChanges();
@@ -138,8 +138,8 @@ namespace GruppProjekt_Grupp16_CV
             {
                 cvContext.MessageBox.Add(new MessageBox
                 {
-                    RecievedUserId = msgSent[i, 0],
-                    SentUserId = msgSent[i, 1],
+                    RecievedUserId = cvContext.User.ToList()[msgSent[i, 0] - 1].Id,
+                    SentUserId = cvContext.User.ToList()[msgSent[i, 1] - 1].Id,
                     MessageId = msgSent[i, 2]
                 });
             }
@@ -150,7 +150,7 @@ namespace GruppProjekt_Grupp16_CV
             {
                 cvContext.UserEducation.Add(new UserEducation
                 {
-                    UserId = UserEducationValues[i, 0],
+                    UserId = cvContext.User.ToList()[UserEducationValues[i, 0] - 1].Id,
                     ProfessionId = UserEducationValues[i, 1],
                     SchoolId = UserEducationValues[i, 2]
                 });
@@ -162,7 +162,7 @@ namespace GruppProjekt_Grupp16_CV
             {
                 cvContext.UserExperince.Add(new UserExperince
                 {
-                    UserId = UserExperinceValues[i, 0],
+                    UserId = cvContext.User.ToList()[UserExperinceValues[i, 0] - 1].Id,
                     JobId = UserExperinceValues[i, 1],
                     CompanyId = UserExperinceValues[i, 2],
                     TotalTime = new Random().Next(20),
@@ -175,7 +175,7 @@ namespace GruppProjekt_Grupp16_CV
             {
                 cvContext.UserProject.Add(new UserProject
                 {
-                    UserId = UserProjectValues[i, 0],
+                    UserId = cvContext.User.ToList()[UserProjectValues[i, 0] - 1].Id,
                     ProjectId = UserProjectValues[i, 1],
                 });
             }
@@ -186,7 +186,7 @@ namespace GruppProjekt_Grupp16_CV
             {
                 cvContext.UserSkills.Add(new UserSkills
                 {
-                    UserId = UserSkillsValues[i, 0],
+                    UserId = cvContext.User.ToList()[UserSkillsValues[i, 0] - 1].Id,
                     SkillsId = UserSkillsValues[i, 1],
                 });
             }

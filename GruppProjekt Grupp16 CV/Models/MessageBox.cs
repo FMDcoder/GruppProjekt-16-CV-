@@ -6,10 +6,10 @@ namespace GruppProjekt_Grupp16_CV.Models
     public class MessageBox
     {
         [Key, Column(Order = 0)]
-        public int SentUserId { get; set; }
+        public string SentUserId { get; set; }
 
         [Key, Column(Order = 1)]
-        public int RecievedUserId { get; set; }
+        public string RecievedUserId { get; set; }
 
         [Key, Column(Order = 2)]
         public int MessageId { get; set; }

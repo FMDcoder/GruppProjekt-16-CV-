@@ -18,6 +18,14 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\nilss\source\repos\GruppProjekt Grupp16 CV\GruppProjekt Grupp16 CV
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/nilss/source/repos/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Account/LogIn.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dJbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/nilss/source/repos/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/nilss/source/repos/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Home/Account.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBY2NvdW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -28,10 +36,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/nilss/source/repos/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/nilss/source/repos/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Home/LogIn.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxMb2dJbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/nilss/source/repos/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Home/Messages.cshtml]
@@ -48,10 +52,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/nilss/source/repos/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Home/Project.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcm9qZWN0LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/nilss/source/repos/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Home/Register.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/nilss/source/repos/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Home/Users.cshtml]

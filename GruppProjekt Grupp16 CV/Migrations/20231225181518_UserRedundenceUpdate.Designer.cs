@@ -4,6 +4,7 @@ using GruppProjekt_Grupp16_CV.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GruppProjekt_Grupp16_CV.Migrations
 {
     [DbContext(typeof(CvContext))]
-    partial class CvContextModelSnapshot : ModelSnapshot
+    [Migration("20231225181518_UserRedundenceUpdate")]
+    partial class UserRedundenceUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -248,6 +251,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.User", b =>
                 {
                     b.Property<string>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
@@ -278,11 +282,18 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
@@ -401,23 +412,6 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                     b.HasIndex("SkillsId");
 
                     b.ToTable("UserSkills");
-                });
-
-            modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.VisitedCV", b =>
-                {
-                    b.Property<string>("OwnerUserId")
-                        .HasColumnType("nvarchar(450)")
-                        .HasColumnOrder(1);
-
-                    b.Property<string>("VisitorUserId")
-                        .HasColumnType("nvarchar(450)")
-                        .HasColumnOrder(0);
-
-                    b.HasKey("OwnerUserId", "VisitorUserId");
-
-                    b.HasIndex("VisitorUserId");
-
-                    b.ToTable("UserVisits");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -732,25 +726,6 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                     b.Navigation("UserObject");
                 });
 
-            modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.VisitedCV", b =>
-                {
-                    b.HasOne("GruppProjekt_Grupp16_CV.Models.User", "OwnerUserObject")
-                        .WithMany("VisitorsCV")
-                        .HasForeignKey("OwnerUserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("GruppProjekt_Grupp16_CV.Models.User", "VisitorUserObject")
-                        .WithMany("VisitedCV")
-                        .HasForeignKey("VisitorUserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("OwnerUserObject");
-
-                    b.Navigation("VisitorUserObject");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -865,10 +840,6 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                     b.Navigation("UserProjects");
 
                     b.Navigation("UserSkills");
-
-                    b.Navigation("VisitedCV");
-
-                    b.Navigation("VisitorsCV");
                 });
 #pragma warning restore 612, 618
         }

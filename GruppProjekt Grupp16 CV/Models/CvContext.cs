@@ -25,7 +25,8 @@ namespace GruppProjekt_Grupp16_CV.Models
         public DbSet<UserExperince> UserExperince { get; set; }
         public DbSet<UserProject> UserProject { get; set; }
         public DbSet<UserSkills> UserSkills { get; set; }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		public DbSet<VisitedCV> UserVisits { get; set; }
+		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
             optionsBuilder.UseLazyLoadingProxies(); // Install the Microsoft.EntityFrameworkCore.Proxies NuGet package
@@ -56,7 +57,10 @@ namespace GruppProjekt_Grupp16_CV.Models
             modelBuilder.Entity<UserSkills>()
                 .HasKey(mb => new { mb.UserId, mb.SkillsId });
 
-            modelBuilder.Entity <MessageBox>()
+			modelBuilder.Entity<VisitedCV>()
+				.HasKey(mb => new { mb.OwnerUserId, mb.VisitorUserId});
+
+			modelBuilder.Entity <MessageBox>()
                 .HasOne(mb => mb.RecievedUserObject)
                 .WithMany(t => t.RecievedMessageBoxes)
                 .HasForeignKey(mb => mb.RecievedUserId)
@@ -133,7 +137,7 @@ namespace GruppProjekt_Grupp16_CV.Models
                .HasOne(mb => mb.CreatorObject)
                .WithMany(t => t.CreatedUserProjects)
                .HasForeignKey(mb => mb.CreatorId)
-               .IsRequired().OnDelete(DeleteBehavior.NoAction); ;
+               .IsRequired().OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<UserProject>()
                 .HasOne(mb => mb.ProjectObject)
@@ -145,12 +149,19 @@ namespace GruppProjekt_Grupp16_CV.Models
                 .WithMany(t => t.UserSkills)
                 .HasForeignKey(mb => mb.UserId).IsRequired();
 
-            modelBuilder.Entity<UserSkills>()
-                .HasOne(mb => mb.SkillsObject)
-                .WithMany(t => t.UserSkills)
-                .HasForeignKey(mb => mb.SkillsId).IsRequired();
+            modelBuilder.Entity<VisitedCV>()
+                .HasOne(mb => mb.VisitorUserObject)
+                .WithMany(t => t.VisitedCV)
+                .HasForeignKey(mb => mb.VisitorUserId)
+                .IsRequired().OnDelete(DeleteBehavior.NoAction);
 
-            base.OnModelCreating(modelBuilder);
+			modelBuilder.Entity<VisitedCV>()
+				.HasOne(mb => mb.OwnerUserObject)
+				.WithMany(t => t.VisitorsCV)
+				.HasForeignKey(mb => mb.OwnerUserId)
+                .IsRequired().OnDelete(DeleteBehavior.NoAction);
+
+			base.OnModelCreating(modelBuilder);
         }
     }
 }

@@ -5,20 +5,19 @@
 namespace GruppProjekt_Grupp16_CV.Migrations
 {
     /// <inheritdoc />
-    public partial class Update20 : Migration
+    public partial class removedRed : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
                 name: "PhoneNumber",
-                table: "User",
-                type: "nvarchar(100)",
-                maxLength: 100,
-                nullable: false,
+                table: "AspNetUsers",
+                type: "nvarchar(max)",
+                nullable: true,
                 oldClrType: typeof(string),
-                oldType: "nvarchar(10)",
-                oldMaxLength: 10);
+                oldType: "nvarchar(100)",
+                oldMaxLength: 100);
         }
 
         /// <inheritdoc />
@@ -26,13 +25,14 @@ namespace GruppProjekt_Grupp16_CV.Migrations
         {
             migrationBuilder.AlterColumn<string>(
                 name: "PhoneNumber",
-                table: "User",
-                type: "nvarchar(10)",
-                maxLength: 10,
+                table: "AspNetUsers",
+                type: "nvarchar(100)",
+                maxLength: 100,
                 nullable: false,
+                defaultValue: "",
                 oldClrType: typeof(string),
-                oldType: "nvarchar(100)",
-                oldMaxLength: 100);
+                oldType: "nvarchar(max)",
+                oldNullable: true);
         }
     }
 }

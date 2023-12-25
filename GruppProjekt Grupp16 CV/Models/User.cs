@@ -6,33 +6,14 @@ namespace GruppProjekt_Grupp16_CV.Models
 {
     public class User : IdentityUser
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity),]
-        public int Id { get; set; }
-
-		[Required]
-		[StringLength(100)]
-		public string Name { get; set; }
-
-		[Required]
-		[StringLength(100)]
-		public string PhoneNumber { get; set; }
-
-		[Required]
-		[StringLength(100)]
-		public string Email { get; set; }
-
-		[Required]
-		public string? ProfilePicture { get; set; }
-
-		[Required]
-		[StringLength(100)]
-		public string Password { get; set; } 
+        [Required]
+        [StringLength(maximumLength: 255)]
+        public string? ProfilePicture { get; set; }
 
         public int StatusId { get; set; }
 
-
         [ForeignKey(nameof(StatusId))]
-        public virtual Status statusObject { get; set; } 
+        public virtual Status statusObject { get; set; }
 
         public virtual List<UserExperince> UserExperinces { get; set; } = new List<UserExperince>();
 
@@ -50,5 +31,8 @@ namespace GruppProjekt_Grupp16_CV.Models
         public virtual List<MessageBox> SentMessageBoxes { get; set; } = new List<MessageBox>();
 
         public virtual List<ReadMessages> ReadMessages { get; set; } = new List<ReadMessages>();
-    }
+
+        public virtual List<VisitedCV> VisitedCV { get; set; } = new List<VisitedCV>();
+        public virtual List<VisitedCV> VisitorsCV { get; set; } = new List<VisitedCV>();
+	}
 }
