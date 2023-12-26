@@ -100,7 +100,7 @@ namespace GruppProjekt_Grupp16_CV
                     Email = Gmail[i],
                     ProfilePicture = Profilepic[i],
                     PasswordHash = Passwords[i],
-                    StatusId = 1 // Offentlig
+                    StatusId = 1 // Privat
                 });
             }
             cvContext.SaveChanges();
