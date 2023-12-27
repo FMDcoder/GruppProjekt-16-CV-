@@ -24,6 +24,7 @@ namespace Models
 		[EmailAddress(ErrorMessage = "Ogiltigt email!")]
 		public string Email { get; set; }
 
+		[Required(ErrorMessage = "Du måste bekräfta email!")]
 		[Compare(nameof(Email), ErrorMessage = "Emailen stämmer inte ihop!")]
 		public string ConfirmEmail { get; set; }
 
@@ -36,6 +37,7 @@ namespace Models
 		public string Password { get; set; }
 
 		[DataType(DataType.Password)]
+		[Required(ErrorMessage = "Du måste bekräfta lösenord!")]
 		[Compare("Password", ErrorMessage = "Bekräftelse lösenordet måste matcha varandra")]
 		public string ConfirmPassword { get; set; }
 

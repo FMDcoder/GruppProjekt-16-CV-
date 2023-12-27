@@ -1,4 +1,5 @@
-﻿using GruppProjekt_Grupp16_CV.Models;
+﻿using GruppProjekt_Grupp16_CV.ModelHelper;
+using GruppProjekt_Grupp16_CV.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Models;
@@ -6,7 +7,7 @@ using System.Security.Claims;
 
 namespace GruppProjekt_Grupp16_CV.Controllers
 {
-	public class AccountController : Controller
+    public class AccountController : Controller
 	{
 		private UserManager<User> UserManager { get; set; }
 		public SignInManager<User> SignInManager { get; set; }
@@ -93,6 +94,13 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
 		public async Task<IActionResult> UpdateUser(ProfileViewModel pvm)
 		{
+			pvm.LoggedInUser = (
+				from o in users.GetAll()
+				where o.Id == User.FindFirstValue(ClaimTypes.NameIdentifier)
+				select o
+			).First();
+
+			ModelState.Remove("LoggedInUser");
 
 			if (ModelState.IsValid)
 			{
@@ -132,12 +140,6 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 					}
 				}
 			}
-
-			pvm.LoggedInUser = (
-				from o in users.GetAll()
-				where o.Id == User.FindFirstValue(ClaimTypes.NameIdentifier)
-				select o
-			).First();
 
 			return View("Profile",pvm);
 		}
