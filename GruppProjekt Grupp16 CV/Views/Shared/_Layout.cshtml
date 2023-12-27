@@ -17,16 +17,23 @@
                     <input type="text" id="search-bar" name="search" placeholder="sök på personner" />
                     <input type="submit" id="search-button"/>
                 </form>
-                <a class="icon-button" asp-controller="Home" asp-action="Messages">
+                <a class="icon-button space-side" asp-controller="Home" asp-action="Messages">
                     <i class="fas fa-envelope"></i>
                     <div id="total-messages">+9</div>
                 </a>
-                <a class="icon-button" asp-controller="Home" asp-action="Account">
+                <a class="icon-button space-side" asp-controller="Home" asp-action="Account">
                     <i class="fas fa-user"></i>
                 </a>
-                @if(User.Identity.IsAuthenticated)
+                @if (User.Identity != null)
                 {
-                    <span> Hej @User.Identity.Name!</span>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <span class="space-side">Hej @User.Identity.Name!</span>
+                    }
+                    else
+                    {
+                        <span class="space-side">Anonym</span>
+                    }
                 }
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"

@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ML\ML.csproj" />
+    <ProjectReference Include="..\ML\Models.csproj" />
   </ItemGroup>
 
   <ItemGroup>

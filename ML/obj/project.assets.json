@@ -15,9 +15,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\ML\\ML.csproj",
-      "projectName": "ML",
-      "projectPath": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\ML\\ML.csproj",
+      "projectUniqueName": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\ML\\Models.csproj",
+      "projectName": "Models",
+      "projectPath": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\ML\\Models.csproj",
       "packagesPath": "C:\\Users\\nilss\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\ML\\obj\\",
       "projectStyle": "PackageReference",

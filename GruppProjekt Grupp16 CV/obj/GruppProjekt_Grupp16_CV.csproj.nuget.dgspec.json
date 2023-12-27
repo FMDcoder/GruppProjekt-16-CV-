@@ -35,8 +35,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\ML\\ML.csproj": {
-                "projectPath": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\ML\\ML.csproj"
+              "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\ML\\Models.csproj": {
+                "projectPath": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\ML\\Models.csproj"
               }
             }
           }
@@ -103,12 +103,12 @@
         }
       }
     },
-    "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\ML\\ML.csproj": {
+    "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\ML\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\ML\\ML.csproj",
-        "projectName": "ML",
-        "projectPath": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\ML\\ML.csproj",
+        "projectUniqueName": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\ML\\Models.csproj",
+        "projectName": "Models",
+        "projectPath": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\ML\\Models.csproj",
         "packagesPath": "C:\\Users\\nilss\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\ML\\obj\\",
         "projectStyle": "PackageReference",

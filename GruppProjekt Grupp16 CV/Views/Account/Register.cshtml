@@ -4,11 +4,9 @@
 	ViewData["Title"] = "Registera";
 }
 
-<link href="~/css/register.css" rel="stylesheet" />
-
 <div class="col-lg-6 col-12">
 	<h2>Registera Konto</h2>
-	<div asp-validation-summary="All" class="text-danger side-hanger"></div>
+	<div asp-validation-summary="All" class="text-danger"></div>
 	<form method="post" asp-action="Register">
 		<div class="form-group row space">
 			<div class="col-4">
@@ -67,12 +65,16 @@
 			</div>
 		</div
 		<div class="form-group row space">
-			<label>Offentlig:</label>
-			<input asp-for="Status" type="checkbox" checked="checked"/>
+			<div class="col-4">
+				<label>Offentlig: </label>
+			</div>
+			<div class="col-6">
+				<input asp-for="Status" type="checkbox" checked="checked" />
+			</div>
 		</div>
 		<div class="form-group row space">
 			<div class="col-sm-6">
-				<button type="submit" class="btn btn-primary">Registera användare</button>
+				<button type="submit" class="btn btn-primary">Registera</button>
 			</div>
 		</div>
 	</form>

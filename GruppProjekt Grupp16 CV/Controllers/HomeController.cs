@@ -1,6 +1,7 @@
 using GruppProjekt_Grupp16_CV.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 namespace GruppProjekt_Grupp16_CV.Controllers
 {
     public class HomeController : Controller
@@ -61,14 +62,15 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
         public IActionResult Account()
         {
+            if(User.Identity != null)
+            {
+				if (User.Identity.IsAuthenticated)
+				{
+					return RedirectToAction("Profile", "Account");
+				}
+			}
             return View();
         }
-
-		public IActionResult Profile()
-		{
-			return View();
-		}
-
 
 		public IActionResult CVsite()
         {

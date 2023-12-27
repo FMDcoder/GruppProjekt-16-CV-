@@ -1619,14 +1619,14 @@
           }
         }
       },
-      "ML/1.0.0": {
+      "Models/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "compile": {
-          "bin/placeholder/ML.dll": {}
+          "bin/placeholder/Models.dll": {}
         },
         "runtime": {
-          "bin/placeholder/ML.dll": {}
+          "bin/placeholder/Models.dll": {}
         }
       }
     }
@@ -4318,21 +4318,21 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "ML/1.0.0": {
+    "Models/1.0.0": {
       "type": "project",
-      "path": "../ML/ML.csproj",
-      "msbuildProject": "../ML/ML.csproj"
+      "path": "../ML/Models.csproj",
+      "msbuildProject": "../ML/Models.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
-      "ML >= 1.0.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 8.0.0",
       "Microsoft.EntityFrameworkCore >= 8.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 8.0.0",
       "Microsoft.EntityFrameworkCore.Proxies >= 8.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.0",
-      "Microsoft.EntityFrameworkCore.Tools >= 8.0.0"
+      "Microsoft.EntityFrameworkCore.Tools >= 8.0.0",
+      "Models >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -4371,8 +4371,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\ML\\ML.csproj": {
-              "projectPath": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\ML\\ML.csproj"
+            "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\ML\\Models.csproj": {
+              "projectPath": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\ML\\Models.csproj"
             }
           }
         }

@@ -5,7 +5,7 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GruppProjekt_Grupp16_CV", "GruppProjekt Grupp16 CV\GruppProjekt_Grupp16_CV.csproj", "{10EB00B5-075D-4787-84C5-A1F973821D7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ML", "ML\ML.csproj", "{1897E549-C798-4D32-BBC5-C781C58F48AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "ML\Models.csproj", "{1897E549-C798-4D32-BBC5-C781C58F48AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
