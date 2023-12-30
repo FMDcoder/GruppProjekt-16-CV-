@@ -10,6 +10,10 @@ namespace GruppProjekt_Grupp16_CV.Models
         [StringLength(maximumLength: 255)]
         public string? ProfilePicture { get; set; }
 
+        [Required]
+        [StringLength(maximumLength: 255)]
+        public string? Adress;
+
         public int StatusId { get; set; }
 
         [ForeignKey(nameof(StatusId))]

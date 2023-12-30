@@ -15,9 +15,13 @@ namespace Models
 		public string UserName { get; set; }
 
 		[Required(ErrorMessage = "Varje användare måste ha ett telefonnummer!")]
-		[StringLength(10, ErrorMessage = "Telefonnumret på användaren får inte vara längre än 100 karaktärer!")]
+		[StringLength(100, ErrorMessage = "Telefonnumret på användaren får inte vara längre än 100 karaktärer!")]
 		[RegularExpression(@"^[0-9]+$", ErrorMessage = "Telefonnummret får endast vara siffror!")]
 		public string PhoneNumber { get; set; }
+
+		[Required(ErrorMessage = "Varje användare måste ha en adress!")]
+		[StringLength(100, ErrorMessage = "Adressen på användaren får inte vara längre än 100 karaktärer!")]
+		public string Adress { get; set; }
 
 		[Required(ErrorMessage = "Varje användare måste ha ett email!")]
 		[StringLength(100, ErrorMessage = "Emailet på användaren får inte vara längre än 100 karaktärer!")]

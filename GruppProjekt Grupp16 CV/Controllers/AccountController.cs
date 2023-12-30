@@ -35,6 +35,8 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 				client.StatusId = UserRegVal.Status ? 2 : 1;
 				client.ProfilePicture = UserRegVal.ProfilePicture;
 				client.PhoneNumber = UserRegVal.PhoneNumber;
+				client.Adress = UserRegVal.Adress;
+
 				var res = await UserManager.CreateAsync(client, UserRegVal.Password);
 				if(res.Succeeded)
 				{
@@ -116,6 +118,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 					client.StatusId = pvm.Validate.Status ? 2 : 1;
 					client.PhoneNumber = pvm.Validate.PhoneNumber;
 					client.ProfilePicture = pvm.Validate.ProfilePicture;
+					client.Adress = pvm.Validate.Adress;
 
 					var res = await UserManager.UpdateAsync(client);
 

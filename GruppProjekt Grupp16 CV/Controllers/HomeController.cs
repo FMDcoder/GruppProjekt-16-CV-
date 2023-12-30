@@ -2,6 +2,7 @@ using GruppProjekt_Grupp16_CV.ModelHelper;
 using GruppProjekt_Grupp16_CV.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Security.Claims;
 namespace GruppProjekt_Grupp16_CV.Controllers
 {
@@ -85,8 +86,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
         public IActionResult Project()
         {
-            return View();
-
+           return View(projects.GetAll());
         }
 
         public IActionResult Users()
