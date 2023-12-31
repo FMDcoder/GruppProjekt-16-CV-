@@ -19,8 +19,50 @@
                 </form>
                 <a class="icon-button space-side" asp-controller="Home" asp-action="Messages">
                     <i class="fas fa-envelope"></i>
-                    <div id="total-messages">
-                    </div>
+                    @{
+                        if (User.Identity != null)
+                        {
+                            if (User.Identity.IsAuthenticated)
+                            {
+                                @using Microsoft.AspNetCore.Identity;
+                                @using System.Security.Claims
+                                @using Models;
+
+                                var userManager = Context.RequestServices.GetService(typeof(UserManager<User>)) as UserManager<User>;
+
+                                var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                                var user = await userManager.FindByIdAsync(userId);
+
+                                List<MessageBox> inbox = (
+                                    from message in user.RecievedMessageBoxes
+                                    where !(
+                                        from removedMessage in user.RemovedMessages
+                                        select removedMessage.MessageId
+                                    ).Contains(message.MessageId)
+                                    &&
+                                    !(
+                                        from readMessage in user.ReadMessages
+                                        select readMessage.MessageId
+                                    ).Contains(message.MessageId)
+                                    select message).ToList();
+
+                                if(inbox.Count() > 0)
+                                {
+                                    if(inbox.Count() > 9)
+                                    {
+                                        <div id="total-messages">+9</div>
+                                    }
+                                    else 
+                                    {
+                                        <div id="total-messages">
+                                            @inbox.Count();
+                                        </div>
+                                    }
+                                }
+                            }
+                        }
+                    }
                 </a>
                 <a class="icon-button space-side" asp-controller="Home" asp-action="Account">
                     <i class="fas fa-user"></i>
