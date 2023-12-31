@@ -2,6 +2,7 @@
 using GruppProjekt_Grupp16_CV.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using static System.Formats.Asn1.AsnWriter;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,9 +34,10 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-using (CvContext cvContext = app.Services.CreateScope()
-        .ServiceProvider.GetRequiredService<CvContext>())
+using (var scope = app.Services.CreateScope())
 {
+    var cvContext = scope.ServiceProvider.GetRequiredService<CvContext>();
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
     if (cvContext.Status.Count() == 0)
     {
         DataHandler.uploadData(cvContext);

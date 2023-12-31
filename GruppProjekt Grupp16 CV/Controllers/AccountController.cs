@@ -9,7 +9,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 {
     public class AccountController : Controller
 	{
-		public UserManager<User> UserManager { get; set; }
+		private UserManager<User> UserManager { get; set; }
 		public SignInManager<User> SignInManager { get; set; }
 
 		private readonly CvContext _cvContext;

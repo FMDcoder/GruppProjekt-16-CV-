@@ -37,15 +37,6 @@ namespace GruppProjekt_Grupp16_CV.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Fixar så att tabeller med fler än en primär nyckel funkar
-            modelBuilder.Entity<MessageBox>()
-                .HasKey(mb => new { mb.SentUserId, mb.RecievedUserId, mb.MessageId });
-
-            modelBuilder.Entity<ReadMessages>()
-                .HasKey(mb => new { mb.UserId, mb.MessageId});
-
-            modelBuilder.Entity<RemovedMessages>()
-                .HasKey(mb => new { mb.UserId, mb.MessageId });
-
             modelBuilder.Entity<UserEducation>()
                 .HasKey(mb => new { mb.UserId, mb.ProfessionId, mb.SchoolId});
 

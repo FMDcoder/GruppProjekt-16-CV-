@@ -17,7 +17,7 @@
                     <input type="text" id="search-bar" name="search" placeholder="sök på personner" />
                     <input type="submit" id="search-button"/>
                 </form>
-                <a class="icon-button space-side" asp-controller="Home" asp-action="Messages">
+                <a class="icon-button space-side" asp-controller="Messages" asp-action="Messages">
                     <i class="fas fa-envelope"></i>
                     @{
                         if (User.Identity != null)
@@ -25,7 +25,7 @@
                             if (User.Identity.IsAuthenticated)
                             {
                                 @using Microsoft.AspNetCore.Identity;
-                                @using System.Security.Claims
+                                @using System.Security.Claims;
                                 @using Models;
 
                                 var userManager = Context.RequestServices.GetService(typeof(UserManager<User>)) as UserManager<User>;

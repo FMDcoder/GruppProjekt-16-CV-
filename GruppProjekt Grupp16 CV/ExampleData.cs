@@ -1,5 +1,7 @@
 ﻿using GruppProjekt_Grupp16_CV.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -8,7 +10,7 @@ namespace GruppProjekt_Grupp16_CV
     public class DataHandler
     {
         [HttpPost]
-        public static void uploadData(CvContext cvContext)
+        public async static void uploadData(CvContext cvContext)
         {
             String[] Companies = { "Facebook", "Face2Face", "Marabo" };
             for(var i = 0; i < Companies.Length; i++)
@@ -73,7 +75,7 @@ namespace GruppProjekt_Grupp16_CV
             }
             cvContext.SaveChanges();
 
-            String[] UsersName = { "Jennifer Nilsson", "Carlos Neilberg", "Vanessa Van Con", "Jacob Helmström" };
+            String[] UsersName = { "Jennifer", "Carlos", "Vanessa", "Jacob" };
             String[] UserPhone = { "46472346294", "46622204351", "46263934522", "46322932150"};
             String[] Gmail = { "jen@gmail.com", "car@gmail.com", "van@gmail.com", "jac@gmail.com" };
 			String[] Adresses = { "Symfonivägen 5 Örebro", "Symfonivägen 5 Lindesberg", "Symfonivägen 5 Askersund", "Symfonivägen 5 Karlskoga" };
@@ -86,27 +88,30 @@ namespace GruppProjekt_Grupp16_CV
             };
             String[] Passwords =
             {
-                "pass123",
-                "password123",
-                "psw123",
-                "pw123"
+                "pasS%123",
+                "pasS%word123",
+                "pS%w123",
+                "pwS%123"
             };
 
             for (var i = 0; i < Passwords.Length; i++)
             {
-                cvContext.User.Add(new User
+                var passwordHasher = new PasswordHasher<IdentityUser>();
+                User user = new User
                 {
                     UserName = UsersName[i],
                     PhoneNumber = UserPhone[i],
                     Email = Gmail[i],
                     ProfilePicture = Profilepic[i],
-                    PasswordHash = Passwords[i],
                     Adress = Adresses[i],
-					StatusId = 1 // Privat
-                });
+                    StatusId = 1 // Privat
+                };
+
+                user.PasswordHash = passwordHasher.HashPassword(user, Passwords[i]);
+                cvContext.User.Add(user);
             }
             cvContext.SaveChanges();
-            
+
             String[] projectTitles = { "CyberProg", "Hyper AI", "Dali K" };
             String[] projectDescription = {"Hyper säkert system", "Första generalla AI", "AI med känslor"};
             for(var i= 0; i < projectTitles.Length; i++)
@@ -133,7 +138,6 @@ namespace GruppProjekt_Grupp16_CV
                 });
             }
             cvContext.SaveChanges();
-            Console.WriteLine(cvContext.Message);
 
             int[,] msgSent = {{ 1, 3, 2 }, { 3, 4, 1 }, { 1, 2, 3 } };
             for(var i = 0; i < msgSent.GetLength(0); i++)

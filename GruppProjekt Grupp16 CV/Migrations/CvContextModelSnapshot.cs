@@ -85,23 +85,30 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.MessageBox", b =>
                 {
-                    b.Property<string>("SentUserId")
-                        .HasColumnType("nvarchar(450)")
-                        .HasColumnOrder(0);
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<string>("RecievedUserId")
-                        .HasColumnType("nvarchar(450)")
-                        .HasColumnOrder(1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("MessageId")
-                        .HasColumnType("int")
-                        .HasColumnOrder(2);
+                        .HasColumnType("int");
 
-                    b.HasKey("SentUserId", "RecievedUserId", "MessageId");
+                    b.Property<string>("RecievedUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("SentUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("MessageId");
 
                     b.HasIndex("RecievedUserId");
+
+                    b.HasIndex("SentUserId");
 
                     b.ToTable("MessageBox");
                 });
@@ -160,34 +167,48 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.ReadMessages", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)")
-                        .HasColumnOrder(0);
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("MessageId")
-                        .HasColumnType("int")
-                        .HasColumnOrder(1);
+                        .HasColumnType("int");
 
-                    b.HasKey("UserId", "MessageId");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("MessageId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("ReadMessages");
                 });
 
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.RemovedMessages", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)")
-                        .HasColumnOrder(0);
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("MessageId")
-                        .HasColumnType("int")
-                        .HasColumnOrder(1);
+                        .HasColumnType("int");
 
-                    b.HasKey("UserId", "MessageId");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("MessageId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("RemovedMessages");
                 });

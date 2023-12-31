@@ -78,11 +78,6 @@ namespace GruppProjekt_Grupp16_CV.Controllers
         {
             return View();
         }
-        public IActionResult Messages()
-        {
-            return View();
-
-        }
 
         public IActionResult Project()
         {
