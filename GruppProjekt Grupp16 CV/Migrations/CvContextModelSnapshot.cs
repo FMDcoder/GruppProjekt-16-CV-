@@ -40,7 +40,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Company", (string)null);
+                    b.ToTable("Company");
                 });
 
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.Job", b =>
@@ -58,7 +58,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Job", (string)null);
+                    b.ToTable("Job");
                 });
 
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.Message", b =>
@@ -80,7 +80,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Message", (string)null);
+                    b.ToTable("Message");
                 });
 
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.MessageBox", b =>
@@ -103,7 +103,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
                     b.HasIndex("RecievedUserId");
 
-                    b.ToTable("MessageBox", (string)null);
+                    b.ToTable("MessageBox");
                 });
 
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.Profession", b =>
@@ -124,7 +124,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Profession", (string)null);
+                    b.ToTable("Profession");
                 });
 
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.Project", b =>
@@ -155,7 +155,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
                     b.HasIndex("CreatorId");
 
-                    b.ToTable("Project", (string)null);
+                    b.ToTable("Project");
                 });
 
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.ReadMessages", b =>
@@ -172,7 +172,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
                     b.HasIndex("MessageId");
 
-                    b.ToTable("ReadMessages", (string)null);
+                    b.ToTable("ReadMessages");
                 });
 
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.RemovedMessages", b =>
@@ -189,7 +189,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
                     b.HasIndex("MessageId");
 
-                    b.ToTable("RemovedMessages", (string)null);
+                    b.ToTable("RemovedMessages");
                 });
 
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.School", b =>
@@ -207,7 +207,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("School", (string)null);
+                    b.ToTable("School");
                 });
 
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.Skills", b =>
@@ -225,7 +225,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Skills", (string)null);
+                    b.ToTable("Skills");
                 });
 
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.Status", b =>
@@ -242,7 +242,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Status", (string)null);
+                    b.ToTable("Status");
                 });
 
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.User", b =>
@@ -252,6 +252,11 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
+
+                    b.Property<string>("Adress")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -340,7 +345,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
                     b.HasIndex("SchoolId");
 
-                    b.ToTable("UserEducation", (string)null);
+                    b.ToTable("UserEducation");
                 });
 
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.UserExperince", b =>
@@ -366,7 +371,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
                     b.HasIndex("JobId");
 
-                    b.ToTable("UserExperince", (string)null);
+                    b.ToTable("UserExperince");
                 });
 
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.UserProject", b =>
@@ -383,7 +388,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
                     b.HasIndex("ProjectId");
 
-                    b.ToTable("UserProject", (string)null);
+                    b.ToTable("UserProject");
                 });
 
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.UserSkills", b =>
@@ -400,7 +405,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
                     b.HasIndex("SkillsId");
 
-                    b.ToTable("UserSkills", (string)null);
+                    b.ToTable("UserSkills");
                 });
 
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.VisitedCV", b =>
@@ -417,7 +422,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
                     b.HasIndex("VisitorUserId");
 
-                    b.ToTable("UserVisits", (string)null);
+                    b.ToTable("UserVisits");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

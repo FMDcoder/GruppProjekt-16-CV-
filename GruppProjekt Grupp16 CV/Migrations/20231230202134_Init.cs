@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace GruppProjekt_Grupp16_CV.Migrations
 {
     /// <inheritdoc />
-    public partial class b : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -144,19 +144,18 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     ProfilePicture = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Adress = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     StatusId = table.Column<int>(type: "int", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
                     PasswordHash = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SecurityStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ConcurrencyStamp = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneNumberConfirmed = table.Column<bool>(type: "bit", nullable: false),
                     TwoFactorEnabled = table.Column<bool>(type: "bit", nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
@@ -444,6 +443,28 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserVisits",
+                columns: table => new
+                {
+                    VisitorUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    OwnerUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserVisits", x => new { x.OwnerUserId, x.VisitorUserId });
+                    table.ForeignKey(
+                        name: "FK_UserVisits_AspNetUsers_OwnerUserId",
+                        column: x => x.OwnerUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_UserVisits_AspNetUsers_VisitorUserId",
+                        column: x => x.VisitorUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UserProject",
                 columns: table => new
                 {
@@ -565,6 +586,11 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                 name: "IX_UserSkills_SkillsId",
                 table: "UserSkills",
                 column: "SkillsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserVisits_VisitorUserId",
+                table: "UserVisits",
+                column: "VisitorUserId");
         }
 
         /// <inheritdoc />
@@ -605,6 +631,9 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
             migrationBuilder.DropTable(
                 name: "UserSkills");
+
+            migrationBuilder.DropTable(
+                name: "UserVisits");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

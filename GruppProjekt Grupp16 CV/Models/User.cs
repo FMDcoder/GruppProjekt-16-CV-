@@ -12,7 +12,7 @@ namespace GruppProjekt_Grupp16_CV.Models
 
         [Required]
         [StringLength(maximumLength: 255)]
-        public string? Adress;
+        public string? Adress { get; set; }
 
         public int StatusId { get; set; }
 

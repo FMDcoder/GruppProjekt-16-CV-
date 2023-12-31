@@ -76,7 +76,8 @@ namespace GruppProjekt_Grupp16_CV
             String[] UsersName = { "Jennifer Nilsson", "Carlos Neilberg", "Vanessa Van Con", "Jacob Helmström" };
             String[] UserPhone = { "46472346294", "46622204351", "46263934522", "46322932150"};
             String[] Gmail = { "jen@gmail.com", "car@gmail.com", "van@gmail.com", "jac@gmail.com" };
-            String[] Profilepic =
+			String[] Adresses = { "Symfonivägen 5 Örebro", "Symfonivägen 5 Lindesberg", "Symfonivägen 5 Askersund", "Symfonivägen 5 Karlskoga" };
+			String[] Profilepic =
             {
                 "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
                 "https://hips.hearstapps.com/hmg-prod/images/street-portrait-of-a-young-man-using-mobile-phone-royalty-free-image-1018047498-1564431457.jpg?crop=0.668xw:1.00xh;0.226xw,0&resize=640:*",
@@ -100,7 +101,8 @@ namespace GruppProjekt_Grupp16_CV
                     Email = Gmail[i],
                     ProfilePicture = Profilepic[i],
                     PasswordHash = Passwords[i],
-                    StatusId = 1 // Privat
+                    Adress = Adresses[i],
+					StatusId = 1 // Privat
                 });
             }
             cvContext.SaveChanges();

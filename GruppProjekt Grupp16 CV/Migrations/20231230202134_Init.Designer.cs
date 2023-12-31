@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GruppProjekt_Grupp16_CV.Migrations
 {
     [DbContext(typeof(CvContext))]
-    [Migration("20231225145431_b")]
-    partial class b
+    [Migration("20231230202134_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -251,18 +251,21 @@ namespace GruppProjekt_Grupp16_CV.Migrations
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.User", b =>
                 {
                     b.Property<string>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
+
+                    b.Property<string>("Adress")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
@@ -275,11 +278,6 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -288,18 +286,11 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
@@ -418,6 +409,23 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                     b.HasIndex("SkillsId");
 
                     b.ToTable("UserSkills");
+                });
+
+            modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.VisitedCV", b =>
+                {
+                    b.Property<string>("OwnerUserId")
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnOrder(1);
+
+                    b.Property<string>("VisitorUserId")
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnOrder(0);
+
+                    b.HasKey("OwnerUserId", "VisitorUserId");
+
+                    b.HasIndex("VisitorUserId");
+
+                    b.ToTable("UserVisits");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -732,6 +740,25 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                     b.Navigation("UserObject");
                 });
 
+            modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.VisitedCV", b =>
+                {
+                    b.HasOne("GruppProjekt_Grupp16_CV.Models.User", "OwnerUserObject")
+                        .WithMany("VisitorsCV")
+                        .HasForeignKey("OwnerUserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("GruppProjekt_Grupp16_CV.Models.User", "VisitorUserObject")
+                        .WithMany("VisitedCV")
+                        .HasForeignKey("VisitorUserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("OwnerUserObject");
+
+                    b.Navigation("VisitorUserObject");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -846,6 +873,10 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                     b.Navigation("UserProjects");
 
                     b.Navigation("UserSkills");
+
+                    b.Navigation("VisitedCV");
+
+                    b.Navigation("VisitorsCV");
                 });
 #pragma warning restore 612, 618
         }
