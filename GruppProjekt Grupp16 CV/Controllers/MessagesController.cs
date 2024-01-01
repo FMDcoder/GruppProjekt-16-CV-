@@ -82,5 +82,20 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
             return View(MVM);
         }
+
+        public IActionResult MessageActionUnread()
+        {
+            return RedirectToAction("Messages");
+        }
+
+		public IActionResult MessageActionRead()
+		{
+			return RedirectToAction("Messages");
+		}
+
+        public IActionResult MessageActionSent()
+        {
+            return RedirectToAction("Messages");
+        }
     }
 }

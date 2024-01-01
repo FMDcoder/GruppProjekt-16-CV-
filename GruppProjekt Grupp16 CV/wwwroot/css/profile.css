@@ -1,5 +1,9 @@
 ﻿img {
-    width: 500px;
+    height: 500px;
     border-radius: 50%;
     border: 3px solid #dddddd;
+}
+
+.other-box {
+    margin-top: 500px;
 }

@@ -25,6 +25,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\GruppProjekt Grupp16 CV\\wwwroot\\js\\message.js",
+      "PackagePath": "staticwebassets\\js\\message.js"
+    },
+    {
       "Id": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\GruppProjekt Grupp16 CV\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

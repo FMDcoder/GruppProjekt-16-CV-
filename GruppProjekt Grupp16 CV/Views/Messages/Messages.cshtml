@@ -2,6 +2,7 @@
 @model MessageViewModel;
 
 <link rel="stylesheet" href="~/css/message.css" asp-append-version="true" />
+<div id="cover-sheet"></div>
 
 <h3>Oläst</h3>
 <form asp-controller="Messages" asp-action="MessageActionUnread" method="post">
@@ -11,7 +12,24 @@
                 <input type="submit" class="btn btn-primary" value="Markera som läst" />
             </div>
             <div class="col-md-3 col-4">
-                <input type="submit" class="btn btn-primary" value="Släng i soptunnan" />
+                <input type="button" id="confirm-unread-message" class="btn btn-primary" value="Släng i soptunnan" />
+            </div>
+
+            <div class="centered confirm-box" id="confirm-box-unread-message">
+                <h3 class="center-text space">Är du säker?</h3>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-4">
+                            <input type="button" id="no-confirm-unread-message" class="btn btn-primary" value="Nej" />
+                        </div>
+                        <div class="col-2"></div>
+                        <div class="col-4">
+                            <input type="submit" class="btn btn-primary" value="Ja" />
+                        </div>
+                        <div class="col-1"></div>
+                    </div>
+                </div>
             </div>
         </div>
         <hr />
@@ -57,7 +75,24 @@
                 <input type="submit" class="btn btn-primary" value="Markera som oläst" />
             </div>
             <div class="col-md-3 col-4">
-                <input type="submit" class="btn btn-primary" value="Släng i soptunnan" />
+                <input type="button" id="confirm-read-message" class="btn btn-primary" value="Släng i soptunnan" />
+            </div>
+
+            <div class="centered confirm-box" id="confirm-box-read-message">
+                <h3 class="center-text space">Är du säker?</h3>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-4">
+                            <input type="button" id="no-confirm-read-message" class="btn btn-primary" value="Nej" />
+                        </div>
+                        <div class="col-2"></div>
+                        <div class="col-4">
+                            <input type="submit" class="btn btn-primary" value="Ja" />
+                        </div>
+                        <div class="col-1"></div>
+                    </div>
+                </div>
             </div>
         </div>
         <hr />
@@ -95,3 +130,67 @@
         </div>
     </div>
 </form>
+
+<h3>Skickat</h3>
+<form asp-controller="Messages" asp-action="MessageActionSent" method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-4">
+                <input type="button" id="confirm-sent-message" class="btn btn-primary" value="Släng i soptunnan" />
+            </div>
+
+            <div class="centered confirm-box" id="confirm-box-sent-message">
+                <h3 class="center-text space">Är du säker?</h3>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col-4">
+                            <input type="button" id="no-confirm-sent-message" class="btn btn-primary" value="Nej" />
+                        </div>
+                        <div class="col-2"></div>
+                        <div class="col-4">
+                            <input type="submit" class="btn btn-primary" value="Ja" />
+                        </div>
+                        <div class="col-1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        @if (Model.sentMessages.Count() == 0)
+        {
+            <p>Du har inte skickat något!</p>
+        }
+
+        <div class="row centered">
+            @foreach (var sentMessage in Model.sentMessages)
+            {
+                <div class="col-12 col-md-8 center-items">
+                    <img class="col-2 profile-img" src="@sentMessage.MessageBoxes[0].SentUserObject.ProfilePicture" />
+                    <div class="col-7">
+                        <a asp-controller="Messages" asp-action="MessageOpen" asp-route-id="@sentMessage.Id">
+                            <h5>@sentMessage.Title</h5>
+                            @{
+                                var Userfrom = sentMessage.MessageBoxes[0].SentUserObject.UserName;
+                                var UsersTo = string.Join(", ", (
+                                from messageBox in sentMessage.MessageBoxes
+                                select messageBox.RecievedUserObject.UserName
+                                ).ToList());
+
+                                <small>Från: @Userfrom</small>
+
+                                <br />
+                                <small>Till: @UsersTo</small>
+                            }
+
+                        </a>
+                    </div>
+                    <input class="col-2" type="checkbox" />
+                </div>
+                <hr />
+            }
+        </div>
+    </div>
+</form>
+
+<script src="~/js/message.js" asp-append-version="true"></script>

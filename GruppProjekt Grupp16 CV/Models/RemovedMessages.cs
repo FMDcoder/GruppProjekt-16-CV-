@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace GruppProjekt_Grupp16_CV.Models
 {
@@ -7,7 +8,7 @@ namespace GruppProjekt_Grupp16_CV.Models
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string UserId { get; set; }
+		public string? UserId { get; set; }
         public int MessageId { get; set; }
 
         [ForeignKey(nameof(UserId))]

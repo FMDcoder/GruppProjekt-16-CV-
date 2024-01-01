@@ -1,16 +1,13 @@
 ﻿using GruppProjekt_Grupp16_CV.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace GruppProjekt_Grupp16_CV
 {
     public class DataHandler
     {
         [HttpPost]
-        public async static Task uploadDataAsync(CvContext cvContext, UserManager<User> userManager)
+        public static void uploadDataAsync(CvContext cvContext, UserManager<User> userManager)
         {
             String[] Companies = { "Facebook", "Face2Face", "Marabo" };
             for(var i = 0; i < Companies.Length; i++)

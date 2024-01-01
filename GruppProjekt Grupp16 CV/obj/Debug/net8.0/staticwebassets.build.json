@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vt7Lp7E3Gf/0edz8lugQBcgKc8fVJUiVMT5rO6dwyrg=",
+  "Hash": "7NLxFS3i5+UmkrzbNpwmRG30PPVx1I8O3xYjeULbaVs=",
   "Source": "GruppProjekt_Grupp16_CV",
   "BasePath": "_content/GruppProjekt_Grupp16_CV",
   "Mode": "Default",
@@ -148,6 +148,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\GruppProjekt Grupp16 CV\\wwwroot\\js\\message.js",
+      "SourceId": "GruppProjekt_Grupp16_CV",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\GruppProjekt Grupp16 CV\\wwwroot\\",
+      "BasePath": "_content/GruppProjekt_Grupp16_CV",
+      "RelativePath": "js/message.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\message.js"
     },
     {
       "Identity": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\GruppProjekt Grupp16 CV\\wwwroot\\js\\site.js",
