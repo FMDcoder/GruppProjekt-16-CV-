@@ -1,0 +1,24 @@
+﻿@model Message
+
+<div class="container">
+	<div class="row centered">
+		<h2>
+			@Model.Title
+		</h2>
+		@{
+			var Userfrom = Model.MessageBoxes[0].SentUserObject.UserName;
+			var UsersTo = string.Join(", ", (
+			from messageBox in Model.MessageBoxes
+			select messageBox.RecievedUserObject.UserName
+			).ToList());
+
+			<small>Från: @Userfrom</small>
+			<small>Till: @UsersTo</small>
+		}
+	</div>
+	<div class="row centered">
+		<p>
+			@Model.Description
+		</p>
+	</div>
+</div>

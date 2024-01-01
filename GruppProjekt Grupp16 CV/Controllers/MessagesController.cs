@@ -13,9 +13,18 @@ namespace GruppProjekt_Grupp16_CV.Controllers
     {
         private readonly CvContext cvContext;
 
+        public Repository<Message> messages { get; set; }
+
         public MessagesController(CvContext cvContext)
         {
             this.cvContext = cvContext;
+
+            messages = new Repository<Message>(cvContext);
+        }
+
+        public IActionResult MessageOpen([FromRoute] int id)
+        { 
+            return View(messages.GetById(id));
         }
 
         public IActionResult Messages()
