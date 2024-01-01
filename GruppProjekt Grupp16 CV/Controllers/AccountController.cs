@@ -66,11 +66,11 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 					{
 						return RedirectToAction("Index", "Home");
 					}
-					ModelState.AddModelError("", "Lyckades inte logga in!");
+					ModelState.AddModelError("", "Lyckades inte logga in! B");
 				} 
 				else
 				{
-					ModelState.AddModelError("", "Lyckades inte logga in!");
+					ModelState.AddModelError("", "Lyckades inte logga in! A");
 				}
 			}
 			return View(UserLogInVal);

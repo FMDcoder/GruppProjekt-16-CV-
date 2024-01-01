@@ -108,6 +108,11 @@ body {
     flex-direction: column;
 }
 
+.center-items {
+    display: flex;
+    align-items: center;
+}
+
 .space {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -126,4 +131,18 @@ input {
 input[type="checkbox"] {
     width: 12px;
     height: 12px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #d70f0f;
+}
+
+a {
+    color: #d70f0f;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #bf0e0e;
+    font-weight: 700;
 }

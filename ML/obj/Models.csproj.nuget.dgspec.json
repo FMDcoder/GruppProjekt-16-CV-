@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nilss\\OneDrive\\Musik\\Dokument\\GruppProjekt-16-CV-\\ML\\Models.csproj": {}
+    "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\ML\\Models.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nilss\\OneDrive\\Musik\\Dokument\\GruppProjekt-16-CV-\\ML\\Models.csproj": {
+    "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\ML\\Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nilss\\OneDrive\\Musik\\Dokument\\GruppProjekt-16-CV-\\ML\\Models.csproj",
+        "projectUniqueName": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\ML\\Models.csproj",
         "projectName": "Models",
-        "projectPath": "C:\\Users\\nilss\\OneDrive\\Musik\\Dokument\\GruppProjekt-16-CV-\\ML\\Models.csproj",
+        "projectPath": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\ML\\Models.csproj",
         "packagesPath": "C:\\Users\\nilss\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nilss\\OneDrive\\Musik\\Dokument\\GruppProjekt-16-CV-\\ML\\obj\\",
+        "outputPath": "C:\\Users\\nilss\\source\\repos\\GruppProjekt Grupp16 CV\\ML\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

@@ -1,6 +1,7 @@
 ﻿@using GruppProjekt_Grupp16_CV.ModelHelper;
 @model MessageViewModel;
 
+<link rel="stylesheet" href="~/css/message.css" asp-append-version="true" />
 
 <h3>Oläst</h3>
 <form asp-controller="Messages" asp-action="MessageActionUnread" method="post">
@@ -22,22 +23,25 @@
         <div class="row centered">
             @foreach(var unreadMessage in Model.unreadMessages)
             {
-                <div col-12 col-md-8>
-                    <a class="row" asp-controller="Messages" asp-action="MessageOpen" asp-route-id="@unreadMessage.Id">
-                        <h5>@unreadMessage.Title</h5>
-                        @{
-                            var Userfrom = unreadMessage.MessageBoxes[0].SentUserObject.UserName;
-                            var UsersTo = string.Join(", ", (
-                                from messageBox in unreadMessage.MessageBoxes
-                                select messageBox.RecievedUserObject.UserName
-                            ).ToList());
+                <div class="col-12 col-md-8 center-items">
+                    <img class="col-2 profile-img" src="@unreadMessage.MessageBoxes[0].SentUserObject.ProfilePicture" />
+                    <div class="col-7">
+                        <a asp-controller="Messages" asp-action="MessageOpen" asp-route-id="@unreadMessage.Id">
+                            <h5>@unreadMessage.Title</h5>
+                            @{
+                                var Userfrom = unreadMessage.MessageBoxes[0].SentUserObject.UserName;
+                                var UsersTo = string.Join(", ", (
+                                    from messageBox in unreadMessage.MessageBoxes
+                                    select messageBox.RecievedUserObject.UserName
+                                ).ToList());
 
-                            <small>Från: @Userfrom</small>
-                            <small>Till: @UsersTo</small>
-                        }
+                                <small>Från: @Userfrom</small><br />
+                                <small>Till: @UsersTo</small>
+                            }
 
-                    </a>
-                    <input type="checkbox" />
+                        </a>
+                    </div>
+                    <input class="col-2" type="checkbox" />
                 </div>
                 <hr />
             }
@@ -65,21 +69,26 @@
         <div class="row centered">
             @foreach (var readMessage in Model.readMessages)
             {
-                <div col-12 col-md-8>
-                    <a class="row" asp-controller="Messages" asp-action="MessageOpen" asp-route-id="@readMessage.Id">
-                        <h5>@readMessage.Title</h5>
-                        @{
-                            var Userfrom = readMessage.MessageBoxes[0].SentUserObject.UserName;
-                            var UsersTo = string.Join(", ", (
-                                from messageBox in readMessage.MessageBoxes
-                                select messageBox.RecievedUserObject.UserName
-                            ).ToList());
+                <div class="col-12 col-md-8 center-items">
+                    <img class="col-2 profile-img" src="@readMessage.MessageBoxes[0].SentUserObject.ProfilePicture" />
+                    <div class="col-7">
+                        <a asp-controller="Messages" asp-action="MessageOpen" asp-route-id="@readMessage.Id">
+                            <h5>@readMessage.Title</h5>
+                            @{
+                                var Userfrom = readMessage.MessageBoxes[0].SentUserObject.UserName;
+                                var UsersTo = string.Join(", ", (
+                                    from messageBox in readMessage.MessageBoxes
+                                    select messageBox.RecievedUserObject.UserName
+                                ).ToList());
 
-                            <small>Från: @Userfrom</small>
-                            <small>Till: @UsersTo</small>
-                        }
-                    </a>
-                    <input type="checkbox" />
+                                <small>Från: @Userfrom</small>
+
+                                <br />
+                                <small>Till: @UsersTo</small>
+                            }
+                        </a>
+                    </div>
+                    <input class="col-2" type="checkbox" />
                 </div>
                 <hr />
             }

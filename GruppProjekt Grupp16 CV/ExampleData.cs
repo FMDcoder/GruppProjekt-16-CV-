@@ -10,7 +10,7 @@ namespace GruppProjekt_Grupp16_CV
     public class DataHandler
     {
         [HttpPost]
-        public async static void uploadData(CvContext cvContext)
+        public async static Task uploadDataAsync(CvContext cvContext, UserManager<User> userManager)
         {
             String[] Companies = { "Facebook", "Face2Face", "Marabo" };
             for(var i = 0; i < Companies.Length; i++)
@@ -94,25 +94,29 @@ namespace GruppProjekt_Grupp16_CV
                 "pwS%123"
             };
 
-            for (var i = 0; i < Passwords.Length; i++)
+            var passHasher = new PasswordHasher<IdentityUser>();
+			for (var i = 0; i < Passwords.Length; i++)
             {
-                var passwordHasher = new PasswordHasher<IdentityUser>();
                 User user = new User
                 {
                     UserName = UsersName[i],
+                    NormalizedUserName = UsersName[i].ToUpper(),
                     PhoneNumber = UserPhone[i],
                     Email = Gmail[i],
+                    NormalizedEmail = Gmail[i].ToUpper(),
+                    EmailConfirmed = true,
                     ProfilePicture = Profilepic[i],
                     Adress = Adresses[i],
                     StatusId = 1 // Privat
                 };
 
-                user.PasswordHash = passwordHasher.HashPassword(user, Passwords[i]);
+                user.PasswordHash = passHasher.HashPassword(user, Passwords[i]);
+
                 cvContext.User.Add(user);
             }
             cvContext.SaveChanges();
 
-            String[] projectTitles = { "CyberProg", "Hyper AI", "Dali K" };
+			String[] projectTitles = { "CyberProg", "Hyper AI", "Dali K" };
             String[] projectDescription = {"Hyper säkert system", "Första generalla AI", "AI med känslor"};
             for(var i= 0; i < projectTitles.Length; i++)
             {

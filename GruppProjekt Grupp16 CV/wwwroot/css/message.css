@@ -1,0 +1,19 @@
+﻿.profile-img {
+    border-radius: 50%;
+    padding: 10px;
+}
+
+a > h5 {
+    color: #d70f0f;
+    text-decoration: none;
+}
+
+a:hover > h5 {
+    color: #bf0e0e;
+    font-weight: 700;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}

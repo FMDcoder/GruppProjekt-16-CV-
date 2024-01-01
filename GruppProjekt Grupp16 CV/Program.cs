@@ -40,8 +40,7 @@ using (var scope = app.Services.CreateScope())
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
     if (cvContext.Status.Count() == 0)
     {
-        DataHandler.uploadData(cvContext);
+		var res = DataHandler.uploadDataAsync(cvContext, userManager);
     }
 }
-
 app.Run();

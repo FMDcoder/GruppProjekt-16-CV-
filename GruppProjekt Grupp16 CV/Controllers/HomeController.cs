@@ -1,5 +1,6 @@
 using GruppProjekt_Grupp16_CV.ModelHelper;
 using GruppProjekt_Grupp16_CV.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -54,6 +55,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
 		public IActionResult Index()
         {
+            Console.WriteLine(users.GetAll().Count());
 			return View(users.GetAll());
         }
 
