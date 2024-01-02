@@ -6,6 +6,7 @@ using Models;
 using GruppProjekt_Grupp16_CV.Models;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace GruppProjekt_Grupp16_CV.Controllers
 {
@@ -29,7 +30,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
         public IActionResult Messages()
         {
-            MessageViewModel MVM = new MessageViewModel();
+            MessageViewModel messageViewModel = new MessageViewModel();
 
             if (User.Identity != null)
             {
@@ -70,9 +71,13 @@ namespace GruppProjekt_Grupp16_CV.Controllers
                         select sentMessage.MessageObject
                     ).ToList();                    
 
-                    MVM.unreadMessages = unreadMessages;
-                    MVM.readMessages = readMessages;
-                    MVM.sentMessages = sentMessages;
+                    messageViewModel.unreadMessages = unreadMessages;
+                    messageViewModel.readMessages = readMessages;
+                    messageViewModel.sentMessages = sentMessages;
+
+                    messageViewModel.selectedUnreadMessages = new bool[unreadMessages.Count];
+                    messageViewModel.selectedReadMessages = new bool[unreadMessages.Count];
+                    messageViewModel.selectedSentMessages = new bool[unreadMessages.Count];
                 }
                 else
                 {
@@ -80,11 +85,12 @@ namespace GruppProjekt_Grupp16_CV.Controllers
                 }
             }
 
-            return View(MVM);
+            return View(messageViewModel);
         }
 
-        public IActionResult MessageActionUnread()
+        public IActionResult MessageActionUnread(object sender, EventArgs e)
         {
+
             return RedirectToAction("Messages");
         }
 

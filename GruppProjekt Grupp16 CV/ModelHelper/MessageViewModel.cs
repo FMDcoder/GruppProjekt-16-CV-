@@ -8,6 +8,9 @@ namespace GruppProjekt_Grupp16_CV.ModelHelper
         public virtual List<Message> readMessages { get; set; }
         public virtual List<Message> sentMessages { get; set; }
 
-       
+        public virtual bool[] selectedUnreadMessages { get; set; }
+        public virtual bool[] selectedReadMessages { get; set; }
+        public virtual bool[] selectedSentMessages { get; set; }
+
     }
 }

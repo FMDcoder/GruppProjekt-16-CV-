@@ -39,7 +39,7 @@
         }
 
         <div class="row centered">
-            @foreach(var unreadMessage in Model.unreadMessages)
+            @foreach ((var unreadMessage, var i) in Model.unreadMessages.Select((value, i) => (value, i)))
             {
                 <div class="col-12 col-md-8 center-items">
                     <img class="col-2 profile-img" src="@unreadMessage.MessageBoxes[0].SentUserObject.ProfilePicture" />
@@ -59,7 +59,7 @@
 
                         </a>
                     </div>
-                    <input class="col-2" type="checkbox" />
+                    <input class="col-2" type="checkbox" asp-for="@Model.selectedUnreadMessages[i]" />
                 </div>
                 <hr />
             }
@@ -102,7 +102,7 @@
         }
 
         <div class="row centered">
-            @foreach (var readMessage in Model.readMessages)
+            @foreach ((var readMessage, var i) in Model.readMessages.Select((value, i) => (value, i)))
             {
                 <div class="col-12 col-md-8 center-items">
                     <img class="col-2 profile-img" src="@readMessage.MessageBoxes[0].SentUserObject.ProfilePicture" />
@@ -123,7 +123,7 @@
                             }
                         </a>
                     </div>
-                    <input class="col-2" type="checkbox" />
+                    <input class="col-2" type="checkbox" asp-for="@Model.selectedReadMessages[i]" />
                 </div>
                 <hr />
             }
@@ -163,7 +163,7 @@
         }
 
         <div class="row centered">
-            @foreach (var sentMessage in Model.sentMessages)
+            @foreach ((var sentMessage, var i) in Model.sentMessages.Select((value, i) => (value, i)))
             {
                 <div class="col-12 col-md-8 center-items">
                     <img class="col-2 profile-img" src="@sentMessage.MessageBoxes[0].SentUserObject.ProfilePicture" />
@@ -185,7 +185,7 @@
 
                         </a>
                     </div>
-                    <input class="col-2" type="checkbox" />
+                    <input class="col-2" type="checkbox" asp-for="@Model.selectedSentMessages[i]" />
                 </div>
                 <hr />
             }
