@@ -15,12 +15,16 @@ namespace GruppProjekt_Grupp16_CV.Controllers
         private readonly CvContext cvContext;
 
         public Repository<Message> messages { get; set; }
+        public Repository<ReadMessages> readMessages { get; set; }
+        public Repository<RemovedMessages> removedMessages { get; set; }
 
         public MessagesController(CvContext cvContext)
         {
             this.cvContext = cvContext;
 
             messages = new Repository<Message>(cvContext);
+            readMessages = new Repository<ReadMessages>(cvContext);
+            removedMessages = new Repository<RemovedMessages>(cvContext);
         }
 
         public IActionResult MessageOpen([FromRoute] int id)
@@ -76,8 +80,8 @@ namespace GruppProjekt_Grupp16_CV.Controllers
                     messageViewModel.sentMessages = sentMessages;
 
                     messageViewModel.selectedUnreadMessages = new bool[unreadMessages.Count];
-                    messageViewModel.selectedReadMessages = new bool[unreadMessages.Count];
-                    messageViewModel.selectedSentMessages = new bool[unreadMessages.Count];
+                    messageViewModel.selectedReadMessages = new bool[readMessages.Count];
+                    messageViewModel.selectedSentMessages = new bool[sentMessages.Count];
                 }
                 else
                 {
@@ -90,16 +94,62 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
         public IActionResult MessageActionUnread(MessageViewModel messageViewModel, string submitButton)
         {
-            Console.WriteLine("&&&&"+submitButton);
+            if(submitButton == "Markera som läst")
+            {
+                foreach((var item, var i) in messageViewModel.selectedUnreadMessages.Select((value, i) => (value, i)))
+                {
+                    if(item)
+                    {
+                        var messageId = messageViewModel.unreadMessages[i].Id;
+                        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                        readMessages.Insert(new ReadMessages
+                        {
+                            MessageId = messageId,
+                            UserId = userId
+                        });
+
+                        readMessages.Save();
+                    }
+                }
+            }
+            else
+            {
+
+            }
             return RedirectToAction("Messages");
         }
 
-		public IActionResult MessageActionRead()
+		public IActionResult MessageActionRead(MessageViewModel messageViewModel, string submitButton)
 		{
-			return RedirectToAction("Messages");
+            if (submitButton == "Markera som oläst")
+            {
+                foreach ((var item, var i) in messageViewModel.selectedReadMessages.Select((value, i) => (value, i)))
+                {
+                    if (item)
+                    {
+                        var messageId = messageViewModel.readMessages[i].Id;
+                        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                        readMessages.Delete(
+                            (
+                                from unreadMessage in readMessages.GetAll()
+                                where unreadMessage.MessageId == messageId && unreadMessage.UserId == userId
+                                select unreadMessage
+                            ).First()
+                        );
+                        readMessages.Save();
+                    }
+                }
+            }
+            else
+            {
+
+            }
+            return RedirectToAction("Messages");
 		}
 
-        public IActionResult MessageActionSent()
+        public IActionResult MessageActionSent(MessageViewModel messageViewModel, string submitButton)
         {
             return RedirectToAction("Messages");
         }

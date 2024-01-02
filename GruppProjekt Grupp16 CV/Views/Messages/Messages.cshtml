@@ -38,6 +38,11 @@
             <p>Verkar som att du har läst allt!</p>
         }
 
+        @for (int i = 0; i < Model.unreadMessages.Count; i++)
+        {
+            <input type="hidden" name="unreadMessages[@i].Id" value="@Model.unreadMessages[i].Id" />
+        }
+
         <div class="row centered">
             @foreach ((var unreadMessage, var i) in Model.unreadMessages.Select((value, i) => (value, i)))
             {
@@ -78,6 +83,7 @@
                 <input type="button" id="confirm-read-message" class="btn btn-primary" value="Släng i soptunnan" />
             </div>
 
+
             <div class="centered confirm-box" id="confirm-box-read-message">
                 <h3 class="center-text space">Är du säker?</h3>
                 <div class="container">
@@ -99,6 +105,11 @@
         @if (Model.readMessages.Count() == 0)
         {
             <p>Inga lästa meddelanden!</p>
+        }
+
+        @for (int i = 0; i < Model.readMessages.Count; i++)
+        {
+            <input type="hidden" name="readMessages[@i].Id" value="@Model.readMessages[i].Id" />
         }
 
         <div class="row centered">
@@ -162,6 +173,11 @@
             <p>Du har inte skickat något!</p>
         }
 
+        @for (int i = 0; i < Model.sentMessages.Count; i++)
+        {
+            <input type="hidden" name="sentMessages[@i].Id" value="@Model.sentMessages[i].Id" />
+        }
+
         <div class="row centered">
             @foreach ((var sentMessage, var i) in Model.sentMessages.Select((value, i) => (value, i)))
             {
@@ -185,6 +201,7 @@
 
                         </a>
                     </div>
+
                     <input class="col-2" type="checkbox" asp-for="@Model.selectedSentMessages[i]" />
                 </div>
                 <hr />
