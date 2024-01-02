@@ -28,7 +28,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
         }
 
         public IActionResult MessageOpen([FromRoute] int id)
-        { 
+        {
             return View(messages.GetById(id));
         }
 
@@ -38,7 +38,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
             if (User.Identity != null)
             {
-                if(User.Identity.IsAuthenticated) 
+                if (User.Identity.IsAuthenticated)
                 {
                     var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -73,7 +73,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
                     List<Message> sentMessages = (
                         from sentMessage in user.SentMessageBoxes
                         select sentMessage.MessageObject
-                    ).ToList();                    
+                    ).ToList();
 
                     messageViewModel.unreadMessages = unreadMessages;
                     messageViewModel.readMessages = readMessages;
@@ -94,11 +94,11 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
         public IActionResult MessageActionUnread(MessageViewModel messageViewModel, string submitButton)
         {
-            if(submitButton == "Markera som läst")
+            if (submitButton == "Markera som läst")
             {
-                foreach((var item, var i) in messageViewModel.selectedUnreadMessages.Select((value, i) => (value, i)))
+                foreach ((var item, var i) in messageViewModel.selectedUnreadMessages.Select((value, i) => (value, i)))
                 {
-                    if(item)
+                    if (item)
                     {
                         var messageId = messageViewModel.unreadMessages[i].Id;
                         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -108,20 +108,33 @@ namespace GruppProjekt_Grupp16_CV.Controllers
                             MessageId = messageId,
                             UserId = userId
                         });
-
-                        readMessages.Save();
                     }
                 }
+                readMessages.Save();
             }
             else
             {
+                foreach ((var item, var i) in messageViewModel.selectedUnreadMessages.Select((value, i) => (value, i)))
+                {
+                    if (item)
+                    {
+                        var messageId = messageViewModel.unreadMessages[i].Id;
+                        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+                        removedMessages.Insert(new RemovedMessages
+                        {
+                            MessageId = messageId,
+                            UserId = userId
+                        });
+                    }
+                }
+                removedMessages.Save();
             }
             return RedirectToAction("Messages");
         }
 
-		public IActionResult MessageActionRead(MessageViewModel messageViewModel, string submitButton)
-		{
+        public IActionResult MessageActionRead(MessageViewModel messageViewModel, string submitButton)
+        {
             if (submitButton == "Markera som oläst")
             {
                 foreach ((var item, var i) in messageViewModel.selectedReadMessages.Select((value, i) => (value, i)))
@@ -138,19 +151,48 @@ namespace GruppProjekt_Grupp16_CV.Controllers
                                 select unreadMessage
                             ).First()
                         );
-                        readMessages.Save();
                     }
                 }
+                readMessages.Save();
             }
             else
             {
+                foreach ((var item, var i) in messageViewModel.selectedReadMessages.Select((value, i) => (value, i)))
+                {
+                    if (item)
+                    {
+                        var messageId = messageViewModel.readMessages[i].Id;
+                        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+                        removedMessages.Insert(new RemovedMessages
+                        {
+                            MessageId = messageId,
+                            UserId = userId
+                        });
+                    }
+                }
+                removedMessages.Save();
             }
             return RedirectToAction("Messages");
-		}
+        }
 
-        public IActionResult MessageActionSent(MessageViewModel messageViewModel, string submitButton)
+        public IActionResult MessageActionSent(MessageViewModel messageViewModel)
         {
+            foreach ((var item, var i) in messageViewModel.selectedSentMessages.Select((value, i) => (value, i)))
+            {
+                if (item)
+                {
+                    var messageId = messageViewModel.sentMessages[i].Id;
+                    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                    removedMessages.Insert(new RemovedMessages
+                    {
+                        MessageId = messageId,
+                        UserId = userId
+                    });
+                }
+            }
+            removedMessages.Save();
             return RedirectToAction("Messages");
         }
     }
