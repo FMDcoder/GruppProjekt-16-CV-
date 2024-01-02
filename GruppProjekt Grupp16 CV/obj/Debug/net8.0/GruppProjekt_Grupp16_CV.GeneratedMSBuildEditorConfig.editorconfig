@@ -9,83 +9,83 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = GruppProjekt_Grupp16_CV
 build_property.RootNamespace = GruppProjekt_Grupp16_CV
-build_property.ProjectDir = C:\Users\nilss\source\repos\GruppProjekt Grupp16 CV\GruppProjekt Grupp16 CV\
+build_property.ProjectDir = C:\Users\nilss\Documents\GruppProjekt Grupp16 CV\GruppProjekt Grupp16 CV\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\nilss\source\repos\GruppProjekt Grupp16 CV\GruppProjekt Grupp16 CV
+build_property.MSBuildProjectDirectory = C:\Users\nilss\Documents\GruppProjekt Grupp16 CV\GruppProjekt Grupp16 CV
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/nilss/source/repos/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Account/LogIn.cshtml]
+[C:/Users/nilss/Documents/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Account/LogIn.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxMb2dJbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nilss/source/repos/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Account/Profile.cshtml]
+[C:/Users/nilss/Documents/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Account/Profile.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nilss/source/repos/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Account/Register.cshtml]
+[C:/Users/nilss/Documents/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Account/Register.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nilss/source/repos/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Home/Account.cshtml]
+[C:/Users/nilss/Documents/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Home/Account.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxBY2NvdW50LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nilss/source/repos/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Home/CVsite.cshtml]
+[C:/Users/nilss/Documents/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Home/CVsite.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxDVnNpdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nilss/source/repos/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Home/Index.cshtml]
+[C:/Users/nilss/Documents/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nilss/source/repos/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Home/Privacy.cshtml]
+[C:/Users/nilss/Documents/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nilss/source/repos/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Home/Project.cshtml]
+[C:/Users/nilss/Documents/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Home/Project.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcm9qZWN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nilss/source/repos/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Home/Users.cshtml]
+[C:/Users/nilss/Documents/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Home/Users.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxVc2Vycy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nilss/source/repos/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Messages/MessageOpen.cshtml]
+[C:/Users/nilss/Documents/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Messages/MessageOpen.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVzc2FnZXNcTWVzc2FnZU9wZW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nilss/source/repos/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Messages/Messages.cshtml]
+[C:/Users/nilss/Documents/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Messages/Messages.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVzc2FnZXNcTWVzc2FnZXMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nilss/source/repos/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Messages/SendMessage.cshtml]
+[C:/Users/nilss/Documents/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Messages/SendMessage.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVzc2FnZXNcU2VuZE1lc3NhZ2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nilss/source/repos/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/ProjectCreate/Project.cshtml]
+[C:/Users/nilss/Documents/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/ProjectCreate/Project.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvamVjdENyZWF0ZVxQcm9qZWN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nilss/source/repos/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Shared/Error.cshtml]
+[C:/Users/nilss/Documents/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nilss/source/repos/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/nilss/Documents/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nilss/source/repos/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/_ViewImports.cshtml]
+[C:/Users/nilss/Documents/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nilss/source/repos/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/_ViewStart.cshtml]
+[C:/Users/nilss/Documents/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/nilss/source/repos/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Shared/_Layout.cshtml]
+[C:/Users/nilss/Documents/GruppProjekt Grupp16 CV/GruppProjekt Grupp16 CV/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-9md1zlmuai
