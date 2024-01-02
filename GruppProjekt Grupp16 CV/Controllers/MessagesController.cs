@@ -88,9 +88,9 @@ namespace GruppProjekt_Grupp16_CV.Controllers
             return View(messageViewModel);
         }
 
-        public IActionResult MessageActionUnread(object sender, EventArgs e)
+        public IActionResult MessageActionUnread(MessageViewModel messageViewModel, string submitButton)
         {
-
+            Console.WriteLine("&&&&"+submitButton);
             return RedirectToAction("Messages");
         }
 
