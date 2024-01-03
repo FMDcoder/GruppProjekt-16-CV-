@@ -264,7 +264,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SentUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    SentUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     RecievedUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     MessageId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -315,7 +315,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     MessageId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -341,7 +341,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     MessageId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

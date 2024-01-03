@@ -16,7 +16,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 		private readonly CvContext _cvContext;
 		public Repository<User> users { get; set; }
 
-		public AccountController(CvContext cvContext, UserManager<User> userManager, SignInManager<User> signInManager)
+        public AccountController(CvContext cvContext, UserManager<User> userManager, SignInManager<User> signInManager)
 		{
 			this.UserManager = userManager;
 			this.SignInManager = signInManager;
@@ -79,11 +79,11 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 					{
 						return RedirectToAction("Index", "Home");
 					}
-					ModelState.AddModelError("", "Lyckades inte logga in! B");
+					ModelState.AddModelError("", "Lyckades inte logga in!");
 				} 
 				else
 				{
-					ModelState.AddModelError("", "Lyckades inte logga in! A");
+					ModelState.AddModelError("", "Lyckades inte logga in!");
 				}
 			}
 			return View(UserLogInVal);

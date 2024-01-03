@@ -8,7 +8,13 @@
 				<h2>Skicka meddelande</h2>
 			</div>
 			<div class="row form-group space">
-				<div asp-validation-summary="All" class="col-lg-2 col-12" text-danger></div>
+				@{
+					if (Model.success)
+					{
+						<div class="col-lg-2 col-12 text-success">Lyckades skicka!</div>
+					}
+				}
+				<div asp-validation-summary="All" class="col-lg-2 col-12 text-danger"></div>
 			</div>
 			<div class="row form-group space">
 				<div class="col-lg-2 col-12">

@@ -72,10 +72,10 @@ namespace GruppProjekt_Grupp16_CV
             }
             cvContext.SaveChanges();
 
-            String[] UsersName = { "Jennifer", "Carlos", "Vanessa", "Jacob" };
+            String[] UsersName = { "Jennifer", "Carlos", "Vanessa", "Jacob"};
             String[] UserPhone = { "46472346294", "46622204351", "46263934522", "46322932150"};
-            String[] Gmail = { "jen@gmail.com", "car@gmail.com", "van@gmail.com", "jac@gmail.com" };
-			String[] Adresses = { "Symfonivägen 5 Örebro", "Symfonivägen 5 Lindesberg", "Symfonivägen 5 Askersund", "Symfonivägen 5 Karlskoga" };
+            String[] Gmail = { "jen@gmail.com", "car@gmail.com", "van@gmail.com", "jac@gmail.com"};
+			String[] Adresses = { "Symfonivägen 5 Örebro", "Symfonivägen 5 Lindesberg", "Symfonivägen 5 Askersund", "Symfonivägen 5 Karlskoga"};
 			String[] Profilepic =
             {
                 "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
@@ -111,6 +111,16 @@ namespace GruppProjekt_Grupp16_CV
 
                 cvContext.User.Add(user);
             }
+
+            cvContext.User.Add(new User {
+                UserName = "Anonym",
+                Email = "Anonym@gmail.com",
+                PhoneNumber = "00000000",
+                Adress = "Unkown",
+                ProfilePicture = "https://media.istockphoto.com/id/1371205496/vector/anonym-encryption-pseudonymisation-icon.jpg?s=612x612&w=0&k=20&c=IuQvr3khiIx6JJY4IngAQzyjXvC-cjyQZhXNEJsPcgU=",
+                StatusId = 1
+            });
+
             cvContext.SaveChanges();
 
 			String[] projectTitles = { "CyberProg", "Hyper AI", "Dali K" };

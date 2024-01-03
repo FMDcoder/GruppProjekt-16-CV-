@@ -4,143 +4,154 @@
 <link rel="stylesheet" href="~/css/message.css" asp-append-version="true" />
 <div id="cover-sheet"></div>
 
-<h3>Oläst</h3>
-<form asp-controller="Messages" asp-action="MessageActionUnread" method="post">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-4">
-                <input type="submit" class="btn btn-primary" name="submitButton" value="Markera som läst" />
-            </div>
-            <div class="col-md-3 col-4">
-                <input type="button" id="confirm-unread-message" class="btn btn-primary" value="Släng i soptunnan" />
-            </div>
+@if (User.Identity.IsAuthenticated)
+{
+    <h3>Oläst</h3>
+    <form asp-controller="Messages" asp-action="MessageActionUnread" method="post">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-4">
+                    <input type="submit" class="btn btn-primary" name="submitButton" value="Markera som läst" />
+                </div>
+                <div class="col-md-3 col-4">
+                    <input type="button" id="confirm-unread-message" class="btn btn-primary" value="Släng i soptunnan" />
+                </div>
 
-            <div class="centered confirm-box" id="confirm-box-unread-message">
-                <h3 class="center-text space">Är du säker?</h3>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-1"></div>
-                        <div class="col-4">
-                            <input type="button" id="no-confirm-unread-message" class="btn btn-primary" value="Nej" />
+                <div class="centered confirm-box" id="confirm-box-unread-message">
+                    <h3 class="center-text space">Är du säker?</h3>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-1"></div>
+                            <div class="col-4">
+                                <input type="button" id="no-confirm-unread-message" class="btn btn-primary" value="Nej" />
+                            </div>
+                            <div class="col-2"></div>
+                            <div class="col-4">
+                                <input type="submit" class="btn btn-primary" name="submitButton" value="Ja" />
+                            </div>
+                            <div class="col-1"></div>
                         </div>
-                        <div class="col-2"></div>
-                        <div class="col-4">
-                            <input type="submit" class="btn btn-primary" name="submitButton" value="Ja" />
-                        </div>
-                        <div class="col-1"></div>
                     </div>
                 </div>
             </div>
-        </div>
-        <hr />
-        @if (Model.unreadMessages.Count() == 0)
-        {
-            <p>Verkar som att du har läst allt!</p>
-        }
-
-        @for (int i = 0; i < Model.unreadMessages.Count; i++)
-        {
-            <input type="hidden" name="unreadMessages[@i].Id" value="@Model.unreadMessages[i].Id" />
-        }
-
-        <div class="row centered">
-            @foreach ((var unreadMessage, var i) in Model.unreadMessages.Select((value, i) => (value, i)))
+            <hr />
+            @if (Model.unreadMessages.Count() == 0)
             {
-                <div class="col-12 col-md-8 center-items">
-                    <img class="col-2 profile-img" src="@unreadMessage.MessageBoxes[0].SentUserObject.ProfilePicture" />
-                    <div class="col-7">
-                        <a asp-controller="Messages" asp-action="MessageOpen" asp-route-id="@unreadMessage.Id">
-                            <h5>@unreadMessage.Title</h5>
-                            @{
-                                var Userfrom = unreadMessage.MessageBoxes[0].SentUserObject.UserName;
-                                var UsersTo = string.Join(", ", (
-                                    from messageBox in unreadMessage.MessageBoxes
-                                    select messageBox.RecievedUserObject.UserName
-                                ).ToList());
-
-                                <small>Från: @Userfrom</small><br />
-                                <small>Till: @UsersTo</small>
-                            }
-
-                        </a>
-                    </div>
-                    <input class="col-2" type="checkbox" asp-for="@Model.selectedUnreadMessages[i]" />
-                </div>
-                <hr />
+                <p>Verkar som att du har läst allt!</p>
             }
-        </div>
-    </div>
-</form>
 
-<h3>Läst</h3>
-<form asp-controller="Messages" asp-action="MessageActionRead" method="post">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-4">
-                <input type="submit" class="btn btn-primary" name="submitButton" value="Markera som oläst" />
-            </div>
-            <div class="col-md-3 col-4">
-                <input type="button" id="confirm-read-message" class="btn btn-primary" value="Släng i soptunnan" />
-            </div>
-
-
-            <div class="centered confirm-box" id="confirm-box-read-message">
-                <h3 class="center-text space">Är du säker?</h3>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-1"></div>
-                        <div class="col-4">
-                            <input type="button" id="no-confirm-read-message" class="btn btn-primary" value="Nej" />
-                        </div>
-                        <div class="col-2"></div>
-                        <div class="col-4">
-                            <input type="submit" class="btn btn-primary" name="submitButton" value="Ja" />
-                        </div>
-                        <div class="col-1"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr />
-        @if (Model.readMessages.Count() == 0)
-        {
-            <p>Inga lästa meddelanden!</p>
-        }
-
-        @for (int i = 0; i < Model.readMessages.Count; i++)
-        {
-            <input type="hidden" name="readMessages[@i].Id" value="@Model.readMessages[i].Id" />
-        }
-
-        <div class="row centered">
-            @foreach ((var readMessage, var i) in Model.readMessages.Select((value, i) => (value, i)))
+            @for (int i = 0; i < Model.unreadMessages.Count; i++)
             {
-                <div class="col-12 col-md-8 center-items">
-                    <img class="col-2 profile-img" src="@readMessage.MessageBoxes[0].SentUserObject.ProfilePicture" />
-                    <div class="col-7">
-                        <a asp-controller="Messages" asp-action="MessageOpen" asp-route-id="@readMessage.Id">
-                            <h5>@readMessage.Title</h5>
-                            @{
-                                var Userfrom = readMessage.MessageBoxes[0].SentUserObject.UserName;
-                                var UsersTo = string.Join(", ", (
-                                    from messageBox in readMessage.MessageBoxes
-                                    select messageBox.RecievedUserObject.UserName
-                                ).ToList());
-
-                                <small>Från: @Userfrom</small>
-
-                                <br />
-                                <small>Till: @UsersTo</small>
-                            }
-                        </a>
-                    </div>
-                    <input class="col-2" type="checkbox" asp-for="@Model.selectedReadMessages[i]" />
-                </div>
-                <hr />
+                <input type="hidden" name="unreadMessages[@i].Id" value="@Model.unreadMessages[i].Id" />
             }
+
+            <div class="row centered">
+                @foreach ((var unreadMessage, var i) in Model.unreadMessages.Select((value, i) => (value, i)))
+                {
+                    <div class="col-12 col-md-8 center-items">
+                        <img class="col-2 profile-img" src="@unreadMessage.MessageBoxes[0].SentUserObject.ProfilePicture" />
+                        <div class="col-7">
+                            <a asp-controller="Messages" asp-action="MessageOpen" asp-route-id="@unreadMessage.Id">
+                                <h5>@unreadMessage.Title</h5>
+                                @{
+                                    var Userfrom = "Anonym";
+                                    if (unreadMessage.MessageBoxes[0].SentUserObject != null)
+                                    {
+                                        Userfrom = unreadMessage.MessageBoxes[0].SentUserObject.UserName;
+                                    }
+                                    var UsersTo = string.Join(", ", (
+                                        from messageBox in unreadMessage.MessageBoxes
+                                        select messageBox.RecievedUserObject.UserName
+                                    ).ToList());
+
+                                    <small>Från: @Userfrom</small><br />
+                                    <small>Till: @UsersTo</small>
+                                }
+
+                            </a>
+                        </div>
+                        <input class="col-2" type="checkbox" asp-for="@Model.selectedUnreadMessages[i]" />
+                    </div>
+                    <hr />
+                }
+            </div>
         </div>
-    </div>
-</form>
+    </form>
+
+    <h3>Läst</h3>
+    <form asp-controller="Messages" asp-action="MessageActionRead" method="post">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-4">
+                    <input type="submit" class="btn btn-primary" name="submitButton" value="Markera som oläst" />
+                </div>
+                <div class="col-md-3 col-4">
+                    <input type="button" id="confirm-read-message" class="btn btn-primary" value="Släng i soptunnan" />
+                </div>
+
+
+                <div class="centered confirm-box" id="confirm-box-read-message">
+                    <h3 class="center-text space">Är du säker?</h3>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-1"></div>
+                            <div class="col-4">
+                                <input type="button" id="no-confirm-read-message" class="btn btn-primary" value="Nej" />
+                            </div>
+                            <div class="col-2"></div>
+                            <div class="col-4">
+                                <input type="submit" class="btn btn-primary" name="submitButton" value="Ja" />
+                            </div>
+                            <div class="col-1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr />
+            @if (Model.readMessages.Count() == 0)
+            {
+                <p>Inga lästa meddelanden!</p>
+            }
+
+            @for (int i = 0; i < Model.readMessages.Count; i++)
+            {
+                <input type="hidden" name="readMessages[@i].Id" value="@Model.readMessages[i].Id" />
+            }
+
+            <div class="row centered">
+                @foreach ((var readMessage, var i) in Model.readMessages.Select((value, i) => (value, i)))
+                {
+                    <div class="col-12 col-md-8 center-items">
+                        <img class="col-2 profile-img" src="@readMessage.MessageBoxes[0].SentUserObject.ProfilePicture" />
+                        <div class="col-7">
+                            <a asp-controller="Messages" asp-action="MessageOpen" asp-route-id="@readMessage.Id">
+                                <h5>@readMessage.Title</h5>
+                                @{
+                                    var Userfrom = "Anonym";
+                                    if (readMessage.MessageBoxes[0].SentUserObject != null)
+                                    {
+                                        Userfrom = readMessage.MessageBoxes[0].SentUserObject.UserName;
+                                    }
+                                    var UsersTo = string.Join(", ", (
+                                        from messageBox in readMessage.MessageBoxes
+                                        select messageBox.RecievedUserObject.UserName
+                                    ).ToList());
+
+                                    <small>Från: @Userfrom</small>
+
+                                    <br />
+                                    <small>Till: @UsersTo</small>
+                                }
+                            </a>
+                        </div>
+                        <input class="col-2" type="checkbox" asp-for="@Model.selectedReadMessages[i]" />
+                    </div>
+                    <hr />
+                }
+            </div>
+        </div>
+    </form>
+}
 
 <h3>Skickat</h3>
 <form asp-controller="Messages" asp-action="MessageActionSent" method="post">
@@ -187,7 +198,11 @@
                         <a asp-controller="Messages" asp-action="MessageOpen" asp-route-id="@sentMessage.Id">
                             <h5>@sentMessage.Title</h5>
                             @{
-                                var Userfrom = sentMessage.MessageBoxes[0].SentUserObject.UserName;
+                                var Userfrom = "Anonym";
+                                if(sentMessage.MessageBoxes[0].SentUserObject != null)
+                                {
+                                    Userfrom = sentMessage.MessageBoxes[0].SentUserObject.UserName;
+                                }
                                 var UsersTo = string.Join(", ", (
                                 from messageBox in sentMessage.MessageBoxes
                                 select messageBox.RecievedUserObject.UserName

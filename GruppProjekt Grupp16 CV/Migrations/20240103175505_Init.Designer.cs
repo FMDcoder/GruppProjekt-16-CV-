@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GruppProjekt_Grupp16_CV.Migrations
 {
     [DbContext(typeof(CvContext))]
-    [Migration("20240101204426_Init")]
+    [Migration("20240103175505_Init")]
     partial class Init
     {
         /// <inheritdoc />
