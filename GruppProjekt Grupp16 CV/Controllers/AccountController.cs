@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using System.Security.Claims;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace GruppProjekt_Grupp16_CV.Controllers
 {
@@ -37,7 +38,19 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 				client.PhoneNumber = UserRegVal.PhoneNumber;
 				client.Adress = UserRegVal.Adress;
 
-				var res = await UserManager.CreateAsync(client, UserRegVal.Password);
+                List<User> usedUsername = (
+                    from user in users.GetAll()
+                    where user.UserName == UserRegVal.UserName
+                    select user
+                ).ToList();
+
+                if (usedUsername.Count > 0)
+                {
+                    ModelState.AddModelError("", "Användar namnet används redan!");
+                    return View(UserRegVal);
+                }
+
+                var res = await UserManager.CreateAsync(client, UserRegVal.Password);
 				if(res.Succeeded)
 				{
 					await SignInManager.SignInAsync(client, isPersistent: true);

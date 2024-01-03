@@ -17,6 +17,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
         public Repository<Message> messages { get; set; }
         public Repository<ReadMessages> readMessages { get; set; }
         public Repository<RemovedMessages> removedMessages { get; set; }
+        public Repository<User> users { get; set; }
 
         public MessagesController(CvContext cvContext)
         {
@@ -25,11 +26,22 @@ namespace GruppProjekt_Grupp16_CV.Controllers
             messages = new Repository<Message>(cvContext);
             readMessages = new Repository<ReadMessages>(cvContext);
             removedMessages = new Repository<RemovedMessages>(cvContext);
+            users = new Repository<User>(cvContext);
         }
 
         public IActionResult MessageOpen([FromRoute] int id)
         {
             return View(messages.GetById(id));
+        }
+        
+        public IActionResult SendMessage()
+        {
+            return View(new SendMessageViewModel());
+        }
+
+        public IActionResult SendMessageAction()
+        {
+            return RedirectToAction("SendMessage");
         }
 
         public IActionResult Messages()

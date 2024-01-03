@@ -1,5 +1,44 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@using Models;
+@model SendMessageViewModel;
+ 
+<form asp-action="SendMessageAction" asp-controller="Messages" method="post">
+	<div class="container centered">
+		<div class="col-lg-6 col-12"
+			<div class="row">
+				<h2>Skicka meddelande</h2>
+			</div>
+			<div class="row form-group space">
+				<div asp-validation-summary="All" class="col-lg-2 col-12" text-danger></div>
+			</div>
+			<div class="row form-group space">
+				<div class="col-lg-2 col-12">
+					<label>Titel: </label>
+				</div>
+				<div class="col-lg-4 col-12">
+					<input asp-for="Title" class="form-control"/>
+				</div>
+			</div>
+			<div class="row form-group space">
+				<div class="col-lg-2 col-12">
+					<label>Skicka till: </label>
+				</div>
+				<div class="col-lg-4 col-12">
+					<input asp-for="SendTo" class="form-control"/>
+				</div>
+			</div>
+			<div class="row form-group space">
+				<div class="col-lg-2 col-12">
+					<label>Meddelande: </label>
+				</div>
+				<div class="col-lg-4 col-12">
+					<textarea asp-for="Description" class="form-control"></textarea>
+				</div>
+			</div>
+			<div class="row form-group space">
+				<div class="col-lg-2 col-12">
+					<input type="submit" class="btn btn-primary" value="Skicka"/>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
