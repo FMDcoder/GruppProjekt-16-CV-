@@ -8,8 +8,8 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace GruppProjekt_Grupp16_CV.Controllers
 {
-    public class AccountController : Controller
-	{
+    public class AccountController : BaseController
+    {
 		private UserManager<User> UserManager { get; set; }
 		public SignInManager<User> SignInManager { get; set; }
 

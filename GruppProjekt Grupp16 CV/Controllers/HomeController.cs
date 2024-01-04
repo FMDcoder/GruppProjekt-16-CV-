@@ -2,12 +2,14 @@ using GruppProjekt_Grupp16_CV.ModelHelper;
 using GruppProjekt_Grupp16_CV.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Models;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Security.Claims;
 namespace GruppProjekt_Grupp16_CV.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly CvContext _cvContext;
         public Repository<Company> companies { get; set; }
@@ -53,7 +55,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			userVisits = new Repository<VisitedCV>(cvContext);
 		}
 
-		public IActionResult Index()
+        public IActionResult Index()
         {
             Console.WriteLine(users.GetAll().Count());
 			return View(users.GetAll());
@@ -86,9 +88,47 @@ namespace GruppProjekt_Grupp16_CV.Controllers
            return View(projects.GetAll());
         }
 
-        public IActionResult Users()
+        public IActionResult Users(string search)
         {
-            return View();
+            if(search == null)
+            {
+                search = string.Empty;
+            }
+
+            SearchBarValidate searchBarValidate = new SearchBarValidate{ search = search };
+            var results = new List<ValidationResult>();
+            var context = new ValidationContext(searchBarValidate);
+
+            if (Validator.TryValidateObject(searchBarValidate, context, results))
+            {
+                List<User> usersList = new List<User>();
+                if (User.Identity.IsAuthenticated)
+                {
+                    usersList = (
+                        from user in users.GetAll()
+                        where user.UserName != "Anonym"
+                        select user
+                    ).ToList();
+                }
+                else
+                {
+                    usersList = (
+                        from user in users.GetAll()
+                        where user.StatusId == 2 && user.UserName != "Anonym"
+						select user
+                    ).ToList();
+                }
+                (ViewBag.CommonData as SearchBarValidate).search = search;
+                return View(usersList);
+			}
+            else
+            {
+                foreach (var error in results)
+                {
+                    ModelState.AddModelError("", error.ErrorMessage);
+                }
+                return RedirectToAction("Index");
+            }
         }
 
 

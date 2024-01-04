@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace GruppProjekt_Grupp16_CV.Controllers
 {
-    public class MessagesController : Controller
+    public class MessagesController : BaseController
     {
         private readonly CvContext cvContext;
 

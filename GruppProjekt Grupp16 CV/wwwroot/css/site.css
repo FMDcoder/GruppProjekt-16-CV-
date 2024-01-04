@@ -22,6 +22,17 @@ body {
     margin-bottom: 60px;
 }
 
+#search-button-validation {
+    top: 50px;
+    width: 200px;
+    height: 100px;
+    padding: 10px;
+    position: absolute;
+    background-color: white;
+    border: 2px solid #dddddd;
+    border-radius: 10px;
+}
+
 #search-form {
     display: flex;
     align-items: center;
@@ -149,4 +160,10 @@ a:hover {
 
 .center-text {
     text-align: center;
+}
+
+.profile-img {
+    width: 200px;
+    border-radius: 50%;
+    padding: 10px;
 }

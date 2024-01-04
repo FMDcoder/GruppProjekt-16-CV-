@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    SearchBarValidate commonData = ViewBag.CommonData as SearchBarValidate;
+}
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -14,9 +18,13 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid" id="app">
                 <form method="get" asp-controller="Home" asp-action="Users" class="form-group" id="search-form">
-                    <input type="text" id="search-bar" name="search" placeholder="sök på personner" />
-                    <input type="submit" id="search-button"/>
-                </form>
+                    <input type="text" id="search-bar" name="search" value="@commonData.search" placeholder="skriv här" />
+                    <input type="submit" id="search-button" value="sök"/>
+                    @if(commonData.search.Length == 0)
+                    {
+                        <div asp-validation-summary="All" id="search-button-validation"></div>
+
+                    }                 </form>
                 <a class="icon-button space-side" asp-controller="Messages" asp-action="Messages">
                     <i class="fas fa-envelope"></i>
                     @{
