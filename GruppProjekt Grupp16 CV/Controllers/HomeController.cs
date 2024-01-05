@@ -85,8 +85,12 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
         public IActionResult Project()
         {
-           return View(projects.GetAll());
+            ProjectViewModel model = new ProjectViewModel();
+            model.users = users.GetAll().ToList();
+            model.projects = projects.GetAll().ToList();
+            return View(model);
         }
+
 
         public IActionResult Users(string search)
         {
