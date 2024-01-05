@@ -21,11 +21,11 @@
 
                     if (User.Identity.IsAuthenticated)
                     {
-                        <li>@users.UserName</li>
+                        <li>@user.UserName</li>
                     }
                     else if (user.StatusId == 2)
                     {
-                        <li>@users.UserName</li>
+                        <li>@user.UserName</li>
                     }
 
                 }

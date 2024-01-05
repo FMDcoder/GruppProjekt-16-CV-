@@ -1,0 +1,37 @@
+﻿@using GruppProjekt_Grupp16_CV.ModelHelper;
+@model ProjectCreateViewModel;
+
+<div class="container centred">
+		<div class="row">
+			<div class="col-lg-6 col-12">
+				<h2>Skapa project</h2>
+				<form asp-action="CreateProject" asp-controller="Create">
+					<div class="row form-group space">
+						<div class="col-12 col-lg-3">
+							<label>Titel:</label>
+						</div>
+						<div class="col-12 col-lg-9">
+							<input class="form-control" asp-for="@Model.projectValidate.Title" />
+						</div>
+					</div>
+					<div class="row form-group space">
+						<div class="col-12 col-lg-3">
+							<label>Titel:</label>
+						</div>
+						<div class="col-12 col-lg-9">
+							<input class="form-control" asp-for="@Model.projectValidate.Description" />
+						</div>
+					</div>
+					<div class="row form-group space">
+						<div class="col-12 col-lg-3">
+							<input type="submit" class="btn btn-primary form-control" />
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<h2>Dina project</h2>
+
+		<h2>Gå med project</h2>
+</div>

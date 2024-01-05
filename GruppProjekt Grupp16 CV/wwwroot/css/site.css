@@ -25,12 +25,25 @@ body {
 #search-button-validation {
     top: 50px;
     width: 200px;
-    height: 100px;
+    height: 200px;
     padding: 10px;
     position: absolute;
     background-color: white;
     border: 2px solid #dddddd;
     border-radius: 10px;
+}
+
+#toggleCheckbox {
+    display:none;
+}
+
+#toggleCheckboxSearch:hover {
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#toggleCheckbox:checked + #search-button-validation {
+    visibility: hidden;
 }
 
 #search-form {

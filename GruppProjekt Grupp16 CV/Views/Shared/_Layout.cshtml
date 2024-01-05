@@ -22,7 +22,10 @@
                     <input type="submit" id="search-button" value="sök"/>
                     @if(commonData.search.Length == 0)
                     {
-                        <div asp-validation-summary="All" id="search-button-validation"></div>
+                        <input type="checkbox" id="toggleCheckbox">
+                        <div asp-validation-summary="All" id="search-button-validation">
+                            <label id="toggleCheckboxSearch"for="toggleCheckbox">Klicka för att gömma</label>
+                        </div>
 
                     }                 
                 </form>
