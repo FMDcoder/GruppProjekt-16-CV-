@@ -42,30 +42,27 @@
 			}
 			@foreach(var userProject in Model.userProjects)
 			{
-				<form asp-action="CreateProject" asp-controller="Edit" method="post">
-					<div class="row form-group space">
-						<input type="hidden" name="id" value="@userProject.Id" />
-						<div class="col-12 col-lg-3">
-							<label>Titel:</label>
-						</div>
-						<div class="col-12 col-lg-9">
-							<input class="form-control" asp-for="@Model.projectValidate.Title" value="@userProject.Title" />
-						</div>
+				<div class="row">
+					<input type="hidden" name="id" value="@userProject.Id" />
+					<div class="col-10">
+						<h3>@userProject.Title</h3>
+						@{
+							string collab = string.Join(", ", (
+							from userCollab in userProject.UserProject
+							where !userCollab.UserObject.Deactivated
+							select userCollab.UserObject.UserName
+							).ToList());
+
+							<h5><b>medarbetare: @collab</b></h5>
+						}
+						<p>@userProject.Description</p>
 					</div>
-					<div class="row form-group space">
-						<div class="col-12 col-lg-3">
-							<label>Titel:</label>
-						</div>
-						<div class="col-12 col-lg-9">
-							<textarea class="form-control" asp-for="@Model.projectValidate.Description" value="@userProject.Description"></textarea>
-						</div>
+					<div class="col-2">
+						<a asp-action="ProjectEdit" asp-route-id="@userProject.Id" asp-controller="Create" class="btn btn-primary">
+							Ändra
+						</a>
 					</div>
-					<div class="row form-group space">
-						<div class="col-12 col-lg-3">
-							<input type="submit" class="btn btn-primary form-control" value="Spara" />
-						</div>
-					</div>
-				</form>
+				</div>
 			}
 		</div>
 	</div>
@@ -79,7 +76,7 @@
 			}
 			@foreach ((var userProject, var i) in Model.excludedUserProjects.Select((item, i) => (item, i)))
 			{
-				<form asp-action="CreateProject" asp-controller="Edit" method="post">
+				<form asp-action="CollabProject" asp-controller="Create" method="post">
 					<div class="row">
 						<input type="hidden" name="id" value="@userProject.Id" />
 						<div class="col-10">
@@ -96,7 +93,28 @@
 							<p>@userProject.Description</p>
 						</div>
 						<div class="col-2">
-							<input type="submit" value="Gå med" class="btn btn-primary" />
+							@{
+								@using Microsoft.AspNetCore.Identity;
+								@using System.Security.Claims;
+
+								var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+								List<UserProject> insideProject = (
+									from project in userProject.UserProject
+									where project.UserId == userId
+									select project
+								).ToList();
+
+								if(insideProject.Count == 0)
+								{
+									<input type="submit" name="state" value="Gå med" class="btn btn-primary" />
+
+								}
+								else
+								{
+									<input type="submit" name="state" value="Lämna" class="btn btn-danger" />
+								}
+							}
 						</div>
 					</div>
 				</form>

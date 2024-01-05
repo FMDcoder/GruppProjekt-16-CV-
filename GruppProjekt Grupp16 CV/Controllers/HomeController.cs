@@ -121,6 +121,59 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 						select user
                     ).ToList();
                 }
+
+                usersList.Sort((user0, user1) =>
+                {
+                    int pointsForUser0 = 0;
+                    int pointsForUser1 = 0;
+
+					List<string> skillsUser0 = (
+							from skill in userSkills.GetAll()
+							where skill.UserId == user0.Id
+							select skill.SkillsObject.Title
+						).ToList();
+
+					List<string> skillsUser1 = (
+						from skill in userSkills.GetAll()
+						where skill.UserId == user1.Id
+						select skill.SkillsObject.Title
+					).ToList();
+
+                    foreach (var strSearch in search.Split(" "))
+                    {
+						foreach (var skill in skillsUser0)
+						{
+                            if(skill.ToUpper().Contains(strSearch.ToUpper())) 
+                            {
+                                pointsForUser0++;
+
+							}
+						}
+                        if (user0.NormalizedUserName.Contains(strSearch.ToUpper()))
+                        {
+                            pointsForUser0 += 5;
+                        }
+                    }
+
+					foreach (var strSearch in search.Split(" "))
+					{
+						foreach (var skill in skillsUser1)
+						{
+							if (skill.ToUpper().Contains(strSearch.ToUpper()))
+							{
+								pointsForUser1++;
+
+							}
+						}
+						if (user1.NormalizedUserName.Contains(strSearch.ToUpper()))
+						{
+							pointsForUser1 += 5;
+						}
+					}
+
+					return pointsForUser0 < pointsForUser1 ? 1 : 0;
+                });
+
                 return View("Users", usersList);
 			}
             return View("Search", searchBarValidate);

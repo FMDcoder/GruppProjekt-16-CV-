@@ -24,6 +24,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
         {
             return View();
         }
+
         public IActionResult Project()
         {
             ProjectCreateViewModel projectCreateViewModel = new ProjectCreateViewModel();
@@ -62,5 +63,54 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			return View(projectCreateViewModel);
         }
 
-    }
+        public IActionResult ProjectEdit([FromRoute] int id)
+        {
+            AddProjectModelView addProjectModelView = new AddProjectModelView();
+            addProjectModelView.currentProject = (
+                from project in projects.GetAll()
+                where project.Id == id
+                select project
+            ).First();
+
+            return View(addProjectModelView);
+        }
+
+        public IActionResult Edit(AddProjectModelView addProjectModelView)
+        {
+
+
+			return RedirectToAction("Project");
+		}
+
+        public IActionResult CollabProject (int id, string state)
+        {
+			var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+			Project project = (
+                from projectState in projects.GetAll()
+                where projectState.Id == id
+                select projectState
+            ).First();
+
+            if(state == "Gå med")
+            {
+                userProjects.Insert(new UserProject
+                {
+                    UserId = userId,
+                    ProjectId = project.Id,
+                });
+            }
+            else
+            {
+				userProjects.Delete(
+                    (from deleteCollab in userProjects.GetAll()
+                    where deleteCollab.UserId == userId && deleteCollab.ProjectId == project.Id
+                    select deleteCollab).First()
+                );
+			}
+            userProjects.Save();
+
+            return RedirectToAction("Project");
+        }
+	}
 }

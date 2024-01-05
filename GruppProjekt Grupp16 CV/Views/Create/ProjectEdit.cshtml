@@ -1,0 +1,27 @@
+﻿@using GruppProjekt_Grupp16_CV.ModelHelper;
+@model AddProjectModelView;
+
+<form asp-action="CreateProject" asp-controller="Edit" method="post">
+	<div class="row form-group space">
+		<input type="hidden" name="id" value="@Model.currentProject.Id" />
+		<div class="col-12 col-lg-3">
+			<label>Titel:</label>
+		</div>
+		<div class="col-12 col-lg-9">
+			<input class="form-control" asp-for="@Model.validate.Title" value="@Model.currentProject.Title" />
+		</div>
+	</div>
+	<div class="row form-group space">
+		<div class="col-12 col-lg-3">
+			<label>Titel:</label>
+		</div>
+		<div class="col-12 col-lg-9">
+			<textarea class="form-control" asp-for="@Model.validate.Description" value="@Model.currentProject.Description"></textarea>
+		</div>
+	</div>
+	<div class="row form-group space">
+		<div class="col-12 col-lg-3">
+			<input type="submit" class="btn btn-primary form-control" value="Spara" />
+		</div>
+	</div>
+</form>

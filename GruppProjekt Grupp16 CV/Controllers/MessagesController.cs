@@ -146,10 +146,12 @@ namespace GruppProjekt_Grupp16_CV.Controllers
                         &&
                         !(
                             from readMessage in user.ReadMessages
+                            where readMessage.UserId == userId
                             select readMessage.MessageId
                         ).Contains(unreadmessage.MessageId)
                         && !unreadmessage.SentUserObject.Deactivated
-                        select unreadmessage.MessageObject).ToList();
+                        select unreadmessage.MessageObject
+                     ).GroupBy(msg => msg.Id).Select(group => group.First()).ToList();
 
                     List<Message> readMessages = (
                         from readmessage in user.ReadMessages
@@ -160,7 +162,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
                         ).Contains(readmessage.MessageId) 
                         && !readmessage.MessageObject.MessageBoxes[0].SentUserObject.Deactivated
                         select readmessage.MessageObject
-                    ).ToList();
+                    ).GroupBy(msg => msg.Id).Select(group => group.First()).ToList();
 
                     List<Message> sentMessages = (
                         from sentMessage in user.SentMessageBoxes
@@ -169,6 +171,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
                            where removedMessage.UserId == userId
                            select removedMessage.MessageId
 						).Contains(sentMessage.MessageId)
+                        && !sentMessage.RecievedUserObject.Deactivated
 						select sentMessage.MessageObject
                     ).GroupBy(msg => msg.Id).Select(group => group.First()).ToList();
 
@@ -189,8 +192,9 @@ namespace GruppProjekt_Grupp16_CV.Controllers
                             where removedMessage.UserId == userId
                             select removedMessage.MessageId
                         ).Contains(sentMessage.MessageId)
+                        && !sentMessage.RecievedUserObject.Deactivated
                         select sentMessage.MessageObject
-                    ).ToList();
+                    ).GroupBy(msg => msg.Id).Select(group => group.First()).ToList();
 
                     messageViewModel.sentMessages = sentMessages;
                     messageViewModel.selectedSentMessages = new bool[sentMessages.Count];
