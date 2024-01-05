@@ -2,7 +2,7 @@
 
 namespace Models
 {
-	public class UserLogInValidate : SearchBarValidate
+	public class UserLogInValidate
     {
 		[Required(ErrorMessage = "Du kan inte logga in utan att ha skrivit ett namn!")]
 		public string UserName { get; set; }

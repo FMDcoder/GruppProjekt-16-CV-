@@ -111,8 +111,9 @@ namespace GruppProjekt_Grupp16_CV
 
                 cvContext.User.Add(user);
             }
+			cvContext.SaveChanges();
 
-            cvContext.User.Add(new User {
+			cvContext.User.Add(new User {
                 UserName = "Anonym",
                 Email = "Anonym@gmail.com",
                 PhoneNumber = "00000000",

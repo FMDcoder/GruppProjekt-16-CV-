@@ -1,34 +1,18 @@
-﻿@{
-    SearchBarValidate commonData = ViewBag.CommonData as SearchBarValidate;
-}
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid" id="app">
-                <form method="get" asp-controller="Home" asp-action="Users" class="form-group" id="search-form">
-                    <input type="text" id="search-bar" name="search" value="@commonData.search" placeholder="skriv här" />
-                    <input type="submit" id="search-button" value="sök"/>
-                    @if(commonData.search.Length == 0)
-                    {
-                        <input type="checkbox" id="toggleCheckbox">
-                        <div asp-validation-summary="All" id="search-button-validation">
-                            <label id="toggleCheckboxSearch"for="toggleCheckbox">Klicka för att gömma</label>
-                        </div>
-
-                    }                 
-                </form>
                 <a class="icon-button space-side" asp-controller="Messages" asp-action="Messages">
                     <i class="fas fa-envelope"></i>
                     @{
@@ -98,10 +82,10 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Framsidan</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Search">Sök</a>
                         </li>
                     </ul>
                 </div>

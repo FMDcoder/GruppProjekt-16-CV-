@@ -1,0 +1,22 @@
+﻿@using Models;
+@model SearchBarValidate;
+
+<div class="container">
+    <div class="row centered">
+        <img src="https://cdn-icons-png.flaticon.com/512/3031/3031293.png" class="icon-image" />
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <form method="post" asp-controller="Home" asp-action="Users">
+            <div class="row">
+                <div class="col-lg-2">
+                    <label>Sök: </label>
+                </div>
+                <div class="col-lg-6">
+                    <input type="text" asp-for="search" placeholder="skriv här" class="form-control" />
+                </div>
+                <div class="col-4">
+                    <input type="submit" class="btn btn-primary" value="sök" />
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

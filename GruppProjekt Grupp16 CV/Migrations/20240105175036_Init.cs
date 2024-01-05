@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -146,6 +145,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProfilePicture = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Adress = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    Deactivated = table.Column<bool>(type: "bit", nullable: false),
                     StatusId = table.Column<int>(type: "int", nullable: false),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -264,7 +264,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SentUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    SentUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     RecievedUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     MessageId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -315,7 +315,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     MessageId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -341,7 +341,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     MessageId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

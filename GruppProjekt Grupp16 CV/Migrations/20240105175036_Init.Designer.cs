@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GruppProjekt_Grupp16_CV.Migrations
 {
     [DbContext(typeof(CvContext))]
-    [Migration("20240103175505_Init")]
+    [Migration("20240105175036_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -285,6 +285,9 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Deactivated")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)

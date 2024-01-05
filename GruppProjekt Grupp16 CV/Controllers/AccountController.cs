@@ -8,7 +8,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace GruppProjekt_Grupp16_CV.Controllers
 {
-    public class AccountController : BaseController
+    public class AccountController : Controller
     {
 		private UserManager<User> UserManager { get; set; }
 		public SignInManager<User> SignInManager { get; set; }
@@ -27,7 +27,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
 		public async Task<IActionResult> Register(UserRegisterValidate UserRegVal)
 		{
-            if(ModelState.IsValid)
+			if (ModelState.IsValid)
             {
 				User client = new User();
 				client.UserName = UserRegVal.UserName;
@@ -37,6 +37,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 				client.ProfilePicture = UserRegVal.ProfilePicture;
 				client.PhoneNumber = UserRegVal.PhoneNumber;
 				client.Adress = UserRegVal.Adress;
+				client.Deactivated = false;
 
                 List<User> usedUsername = (
                     from user in users.GetAll()
@@ -67,11 +68,23 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
 		public async Task<IActionResult> LogIn(UserLogInValidate UserLogInVal)
 		{
-			if(ModelState.IsValid)
+
+			if(UserLogInVal.UserName == null)
+			{
+				return View(UserLogInVal);
+			}
+
+			if (ModelState.IsValid)
 			{
 				var client = await UserManager.FindByNameAsync(UserLogInVal.UserName);
 				if(client != null)
 				{
+					if(client.Deactivated)
+					{
+                        ModelState.AddModelError("", "Kan inte logga in på deaktiverad användare!");
+                        return View(UserLogInVal);
+                    }
+
 					var signInRes = await SignInManager.PasswordSignInAsync(
 						client, UserLogInVal.PasswordHash, UserLogInVal.RememberMe, lockoutOnFailure: false);
 
@@ -91,6 +104,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
 		public IActionResult Profile()
 		{
+
 			ProfileViewModel pvm = new ProfileViewModel();
 			pvm.LoggedInUser = (
 				from o in users.GetAll()
@@ -107,7 +121,18 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			return RedirectToAction("Index", "Home");
 		}
 
-		public async Task<IActionResult> UpdateUser(ProfileViewModel pvm)
+        public async Task<IActionResult> Deactivate()
+        {
+			(
+				from user in users.GetAll()
+				where user.Id == User.FindFirstValue(ClaimTypes.NameIdentifier)
+				select user
+			).First().Deactivated = true;
+            await SignInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
+
+        public async Task<IActionResult> UpdateUser(ProfileViewModel pvm)
 		{
 			pvm.LoggedInUser = (
 				from o in users.GetAll()

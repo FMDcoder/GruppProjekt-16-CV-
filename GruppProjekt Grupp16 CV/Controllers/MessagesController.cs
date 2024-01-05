@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace GruppProjekt_Grupp16_CV.Controllers
 {
-    public class MessagesController : BaseController
+    public class MessagesController : Controller
     {
         private readonly CvContext cvContext;
 
@@ -45,7 +45,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
         public IActionResult SendMessageAction(SendMessageViewModel sendMessageViewModel)
         {
-            sendMessageViewModel.success = false;
+			sendMessageViewModel.success = false;
             if (ModelState.IsValid)
             {
                 string sentUserId = (
@@ -199,7 +199,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
         public IActionResult MessageActionUnread(MessageViewModel messageViewModel, string submitButton)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+			var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (submitButton == "Markera som läst")
             {
                 foreach ((var item, var i) in messageViewModel.selectedUnreadMessages.Select((value, i) => (value, i)))
@@ -239,7 +239,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
         public IActionResult MessageActionRead(MessageViewModel messageViewModel, string submitButton)
         {
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+			var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (submitButton == "Markera som oläst")
             {
                 foreach ((var item, var i) in messageViewModel.selectedReadMessages.Select((value, i) => (value, i)))
@@ -281,7 +281,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
         public IActionResult MessageActionSent(MessageViewModel messageViewModel)
         {
-            string userId = (
+			string userId = (
                 from user in users.GetAll()
                 where user.UserName == "Anonym"
                 select user.Id

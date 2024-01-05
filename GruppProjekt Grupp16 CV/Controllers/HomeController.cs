@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 using System.Security.Claims;
 namespace GruppProjekt_Grupp16_CV.Controllers
 {
-    public class HomeController : BaseController
+    public class HomeController : Controller
     {
         private readonly CvContext _cvContext;
         public Repository<Company> companies { get; set; }
@@ -61,9 +61,9 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			return View(users.GetAll());
         }
 
-        public IActionResult Privacy()
+        public IActionResult Search()
         {
-            return View(users.GetAll());
+            return View(new SearchBarValidate());
         }
 
         public IActionResult Account()
@@ -92,18 +92,9 @@ namespace GruppProjekt_Grupp16_CV.Controllers
         }
 
 
-        public IActionResult Users(string search)
+        public IActionResult Users(SearchBarValidate searchBarValidate, string search)
         {
-            if(search == null)
-            {
-                search = string.Empty;
-            }
-
-            SearchBarValidate searchBarValidate = new SearchBarValidate{ search = search };
-            var results = new List<ValidationResult>();
-            var context = new ValidationContext(searchBarValidate);
-
-            if (Validator.TryValidateObject(searchBarValidate, context, results))
+            if (ModelState.IsValid)
             {
                 List<User> usersList = new List<User>();
                 if (User.Identity.IsAuthenticated)
@@ -122,17 +113,9 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 						select user
                     ).ToList();
                 }
-                (ViewBag.CommonData as SearchBarValidate).search = search;
-                return View(usersList);
+                return View("Users", usersList);
 			}
-            else
-            {
-                foreach (var error in results)
-                {
-                    ModelState.AddModelError("", error.ErrorMessage);
-                }
-                return RedirectToAction("Index");
-            }
+            return View("Search", searchBarValidate);
         }
 
 

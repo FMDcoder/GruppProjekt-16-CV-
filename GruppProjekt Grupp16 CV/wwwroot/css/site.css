@@ -33,46 +33,6 @@ body {
     border-radius: 10px;
 }
 
-#toggleCheckbox {
-    display:none;
-}
-
-#toggleCheckboxSearch:hover {
-    font-weight: 600;
-    cursor: pointer;
-}
-
-#toggleCheckbox:checked + #search-button-validation {
-    visibility: hidden;
-}
-
-#search-form {
-    display: flex;
-    align-items: center;
-}
-
-#search-button {
-    background-color: #ffffff;
-    border: 2px solid #dddddd;
-    color: #333333;
-    padding: 2px;
-    height: 30px;
-    border-radius: 0 8px 8px 0;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-#search-button:hover {
-    background-color: #f0f0f0;
-    color: #555555;
-}
-
-#search-bar {
-    border: 2px solid #dddddd;
-    height: 30px;
-    padding: 2px;
-    border-radius: 8px 0 0 8px;
-}
 
 .icon-button {
     height: 30px;
@@ -175,8 +135,14 @@ a:hover {
     text-align: center;
 }
 
+.icon-image {
+    margin: auto;
+    width: 300px;
+}
+
 .profile-img {
     width: 200px;
     border-radius: 50%;
     padding: 10px;
+    margin:0;
 }

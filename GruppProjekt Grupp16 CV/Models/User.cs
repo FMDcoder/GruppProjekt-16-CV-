@@ -14,6 +14,8 @@ namespace GruppProjekt_Grupp16_CV.Models
         [StringLength(maximumLength: 255)]
         public string? Adress { get; set; }
 
+        public bool Deactivated { get; set; } = false;
+
         public int StatusId { get; set; }
 
         [ForeignKey(nameof(StatusId))]
