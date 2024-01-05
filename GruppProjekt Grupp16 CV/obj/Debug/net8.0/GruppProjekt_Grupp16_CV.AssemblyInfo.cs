@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GruppProjekt_Grupp16_CV")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+194c192e0f93b961a6fd02579d569e7796a801fd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+11d7c5b001109c59b61c1d9d8e86e44ea8561e83")]
 [assembly: System.Reflection.AssemblyProductAttribute("GruppProjekt_Grupp16_CV")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GruppProjekt_Grupp16_CV")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

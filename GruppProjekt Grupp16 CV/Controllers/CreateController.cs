@@ -37,7 +37,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
 			projectCreateViewModel.excludedUserProjects = (
 				from project in projects.GetAll()
-				where project.CreatorId != userId
+				where project.CreatorId != userId && !project.CreatorObject.Deactivated
 				select project
 			).ToList();
 
@@ -48,7 +48,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
             {
                 List<UserProject> usersCollab = (
                     from projectCollab in project.UserProject
-                    where projectCollab.UserId == userId
+                    where projectCollab.UserId == userId && !projectCollab.ProjectObject.CreatorObject.Deactivated
                     select projectCollab
                 ).ToList();
 

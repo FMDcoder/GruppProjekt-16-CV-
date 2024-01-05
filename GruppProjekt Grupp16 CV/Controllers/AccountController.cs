@@ -107,9 +107,9 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
 			ProfileViewModel pvm = new ProfileViewModel();
 			pvm.LoggedInUser = (
-				from o in users.GetAll()
-				where o.Id == User.FindFirstValue(ClaimTypes.NameIdentifier)
-				select o
+				from user in users.GetAll()
+				where user.Id == User.FindFirstValue(ClaimTypes.NameIdentifier) && !user.Deactivated
+				select user
 			).First();
 
 			return View(pvm);
@@ -123,11 +123,15 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
         public async Task<IActionResult> Deactivate()
         {
-			(
+			User deactivatedUser = (
 				from user in users.GetAll()
-				where user.Id == User.FindFirstValue(ClaimTypes.NameIdentifier)
+				where user.Id == User.FindFirstValue(ClaimTypes.NameIdentifier) && !user.Deactivated
 				select user
-			).First().Deactivated = true;
+			).First();
+			deactivatedUser.Deactivated = true;
+			users.Update(deactivatedUser);
+			users.Save();
+
             await SignInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
@@ -135,9 +139,9 @@ namespace GruppProjekt_Grupp16_CV.Controllers
         public async Task<IActionResult> UpdateUser(ProfileViewModel pvm)
 		{
 			pvm.LoggedInUser = (
-				from o in users.GetAll()
-				where o.Id == User.FindFirstValue(ClaimTypes.NameIdentifier)
-				select o
+				from user in users.GetAll()
+				where user.Id == User.FindFirstValue(ClaimTypes.NameIdentifier) && !user.Deactivated
+                select user
 			).First();
 
 			ModelState.Remove("LoggedInUser");

@@ -86,8 +86,16 @@ namespace GruppProjekt_Grupp16_CV.Controllers
         public IActionResult Project()
         {
             ProjectViewModel model = new ProjectViewModel();
-            model.users = users.GetAll().ToList();
-            model.projects = projects.GetAll().ToList();
+            model.users = (
+                from user in users.GetAll()
+                where !user.Deactivated
+                select user
+            ).ToList();
+            model.projects = (
+                from project in projects.GetAll()
+                where !project.CreatorObject.Deactivated
+                select project
+            ).ToList();
             return View(model);
         }
 
@@ -101,7 +109,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
                 {
                     usersList = (
                         from user in users.GetAll()
-                        where user.UserName != "Anonym"
+                        where user.UserName != "Anonym" && !user.Deactivated
                         select user
                     ).ToList();
                 }
@@ -109,7 +117,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
                 {
                     usersList = (
                         from user in users.GetAll()
-                        where user.StatusId == 2 && user.UserName != "Anonym"
+                        where user.StatusId == 2 && user.UserName != "Anonym" && !user.Deactivated
 						select user
                     ).ToList();
                 }

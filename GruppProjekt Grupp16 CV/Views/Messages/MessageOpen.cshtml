@@ -9,6 +9,7 @@
 			var Userfrom = Model.MessageBoxes[0].SentUserObject.UserName;
 			var UsersTo = string.Join(", ", (
 			from messageBox in Model.MessageBoxes
+			where !messageBox.RecievedUserObject.Deactivated
 			select messageBox.RecievedUserObject.UserName
 			).ToList());
 

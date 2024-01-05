@@ -61,6 +61,7 @@
                                     }
                                     var UsersTo = string.Join(", ", (
                                         from messageBox in unreadMessage.MessageBoxes
+                                        where !messageBox.RecievedUserObject.Deactivated
                                         select messageBox.RecievedUserObject.UserName
                                     ).ToList());
 
@@ -134,6 +135,7 @@
                                     }
                                     var UsersTo = string.Join(", ", (
                                         from messageBox in readMessage.MessageBoxes
+                                        where !messageBox.RecievedUserObject.Deactivated
                                         select messageBox.RecievedUserObject.UserName
                                     ).ToList());
 
@@ -205,6 +207,7 @@
                                 }
                                 var UsersTo = string.Join(", ", (
                                 from messageBox in sentMessage.MessageBoxes
+                                where !messageBox.RecievedUserObject.Deactivated
                                 select messageBox.RecievedUserObject.UserName
                                 ).ToList());
 

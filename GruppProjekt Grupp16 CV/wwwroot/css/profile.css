@@ -7,3 +7,9 @@
 .other-box {
     margin-top: 500px;
 }
+
+@media only screen and (max-width: 1200px) {
+    .other-box {
+        margin-top: 0px;
+    }
+}

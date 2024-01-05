@@ -50,7 +50,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
             {
                 string sentUserId = (
                     from user in users.GetAll()
-                    where user.UserName == "Anonym"
+                    where user.UserName == "Anonym" 
                     select user.Id
                 ).First();
 
@@ -67,7 +67,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
                 {
                     List<string> userFoundId = (
                         from userSearching in users.GetAll()
-                        where userSearching.NormalizedUserName == user
+                        where userSearching.NormalizedUserName == user && !userSearching.Deactivated
                         select userSearching.Id
                     ).ToList();
 
@@ -148,6 +148,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
                             from readMessage in user.ReadMessages
                             select readMessage.MessageId
                         ).Contains(unreadmessage.MessageId)
+                        && !unreadmessage.SentUserObject.Deactivated
                         select unreadmessage.MessageObject).ToList();
 
                     List<Message> readMessages = (
@@ -156,7 +157,8 @@ namespace GruppProjekt_Grupp16_CV.Controllers
                            from removedMessage in user.RemovedMessages
                            where removedMessage.UserId == userId
                            select removedMessage.MessageId
-                        ).Contains(readmessage.MessageId)
+                        ).Contains(readmessage.MessageId) 
+                        && !readmessage.MessageObject.MessageBoxes[0].SentUserObject.Deactivated
                         select readmessage.MessageObject
                     ).ToList();
 
