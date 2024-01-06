@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 
 namespace Models
 {
@@ -32,8 +28,9 @@ namespace Models
 		[Compare(nameof(Email), ErrorMessage = "Emailen stämmer inte ihop!")]
 		public string ConfirmEmail { get; set; }
 
-		[RegularExpression(@"^(http(s?)://)?([\w-]+\.)+[\w-]+(/[\w- ;,./?%&=]*)?$", ErrorMessage = "Ogiltigt url för profil bild! Endast jpg eller png!")]
-		public string? ProfilePicture { get; set; }
+		[DataType(DataType.Upload)]
+		[Required(ErrorMessage = "Du måste ha en profil bild!")]
+		public IFormFile ProfilePicture { get; set; }
 
 		[DataType(DataType.Password)]
 		[StringLength(100, ErrorMessage = "Lösenordet på användaren får inte vara längre än 100 karaktärer!")]

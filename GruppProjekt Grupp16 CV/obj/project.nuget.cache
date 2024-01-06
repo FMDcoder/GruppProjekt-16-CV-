@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "1oh4EGsy1Dkm2+we7MtbdxcQQqWbu+Bz2oGqqO6WOjpGSvbZEy0GSZWav9Merds8omroE1pGvxDolHems6DKkw==",
+  "dgSpecHash": "vr9gsaG7Nh4x/Uz6a5/mBTiv4lCdrh0OUf/J4YtX1i8ffZhoNLnvfWbDHEKbt7HaJ88wegfhMSSpEurjWo0drQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\nilss\\Documents\\GruppProjekt Grupp16 CV\\GruppProjekt Grupp16 CV\\GruppProjekt_Grupp16_CV.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Users\\nilss\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\nilss\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\8.0.0\\microsoft.aspnetcore.cryptography.internal.8.0.0.nupkg.sha512",
     "C:\\Users\\nilss\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\8.0.0\\microsoft.aspnetcore.cryptography.keyderivation.8.0.0.nupkg.sha512",
+    "C:\\Users\\nilss\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
     "C:\\Users\\nilss\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\8.0.0\\microsoft.aspnetcore.identity.entityframeworkcore.8.0.0.nupkg.sha512",
     "C:\\Users\\nilss\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "C:\\Users\\nilss\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.3.3\\microsoft.codeanalysis.analyzers.3.3.3.nupkg.sha512",

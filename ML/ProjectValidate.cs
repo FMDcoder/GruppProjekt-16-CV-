@@ -8,7 +8,8 @@ namespace Models
 		[StringLength(100, ErrorMessage = "Projektets Titel får inte vara längre än 100 karaktärer!")]
 		public string Title { get; set; }
 
+		[Required(ErrorMessage = "Du måste ha en beskrivning!")]
 		[StringLength(1000, ErrorMessage = "Projektets beskrivning får inte vara längre än 1000 karaktärer!")]
-		public string? Description { get; set; }
+		public string Description { get; set; }
 	}
 }

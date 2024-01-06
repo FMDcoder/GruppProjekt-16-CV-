@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GruppProjekt_Grupp16_CV.ModelHelper
 {
-	public class ProfileViewModel : SearchBarValidate
+	public class ProfileViewModel
     {
 		[BindingBehavior(BindingBehavior.Never)]
 		public virtual User LoggedInUser { get; set; }

@@ -4,7 +4,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using System.Security.Claims;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+using System;
+using System.IO;
 
 namespace GruppProjekt_Grupp16_CV.Controllers
 {
@@ -27,15 +28,15 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
 		public async Task<IActionResult> Register(UserRegisterValidate UserRegVal)
 		{
-			if (ModelState.IsValid)
+			if (ModelState.IsValid && UserRegVal.ProfilePicture != null && UserRegVal.ProfilePicture.Length > 0)
             {
 				User client = new User();
 				client.UserName = UserRegVal.UserName;
 				client.Email = UserRegVal.Email;
 				client.EmailConfirmed = true;
 				client.StatusId = UserRegVal.Status ? 2 : 1;
-				client.ProfilePicture = UserRegVal.ProfilePicture;
 				client.PhoneNumber = UserRegVal.PhoneNumber;
+				client.ProfilePicture = "";
 				client.Adress = UserRegVal.Adress;
 				client.Deactivated = false;
 
@@ -54,6 +55,26 @@ namespace GruppProjekt_Grupp16_CV.Controllers
                 var res = await UserManager.CreateAsync(client, UserRegVal.Password);
 				if(res.Succeeded)
 				{
+					var imagePath = Path.Combine("wwwroot", "Uploads", $"{client.Id}_profile.jpg");
+
+					using (var stream = new FileStream(imagePath, FileMode.Create))
+					{
+						await UserRegVal.ProfilePicture.CopyToAsync(stream);
+					}
+
+					bool isImage = false;
+					string[] allowedContentTypes = { "image/jpeg", "image/png", "image/gif" };
+					if(allowedContentTypes.Contains(UserRegVal.ProfilePicture.ContentType))
+					{
+						client.ProfilePicture = imagePath.Replace("wwwroot", "..");
+					} else
+					{
+						ModelState.AddModelError("", "Filen är inte en png, jpeg eller gif!");
+						await UserManager.DeleteAsync(client);
+						return View(UserRegVal);
+					}
+					await UserManager.UpdateAsync(client);
+
 					await SignInManager.SignInAsync(client, isPersistent: true);
 					return RedirectToAction("Index", "Home");
 				}
@@ -154,12 +175,26 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
 				if (result.Succeeded)
 				{
+
+					var imagePath = Path.Combine("wwwroot", "Uploads", $"{User.FindFirstValue(ClaimTypes.NameIdentifier)}_profile.jpg");
+
+					using (var stream = new FileStream(imagePath, FileMode.Create))
+					{
+						await pvm.Validate.ProfilePicture.CopyToAsync(stream);
+					}
+
+					if (System.IO.File.Exists(client.ProfilePicture))
+					{
+						System.IO.File.Delete(client.ProfilePicture);
+					}
+
+					client.ProfilePicture = imagePath.Replace("wwwroot", "..");
+
 					client.UserName = pvm.Validate.UserName;
 					client.Email = pvm.Validate.Email;
 					client.EmailConfirmed = true;
 					client.StatusId = pvm.Validate.Status ? 2 : 1;
 					client.PhoneNumber = pvm.Validate.PhoneNumber;
-					client.ProfilePicture = pvm.Validate.ProfilePicture;
 					client.Adress = pvm.Validate.Adress;
 
 					var res = await UserManager.UpdateAsync(client);

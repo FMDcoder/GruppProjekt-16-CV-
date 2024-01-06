@@ -7,6 +7,7 @@
 	<div class="row space">
 		<div class="col-lg-6 col-12">
 			<h2>Skapa project</h2>
+			<div asp-validation-summary="All" class="text-danger"></div>
 			<form asp-action="CreateProject" asp-controller="Create" method="post">
 				<div class="row form-group space">
 					<div class="col-12 col-lg-3">
@@ -18,7 +19,7 @@
 				</div>
 				<div class="row form-group space">
 					<div class="col-12 col-lg-3">
-						<label>Titel:</label>
+						<label>Beskrivning:</label>
 					</div>
 					<div class="col-12 col-lg-9">
 						<textarea class="form-control" asp-for="@Model.projectValidate.Description"></textarea>
@@ -48,10 +49,16 @@
 						<h3>@userProject.Title</h3>
 						@{
 							string collab = string.Join(", ", (
-							from userCollab in userProject.UserProject
-							where !userCollab.UserObject.Deactivated
-							select userCollab.UserObject.UserName
+								from userCollab in userProject.UserProject
+								where !userCollab.UserObject.Deactivated
+								select userCollab.UserObject.UserName
 							).ToList());
+
+							if(collab.Length > 0)
+							{
+								collab += ", ";
+							}
+							collab += userProject.CreatorObject.UserName;
 
 							<h5><b>medarbetare: @collab</b></h5>
 						}
@@ -83,10 +90,16 @@
 							<h3>@userProject.Title</h3>
 							@{
 								string collab = string.Join(", ", (
-									from userCollab in userProject.UserProject
-									where !userCollab.UserObject.Deactivated
-									select userCollab.UserObject.UserName
-								).ToList());
+										from userCollab in userProject.UserProject
+										where !userCollab.UserObject.Deactivated
+										select userCollab.UserObject.UserName
+									).ToList());
+
+								if (collab.Length > 0)
+								{
+									collab += ", ";
+								}
+								collab += userProject.CreatorObject.UserName;
 
 								<h5><b>medarbetare: @collab</b></h5>
 							}

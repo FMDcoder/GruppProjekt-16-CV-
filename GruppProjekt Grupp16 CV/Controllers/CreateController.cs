@@ -1,6 +1,7 @@
 ﻿using GruppProjekt_Grupp16_CV.ModelHelper;
 using GruppProjekt_Grupp16_CV.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.CompilerServices;
 using System.Security.Claims;
 
 namespace GruppProjekt_Grupp16_CV.Controllers
@@ -25,15 +26,19 @@ namespace GruppProjekt_Grupp16_CV.Controllers
             return View();
         }
 
-        public IActionResult Project()
+        public IActionResult Project(ProjectCreateViewModel projectCreateViewModel)
         {
-            ProjectCreateViewModel projectCreateViewModel = new ProjectCreateViewModel();
+            projectCreateViewModel = projectCreateViewModel != null ? projectCreateViewModel : new ProjectCreateViewModel();
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+			ModelState.Remove("userProjects");
+			ModelState.Remove("excludedUserProjects");
+			ModelState.Remove("hasJoined");
+
 			projectCreateViewModel.userProjects = (
-                from project in userProjects.GetAll()
-                where project.ProjectObject.CreatorId == userId
-                select project.ProjectObject
+                from project in projects.GetAll()
+                where project.CreatorId == userId
+                select project
 			).ToList();
 
 			projectCreateViewModel.excludedUserProjects = (
@@ -66,6 +71,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
         public IActionResult ProjectEdit([FromRoute] int id)
         {
             AddProjectModelView addProjectModelView = new AddProjectModelView();
+            Console.WriteLine(id);
             addProjectModelView.currentProject = (
                 from project in projects.GetAll()
                 where project.Id == id
@@ -75,11 +81,52 @@ namespace GruppProjekt_Grupp16_CV.Controllers
             return View(addProjectModelView);
         }
 
-        public IActionResult Edit(AddProjectModelView addProjectModelView)
+        public IActionResult CreateProject (ProjectCreateViewModel projectCreateViewModel)
         {
+			ModelState.Remove("userProjects");
+			ModelState.Remove("excludedUserProjects");
+			ModelState.Remove("hasJoined");
 
+            if (ModelState.IsValid)
+            {
+				var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-			return RedirectToAction("Project");
+				Project newProject = new Project
+                {
+                    Title = projectCreateViewModel.projectValidate.Title,
+                    Description = projectCreateViewModel.projectValidate.Description,
+                    LatestUpdate = DateTime.Now,
+                    CreatorId = userId
+                };
+
+                projects.Insert(newProject);
+                projects.Save();
+            }
+			return RedirectToAction("Project", projectCreateViewModel);
+		}
+
+		public IActionResult Edit(AddProjectModelView addProjectModelView, int id)
+        {
+            ModelState.Remove("currentProject");
+
+			addProjectModelView.currentProject = (
+					from project in projects.GetAll()
+					where project.Id == id
+					select project
+				).First();
+
+			if (ModelState.IsValid)
+            {
+				addProjectModelView.currentProject.Title = addProjectModelView.validate.Title;
+                addProjectModelView.currentProject.Description = addProjectModelView.validate.Description;
+                addProjectModelView.currentProject.LatestUpdate = DateTime.Now;
+
+                projects.Update(addProjectModelView.currentProject);
+                projects.Save();
+                return RedirectToAction("Project");
+
+			} 
+			return View("ProjectEdit", addProjectModelView);
 		}
 
         public IActionResult CollabProject (int id, string state)

@@ -7,7 +7,7 @@
 <div class="col-lg-6 col-12">
 	<h2>Registera Konto</h2>
 	<div asp-validation-summary="All" class="text-danger"></div>
-	<form method="post" asp-action="Register">
+	<form method="post" asp-action="Register" enctype="multipart/form-data">
 		<div class="form-group row space">
 			<div class="col-4">
 				<label>Namn:</label>
@@ -34,10 +34,10 @@
 		</div>
 		<div class="form-group row space">
 			<div class="col-4">
-				<label>Profilbild URL:</label>
+				<label>Profilbild: </label>
 			</div>
 			<div class="col-sm-6">
-				<input asp-for="ProfilePicture" class="form-control" />
+				<input type="file" asp-for="ProfilePicture" class="form-control" />
 			</div>
 		</div>
 		<div class="form-group row space">
@@ -71,7 +71,7 @@
 			<div class="col-sm-6">
 				<input asp-for="ConfirmPassword" class="form-control" />
 			</div>
-		</div
+		</div>
 		<div class="form-group row space">
 			<div class="col-4">
 				<label>Offentlig: </label>

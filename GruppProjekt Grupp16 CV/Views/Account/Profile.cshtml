@@ -14,7 +14,7 @@
 			<img src="@Model.LoggedInUser.ProfilePicture"/>
 			<h2>Hej @Model.LoggedInUser.UserName!</h2>
 			<div asp-validation-summary="All" class="text-danger"></div>
-			<form asp-controller="Account" asp-action="UpdateUser" method="post">
+			<form asp-controller="Account" asp-action="UpdateUser" method="post" enctype="multipart/form-data">
 				<div class="form-group row space">
 					<div class="col-4">
 						<label>Namn:</label>
