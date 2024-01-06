@@ -1,6 +1,7 @@
 ﻿using GruppProjekt_Grupp16_CV.ModelHelper;
 using GruppProjekt_Grupp16_CV.Models;
 using Microsoft.AspNetCore.Mvc;
+using Models;
 using System.Runtime.CompilerServices;
 using System.Security.Claims;
 
@@ -71,12 +72,14 @@ namespace GruppProjekt_Grupp16_CV.Controllers
         public IActionResult ProjectEdit([FromRoute] int id)
         {
             AddProjectModelView addProjectModelView = new AddProjectModelView();
-            Console.WriteLine(id);
             addProjectModelView.currentProject = (
                 from project in projects.GetAll()
                 where project.Id == id
                 select project
             ).First();
+
+            addProjectModelView.validate = new ProjectValidate();
+			addProjectModelView.validate.Description = addProjectModelView.currentProject.Description;
 
             return View(addProjectModelView);
         }
