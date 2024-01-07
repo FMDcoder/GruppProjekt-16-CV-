@@ -9,59 +9,6 @@ namespace GruppProjekt_Grupp16_CV
         [HttpPost]
         public static void uploadDataAsync(CvContext cvContext, UserManager<User> userManager)
         {
-            String[] Companies = { "Facebook", "Face2Face", "Marabo" };
-            for(var i = 0; i < Companies.Length; i++)
-            {
-                cvContext.Company.Add(new Company
-                {
-                    Title = Companies[i]
-                });
-            }
-            cvContext.SaveChanges();
-
-
-            String[] jobs = { "IT", "Städare", "Elektriker", "Försäljare"};
-            for (var i = 0; i < jobs.Length; i++)
-            {
-                cvContext.Job.Add(new Job
-                {
-                    Title = jobs[i]
-                });
-            }
-            cvContext.SaveChanges();
-
-            String[] ProfessionTitle = { "IT Tekniker", "Logoped", "Ingenjör", "Kok" };
-            int[] ProfessionTime = { 5, 7, 4, 3 };
-            for(var i = 0; i < ProfessionTitle.Length; i++)
-            {
-                cvContext.Profession.Add(new Profession
-                {
-                    Title = ProfessionTitle[i],
-                    Time = ProfessionTime[i]
-                });
-            }
-            cvContext.SaveChanges();
-
-            String[] SchoolTitle = { "Lindeskolan", "Örebros Universitet", "Grenadjärskolan"};
-            for (var i = 0; i < SchoolTitle.Length; i++)
-            {
-                cvContext.School.Add(new School
-                {
-                    Title = SchoolTitle[i],
-                });
-            }
-            cvContext.SaveChanges();
-
-            String[] SkillsTitle = { "Social Kompetens", "Problemlösare", "Datorkunskaper", "Stavnings kunskaper" };
-            for (var i = 0; i < SkillsTitle.Length; i++)
-            {
-                cvContext.Skills.Add(new Skills
-                {
-                    Title = SkillsTitle[i],
-                });
-            }
-            cvContext.SaveChanges();
-
             String[] statusTitle = { "Privat", "Offentlig" };
             for (var i = 0; i < statusTitle.Length; i++)
             {
@@ -71,47 +18,6 @@ namespace GruppProjekt_Grupp16_CV
                 });
             }
             cvContext.SaveChanges();
-
-            String[] UsersName = { "Jennifer", "Carlos", "Vanessa", "Jacob"};
-            String[] UserPhone = { "46472346294", "46622204351", "46263934522", "46322932150"};
-            String[] Gmail = { "jen@gmail.com", "car@gmail.com", "van@gmail.com", "jac@gmail.com"};
-			String[] Adresses = { "Symfonivägen 5 Örebro", "Symfonivägen 5 Lindesberg", "Symfonivägen 5 Askersund", "Symfonivägen 5 Karlskoga"};
-			String[] Profilepic =
-            {
-                "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-                "https://hips.hearstapps.com/hmg-prod/images/street-portrait-of-a-young-man-using-mobile-phone-royalty-free-image-1018047498-1564431457.jpg?crop=0.668xw:1.00xh;0.226xw,0&resize=640:*",
-                "https://zishidingxin.com/jpg/1592241040775.jpg",
-                "https://www.morganstanley.com/content/dam/msdotcom/people/tiles/prateek-dwivedi.jpg"
-            };
-            String[] Passwords =
-            {
-                "pasS%123",
-                "pasS%word123",
-                "pS%w123",
-                "pwS%123"
-            };
-
-            var passHasher = new PasswordHasher<IdentityUser>();
-			for (var i = 0; i < Passwords.Length; i++)
-            {
-                User user = new User
-                {
-                    UserName = UsersName[i],
-                    NormalizedUserName = UsersName[i].ToUpper(),
-                    PhoneNumber = UserPhone[i],
-                    Email = Gmail[i],
-                    NormalizedEmail = Gmail[i].ToUpper(),
-                    EmailConfirmed = true,
-                    ProfilePicture = Profilepic[i],
-                    Adress = Adresses[i],
-                    StatusId = 1 // Privat
-                };
-
-                user.PasswordHash = passHasher.HashPassword(user, Passwords[i]);
-
-                cvContext.User.Add(user);
-            }
-			cvContext.SaveChanges();
 
 			cvContext.User.Add(new User {
                 UserName = "Anonym",

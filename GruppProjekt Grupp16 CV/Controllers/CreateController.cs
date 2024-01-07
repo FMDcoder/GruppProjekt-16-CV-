@@ -22,11 +22,6 @@ namespace GruppProjekt_Grupp16_CV.Controllers
             userProjects = new Repository<UserProject>(context);
         }
 
-        public IActionResult Education()
-        {
-            return View();
-        }
-
         public IActionResult Project(ProjectCreateViewModel projectCreateViewModel)
         {
             projectCreateViewModel = projectCreateViewModel != null ? projectCreateViewModel : new ProjectCreateViewModel();

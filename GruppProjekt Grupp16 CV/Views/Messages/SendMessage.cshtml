@@ -11,16 +11,16 @@
 				@{
 					if (Model.success)
 					{
-						<div class="col-lg-2 col-12 text-success">Lyckades skicka!</div>
+						<div class="col-lg-8 col-12 text-success">Lyckades skicka!</div>
 					}
 				}
-				<div asp-validation-summary="All" class="col-lg-2 col-12 text-danger"></div>
+				<div asp-validation-summary="All" class="col-lg-8 col-12 text-danger"></div>
 			</div>
 			<div class="row form-group space">
 				<div class="col-lg-2 col-12">
 					<label>Titel: </label>
 				</div>
-				<div class="col-lg-4 col-12">
+				<div class="col-lg-8 col-12">
 					<input asp-for="Title" class="form-control"/>
 				</div>
 			</div>
@@ -28,7 +28,7 @@
 				<div class="col-lg-2 col-12">
 					<label>Skicka till: </label>
 				</div>
-				<div class="col-lg-4 col-12">
+				<div class="col-lg-8 col-12">
 					<input asp-for="SendTo" class="form-control"/>
 				</div>
 			</div>
@@ -36,7 +36,7 @@
 				<div class="col-lg-2 col-12">
 					<label>Meddelande: </label>
 				</div>
-				<div class="col-lg-4 col-12">
+				<div class="col-lg-8 col-12">
 					<textarea asp-for="Description" class="form-control"></textarea>
 				</div>
 			</div>

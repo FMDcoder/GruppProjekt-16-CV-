@@ -57,8 +57,13 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
         public IActionResult Index()
         {
-            Console.WriteLine(users.GetAll().Count());
-			return View(users.GetAll());
+            List<User> usersList = (
+                from user in users.GetAll()
+                where user.UserName != "Anonym"
+                select user
+           ).ToList();
+            
+			return View(usersList);
         }
 
         public IActionResult Search()
