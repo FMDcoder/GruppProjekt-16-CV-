@@ -1,7 +1,7 @@
 ﻿@using GruppProjekt_Grupp16_CV.ModelHelper;
 @model AddProjectModelView;
 
-<form asp-action="Edit" asp-controller="Create" method="post" asp-route-id="@Model.currentProject.Id">
+<form asp-action="Edit" asp-controller="Project" method="post" asp-route-id="@Model.currentProject.Id">
 	<div asp-validation-summary="All" class="text-danger"></div>
 	<input type="hidden" name="id" value="@Model.currentProject.Id" />
 	<div class="row form-group space">

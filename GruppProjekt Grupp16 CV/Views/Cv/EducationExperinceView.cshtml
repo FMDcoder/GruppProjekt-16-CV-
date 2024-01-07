@@ -1,0 +1,122 @@
+﻿@using GruppProjekt_Grupp16_CV.ModelHelper;
+@model EducationExperinceModelView;
+
+<h2 class="center-text">Lägg till</h2>
+<div class="container centered">
+	<div class="row col-12 center-around">
+		<div class="col-4 col-lg-3">
+			<form asp-action="EducationAdd" method="post">
+				<input type="submit" value="Utbildning" class="btn btn-primary" />
+			</form>
+		</div>
+		<div class="col-4 col-lg-3">
+			<form asp-action="ExperinceAdd" method="post">
+				<input type="submit" value="Erfarenheter" class="btn btn-primary" />
+			</form>
+		</div>
+		<div class="col-4 col-lg-3">
+			<form asp-action="SkillsAdd" method="post">
+				<input type="submit" value="Kompetenser" class="btn btn-primary" />
+			</form>
+		</div>
+	</div>
+	<hr />
+	<div class="row col-12">
+		<h2>Dina Utbildningar (@Model.yourEducation.Count())</h2>
+		@if (Model.yourEducation.Count() == 0)
+		{
+			<p>Du har inga utbildningar!</p>
+		}
+		@foreach(var educationItem in Model.yourEducation)
+		{
+			<form asp-action="EducationEdit" method="post">
+				<div class="row">
+					<div class="col-8">
+						@{
+							var timeStudied = educationItem.ProfesssionObject.Time;
+							var profession = educationItem.ProfesssionObject.Title;
+							var school = educationItem.SchoolObject.Title;
+							var wholeId =
+								educationItem.SchoolId + "," + educationItem.ProfessionId + "," + educationItem.UserId;
+
+							<p>
+								Du har pluggat på @school i @timeStudied inom @profession
+							</p>
+							<input type="hidden" name="collectiveId" value="@wholeId" />
+						}
+					</div>
+					<div>
+						<input type="submit" value="Ändra" class="btn btn-primary" />
+					</div>
+				</div>
+			</form>
+			<hr />
+		}
+	</div>
+	<hr />
+	<div class="row col-12">
+		<h2>Dina Erfarenheter (@Model.yourExperince.Count())</h2>
+		@if (Model.yourExperince.Count() == 0)
+		{
+			<p>Du har inga erfarenheter!</p>
+		}
+		@foreach(var experinceItem in Model.yourExperince)
+		{
+			<form asp-action="EducationEdit" method="post">
+				<div class="row">
+					<div class="col-8">
+						@{
+							var timeWorked = experinceItem.TotalTime;
+							var jobType = experinceItem.JobObject.Title;
+							var company = experinceItem.CompanyObject.Title;
+							var wholeId =
+							experinceItem.JobId + "," + experinceItem.CompanyId + "," + experinceItem.UserId;
+
+							<p>
+								Du har jobbat @timeWorked på företaget @company inom rollen @jobType
+							</p>
+							<input type="hidden" name="collectiveId" value="@wholeId" />
+						}
+					</div>
+					<div>
+						<input type="submit" value="Ändra" class="btn btn-primary" />
+					</div>
+				</div>
+			</form>
+			<hr />
+		}
+	</div>
+	<hr />
+	<div class="row col-12">
+		<h2>Dina Kompetenser (@Model.yourSkills.Count())</h2>
+		@if (Model.yourSkills.Count() == 0)
+		{
+			<p>Du har inga kompetenser!</p>
+		}
+		@foreach (var experinceItem in Model.yourExperince)
+		{
+			<form asp-action="EducationEdit" method="post">
+				<div class="row">
+					<div class="col-8">
+						@{
+							var timeWorked = experinceItem.TotalTime;
+							var jobType = experinceItem.JobObject.Title;
+							var company = experinceItem.CompanyObject.Title;
+							var wholeId =
+							experinceItem.JobId + "," + experinceItem.CompanyId + "," + experinceItem.UserId;
+
+							<p>
+								Du har jobbat @timeWorked på företaget @company inom rollen @jobType
+							</p>
+							<input type="hidden" name="collectiveId" value="@wholeId" />
+						}
+					</div>
+					<div>
+						<input type="submit" value="Ändra" class="btn btn-primary" />
+					</div>
+				</div>
+			</form>
+			<hr />
+		}
+	</div>
+</div>

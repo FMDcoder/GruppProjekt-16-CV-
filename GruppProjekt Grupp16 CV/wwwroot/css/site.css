@@ -2,12 +2,6 @@ html {
   font-size: 14px;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
@@ -92,6 +86,11 @@ body {
     flex-direction: column;
 }
 
+.center-around {
+    display: flex;
+    justify-content:space-around;
+}
+
 .center-items {
     display: flex;
     align-items: center;
@@ -145,4 +144,10 @@ a:hover {
     border-radius: 50%;
     padding: 10px;
     margin:0;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
 }

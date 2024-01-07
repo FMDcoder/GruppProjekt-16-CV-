@@ -7,14 +7,14 @@ using System.Security.Claims;
 
 namespace GruppProjekt_Grupp16_CV.Controllers
 {
-    public class CreateController : Controller
+    public class ProjectController : Controller
     {
         public CvContext context;
         public Repository<Project> projects;
         public Repository<User> users;
         public Repository<UserProject> userProjects;
 
-        public CreateController(CvContext context) {
+        public ProjectController(CvContext context) {
             this.context = context;
 
             projects = new Repository<Project>(context);

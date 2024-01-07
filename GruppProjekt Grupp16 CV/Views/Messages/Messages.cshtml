@@ -6,7 +6,7 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    <h3>Oläst</h3>
+    <h3>Oläst (@Model.unreadMessages.Count())</h3>
     <form asp-controller="Messages" asp-action="MessageActionUnread" method="post">
         <div class="container">
             <div class="row">
@@ -22,11 +22,11 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-1"></div>
-                            <div class="col-4">
+                            <div class="col-2">
                                 <input type="button" id="no-confirm-unread-message" class="btn btn-primary" value="Nej" />
                             </div>
-                            <div class="col-2"></div>
-                            <div class="col-4">
+                            <div class="col-1"></div>
+                            <div class="col-2">
                                 <input type="submit" class="btn btn-primary" name="submitButton" value="Ja" />
                             </div>
                             <div class="col-1"></div>
@@ -79,7 +79,7 @@
         </div>
     </form>
 
-    <h3>Läst</h3>
+    <h3>Läst (@Model.readMessages.Count())</h3>
     <form asp-controller="Messages" asp-action="MessageActionRead" method="post">
         <div class="container">
             <div class="row">
@@ -155,7 +155,7 @@
     </form>
 }
 
-<h3>Skickat</h3>
+<h3>Skickat (@Model.sentMessages.Count())</h3>
 <form asp-controller="Messages" asp-action="MessageActionSent" method="post">
     <div class="container">
         <div class="row">
