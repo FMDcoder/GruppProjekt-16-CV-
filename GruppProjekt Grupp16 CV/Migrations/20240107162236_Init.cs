@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -365,13 +366,15 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                 name: "UserEducation",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ProfessionId = table.Column<int>(type: "int", nullable: false),
                     SchoolId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserEducation", x => new { x.UserId, x.ProfessionId, x.SchoolId });
+                    table.PrimaryKey("PK_UserEducation", x => x.Id);
                     table.ForeignKey(
                         name: "FK_UserEducation_AspNetUsers_UserId",
                         column: x => x.UserId,
@@ -396,6 +399,8 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                 name: "UserExperince",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     JobId = table.Column<int>(type: "int", nullable: false),
                     CompanyId = table.Column<int>(type: "int", nullable: false),
@@ -403,7 +408,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserExperince", x => new { x.UserId, x.JobId, x.CompanyId });
+                    table.PrimaryKey("PK_UserExperince", x => x.Id);
                     table.ForeignKey(
                         name: "FK_UserExperince_AspNetUsers_UserId",
                         column: x => x.UserId,
@@ -428,12 +433,14 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                 name: "UserSkills",
                 columns: table => new
                 {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     SkillsId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserSkills", x => new { x.UserId, x.SkillsId });
+                    table.PrimaryKey("PK_UserSkills", x => x.Id);
                     table.ForeignKey(
                         name: "FK_UserSkills_AspNetUsers_UserId",
                         column: x => x.UserId,
@@ -589,6 +596,11 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                 column: "SchoolId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_UserEducation_UserId",
+                table: "UserEducation",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserExperince_CompanyId",
                 table: "UserExperince",
                 column: "CompanyId");
@@ -599,6 +611,11 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                 column: "JobId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_UserExperince_UserId",
+                table: "UserExperince",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserProject_ProjectId",
                 table: "UserProject",
                 column: "ProjectId");
@@ -607,6 +624,11 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                 name: "IX_UserSkills_SkillsId",
                 table: "UserSkills",
                 column: "SkillsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserSkills_UserId",
+                table: "UserSkills",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserVisits_VisitorUserId",

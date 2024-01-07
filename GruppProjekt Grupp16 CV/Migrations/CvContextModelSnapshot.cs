@@ -351,49 +351,61 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.UserEducation", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)")
-                        .HasColumnOrder(0);
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("ProfessionId")
-                        .HasColumnType("int")
-                        .HasColumnOrder(1);
+                        .HasColumnType("int");
 
                     b.Property<int>("SchoolId")
-                        .HasColumnType("int")
-                        .HasColumnOrder(2);
+                        .HasColumnType("int");
 
-                    b.HasKey("UserId", "ProfessionId", "SchoolId");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("ProfessionId");
 
                     b.HasIndex("SchoolId");
 
+                    b.HasIndex("UserId");
+
                     b.ToTable("UserEducation");
                 });
 
-            modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.UserExperince", b =>
+            modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.UserExperience", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)")
-                        .HasColumnOrder(0);
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
-                    b.Property<int>("JobId")
-                        .HasColumnType("int")
-                        .HasColumnOrder(1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("CompanyId")
-                        .HasColumnType("int")
-                        .HasColumnOrder(2);
+                        .HasColumnType("int");
+
+                    b.Property<int>("JobId")
+                        .HasColumnType("int");
 
                     b.Property<int>("TotalTime")
                         .HasColumnType("int");
 
-                    b.HasKey("UserId", "JobId", "CompanyId");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("CompanyId");
 
                     b.HasIndex("JobId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("UserExperince");
                 });
@@ -417,17 +429,24 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
             modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.UserSkills", b =>
                 {
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)")
-                        .HasColumnOrder(0);
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("SkillsId")
-                        .HasColumnType("int")
-                        .HasColumnOrder(1);
+                        .HasColumnType("int");
 
-                    b.HasKey("UserId", "SkillsId");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("SkillsId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("UserSkills");
                 });
@@ -696,7 +715,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                     b.Navigation("UserObject");
                 });
 
-            modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.UserExperince", b =>
+            modelBuilder.Entity("GruppProjekt_Grupp16_CV.Models.UserExperience", b =>
                 {
                     b.HasOne("GruppProjekt_Grupp16_CV.Models.Company", "CompanyObject")
                         .WithMany("UserExperinces")

@@ -12,6 +12,6 @@ namespace GruppProjekt_Grupp16_CV.Models
         [StringLength(100)]
         public string Title { get; set; } 
 
-        public virtual List<UserExperince> UserExperinces { get; set; } = new List<UserExperince>();
+        public virtual List<UserExperience> UserExperinces { get; set; } = new List<UserExperience>();
     }
 }

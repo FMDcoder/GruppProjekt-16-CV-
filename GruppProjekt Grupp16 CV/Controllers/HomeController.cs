@@ -24,7 +24,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
         public Repository<Status> status { get; set; }
         public Repository<User> users { get; set; }
         public Repository<UserEducation> userEducations { get; set; } 
-        public Repository<UserExperince> userExperinces { get; set; }
+        public Repository<UserExperience> userExperinces { get; set; }
         public Repository<UserProject> userProjects { get; set; }
         public Repository<UserSkills> userSkills { get; set; }
 		public Repository<VisitedCV> userVisits { get; set; }
@@ -48,7 +48,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			users = new Repository<User>(cvContext);
 			userEducations = new Repository<UserEducation>(cvContext);
 
-			userExperinces = new Repository<UserExperince>(cvContext);
+			userExperinces = new Repository<UserExperience>(cvContext);
 			userProjects = new Repository<UserProject>(cvContext);
 			userSkills = new Repository<UserSkills>(cvContext);
 

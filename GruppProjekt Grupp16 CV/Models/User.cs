@@ -21,7 +21,7 @@ namespace GruppProjekt_Grupp16_CV.Models
         [ForeignKey(nameof(StatusId))]
         public virtual Status statusObject { get; set; }
 
-        public virtual List<UserExperince> UserExperinces { get; set; } = new List<UserExperince>();
+        public virtual List<UserExperience> UserExperinces { get; set; } = new List<UserExperience>();
 
         public virtual List<UserEducation> UserEducations { get; set; } = new List<UserEducation>();
 

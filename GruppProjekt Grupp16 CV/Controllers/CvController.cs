@@ -12,14 +12,14 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 		public Repository<UserEducation> userEducation { get; set; }
 		public Repository<School> schools {  get; set; }
 		public Repository<Profession> professions { get; set; }
-		public Repository<UserExperince> userExperince { get; set; }
+		public Repository<UserExperience> userExperience { get; set; }
 		public Repository<Company> companys { get; set; }
 		public Repository<Job> jobs { get; set; }
 		public Repository<UserSkills> userSkills { get; set; }
 		public Repository<Skills> skills {  get; set; }
 
 		public CvController(CvContext context) {
-			userExperince = new Repository<UserExperince>(context);
+			userExperience = new Repository<UserExperience>(context);
 			userEducation = new Repository<UserEducation>(context);
 			userSkills = new Repository<UserSkills>(context);
 			schools = new Repository<School>(context);
@@ -63,7 +63,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			).ToList();
 
 			educationExperinceModelView.yourExperince = (
-				from experince in userExperince.GetAll()
+				from experince in userExperience.GetAll()
 				where experince.UserId == userId
 				select experince
 			).ToList();
@@ -151,7 +151,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			return View(educationValidate);
 		}
 
-		public IActionResult EducationEdit(string collectiveId)
+		public IActionResult EducationEdit(EducationValidate changedEducation, string collectiveId)
 		{
 			UserEducation education = (
 				from userEducationSearch in userEducation.GetAll()
@@ -165,9 +165,9 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
 				var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-				string school = formatString(educationValidate.schoolTitle);
-				string profession = formatString(educationValidate.professionTitle);
-				int time = educationValidate.time;
+				string school = formatString(changedEducation.schoolTitle);
+				string profession = formatString(changedEducation.professionTitle);
+				int time = changedEducation.time;
 
 				var professionId = 0;
 				var schoolId = 0;
@@ -199,7 +199,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 				{
 					List<int> professionExists = (
 						from professionSearch in professions.GetAll()
-						where professionSearch.Title == school && professionSearch.Time == time
+						where professionSearch.Title == profession && professionSearch.Time == time
 						select professionSearch.Id
 					).ToList();
 
@@ -238,24 +238,263 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			return View(educationValidateGet);
 		}
 
-		public IActionResult ExperinceAdd()
+		public IActionResult ExperinceAdd(ExperienceValidate experienceValidate)
 		{
-			return View();
+			experienceValidate = experienceValidate != null ? experienceValidate : new ExperienceValidate();
+			if (ModelState.IsValid)
+			{
+				var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+				string company = formatString(experienceValidate.companyTitle);
+				string job = formatString(experienceValidate.jobTitle);
+				int time = experienceValidate.time;
+
+				var jobId = 0;
+				var companyId = 0;
+
+				for (var i = 0; i < 2; i++)
+				{
+					List<int> companyExists = (
+						from companySearch in companys.GetAll()
+						where companySearch.Title == company
+						select companySearch.Id
+					).ToList();
+
+					if (companyExists.Any())
+					{
+						companyId = companyExists[0];
+						break;
+					}
+					else
+					{
+						companys.Insert(new Company
+						{
+							Title = company
+						});
+						companys.Save();
+					}
+				}
+
+				for (var i = 0; i < 2; i++)
+				{
+					List<int> jobExists = (
+						from jobSearch in jobs.GetAll()
+						where jobSearch.Title == job
+						select jobSearch.Id
+					).ToList();
+
+					if (jobExists.Any())
+					{
+						jobId = jobExists[0];
+						break;
+					}
+					else
+					{
+						jobs.Insert(new Job
+						{
+							Title = job,
+						});
+						jobs.Save();
+					}
+				}
+
+				userExperience.Insert(new UserExperience
+				{
+					UserId = userId,
+					CompanyId = companyId,
+					JobId = jobId
+				});
+				userExperience.Save();
+
+				return RedirectToAction("EducationExperinceView");
+			}
+			return View(experienceValidate);
 		}
 
-		public IActionResult ExperinceEdit()
+		public IActionResult ExperinceEdit(ExperienceValidate changedExperience, string collectiveId)
 		{
-			return View();
+			UserExperience experience = (
+				from userExperienceSearch in userExperience.GetAll()
+				where userExperienceSearch.Id == int.Parse(collectiveId)
+				select userExperienceSearch
+			).First();
+
+			if (ModelState.IsValid)
+			{
+				var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+				string company = formatString(changedExperience.companyTitle);
+				string job = formatString(changedExperience.jobTitle);
+				int time = changedExperience.time;
+
+				var jobId = 0;
+				var companyId = 0;
+
+				for (var i = 0; i < 2; i++)
+				{
+					List<int> companyExists = (
+						from companySearch in companys.GetAll()
+						where companySearch.Title == company
+						select companySearch.Id
+					).ToList();
+
+					if (companyExists.Any())
+					{
+						companyId = companyExists[0];
+						break;
+					}
+					else
+					{
+						companys.Insert(new Company
+						{
+							Title = company
+						});
+						companys.Save();
+					}
+				}
+
+				for (var i = 0; i < 2; i++)
+				{
+					List<int> jobExists = (
+						from jobSearch in jobs.GetAll()
+						where jobSearch.Title == job
+						select jobSearch.Id
+					).ToList();
+
+					if (jobExists.Any())
+					{
+						jobId = jobExists[0];
+						break;
+					}
+					else
+					{
+						jobs.Insert(new Job
+						{
+							Title = job,
+						});
+						jobs.Save();
+					}
+				}
+				userExperience.Delete(experience);
+				userExperience.Insert(new UserExperience
+				{
+					UserId = userId,
+					CompanyId = companyId,
+					JobId = jobId
+				});
+				userExperience.Save();
+
+				return RedirectToAction("EducationExperinceView");
+			}
+
+			ExperienceValidate experienceValidateGet = new ExperienceValidate();
+			experienceValidateGet.companyTitle = experience.CompanyObject.Title;
+			experienceValidateGet.jobTitle = experience.JobObject.Title;
+			experienceValidateGet.time = experience.TotalTime;
+
+			return View(experienceValidateGet);
 		}
 
-		public IActionResult SkillsAdd()
+		public IActionResult SkillsAdd(SkillsValidate skillsValidate)
 		{
-			return View();
+			skillsValidate = skillsValidate == null ? new SkillsValidate() : skillsValidate;
+
+			if (ModelState.IsValid)
+			{
+				var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+				string skillsTitle = formatString(skillsValidate.Title);
+
+				var skillsId = 0;
+
+				for (var i = 0; i < 2; i++)
+				{
+					List<int> skillsExists = (
+						from skillsSearch in skills.GetAll()
+						where skillsSearch.Title == skillsTitle
+						select skillsSearch.Id
+					).ToList();
+
+					if (skillsExists.Any())
+					{
+						skillsId = skillsExists[0];
+						break;
+					}
+					else
+					{
+						skills.Insert(new Skills
+						{
+							Title = skillsTitle
+						});
+						skills.Save();
+					}
+				}
+
+				userSkills.Insert(new UserSkills
+				{
+					UserId = userId,
+					SkillsId = skillsId
+				});
+				userSkills.Save();
+
+				return RedirectToAction("EducationExperinceView");
+			}
+			return View(skillsValidate);
 		}
 
-		public IActionResult SkillsEdit()
+		public IActionResult SkillsEdit(SkillsValidate changedSkills, string collectiveId)
 		{
-			return View();
+			UserSkills skillsValidate = (
+				from userSkillsSearch in userSkills.GetAll()
+				where userSkillsSearch.Id == int.Parse(collectiveId)
+				select userSkillsSearch
+			).First();
+
+			if (ModelState.IsValid)
+			{
+				var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+				string skillsTitle = formatString(changedSkills.Title);
+
+				var skillsId = 0;
+
+				for (var i = 0; i < 2; i++)
+				{
+					List<int> skillsExists = (
+						from skillsSearch in skills.GetAll()
+						where skillsSearch.Title == skillsTitle
+						select skillsSearch.Id
+					).ToList();
+
+					if (skillsExists.Any())
+					{
+						skillsId = skillsExists[0];
+						break;
+					}
+					else
+					{
+						skills.Insert(new Skills
+						{
+							Title = skillsTitle
+						});
+						skills.Save();
+					}
+				}
+
+				userSkills.Delete(skillsValidate);
+				userSkills.Insert(new UserSkills
+				{
+					UserId = userId,
+					SkillsId = skillsId
+				});
+				userSkills.Save();
+
+				return RedirectToAction("EducationExperinceView");
+			}
+
+			SkillsValidate skillsValidateGet = new SkillsValidate();
+			skillsValidateGet.Title = skillsValidateGet.Title;
+			return View(skillsValidateGet);
 		}
 	}
 }

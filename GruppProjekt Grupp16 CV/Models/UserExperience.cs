@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GruppProjekt_Grupp16_CV.Models
 {
-    public class UserExperince
+    public class UserExperience
     {
 		[Key]
 		public int Id { get; set; }

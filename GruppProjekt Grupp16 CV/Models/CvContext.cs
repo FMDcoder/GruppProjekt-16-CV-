@@ -23,7 +23,7 @@ namespace GruppProjekt_Grupp16_CV.Models
         public DbSet<Status> Status { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<UserEducation> UserEducation { get; set; }
-        public DbSet<UserExperince> UserExperince { get; set; }
+        public DbSet<UserExperience> UserExperince { get; set; }
         public DbSet<UserProject> UserProject { get; set; }
         public DbSet<UserSkills> UserSkills { get; set; }
 		public DbSet<VisitedCV> UserVisits { get; set; }
@@ -96,17 +96,17 @@ namespace GruppProjekt_Grupp16_CV.Models
                 .WithMany(t => t.UserEducations)
                 .HasForeignKey(mb => mb.SchoolId).IsRequired();
 
-            modelBuilder.Entity<UserExperince>()
+            modelBuilder.Entity<UserExperience>()
                 .HasOne(mb => mb.UserObject)
                 .WithMany(t => t.UserExperinces)
                 .HasForeignKey(mb => mb.UserId).IsRequired();
 
-            modelBuilder.Entity<UserExperince>()
+            modelBuilder.Entity<UserExperience>()
                 .HasOne(mb => mb.JobObject)
                 .WithMany(t => t.UserExperinces)
                 .HasForeignKey(mb => mb.JobId).IsRequired();
 
-            modelBuilder.Entity<UserExperince>()
+            modelBuilder.Entity<UserExperience>()
                 .HasOne(mb => mb.CompanyObject)
                 .WithMany(t => t.UserExperinces)
                 .HasForeignKey(mb => mb.CompanyId).IsRequired();
