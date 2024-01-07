@@ -54,8 +54,8 @@
                             <a asp-controller="Messages" asp-action="MessageOpen" asp-route-id="@unreadMessage.Id">
                                 <h5>@unreadMessage.Title</h5>
                                 @{
-                                    var Userfrom = "Anonym";
-                                    if (unreadMessage.MessageBoxes[0].SentUserObject != null)
+                                    var Userfrom = unreadMessage.MessageBoxes[0].AnonymName;
+                                    if (unreadMessage.MessageBoxes[0].SentUserObject.UserName != "Anonym")
                                     {
                                         Userfrom = unreadMessage.MessageBoxes[0].SentUserObject.UserName;
                                     }
@@ -128,8 +128,8 @@
                             <a asp-controller="Messages" asp-action="MessageOpen" asp-route-id="@readMessage.Id">
                                 <h5>@readMessage.Title</h5>
                                 @{
-                                    var Userfrom = "Anonym";
-                                    if (readMessage.MessageBoxes[0].SentUserObject != null)
+                                    var Userfrom = readMessage.MessageBoxes[0].AnonymName;
+                                    if (readMessage.MessageBoxes[0].SentUserObject.UserName != "Anonym")
                                     {
                                         Userfrom = readMessage.MessageBoxes[0].SentUserObject.UserName;
                                     }
@@ -200,8 +200,8 @@
                         <a asp-controller="Messages" asp-action="MessageOpen" asp-route-id="@sentMessage.Id">
                             <h5>@sentMessage.Title</h5>
                             @{
-                                var Userfrom = "Anonym";
-                                if(sentMessage.MessageBoxes[0].SentUserObject != null)
+                                var Userfrom = sentMessage.MessageBoxes[0].AnonymName;
+                                if(sentMessage.MessageBoxes[0].SentUserObject.UserName != "Anonym")
                                 {
                                     Userfrom = sentMessage.MessageBoxes[0].SentUserObject.UserName;
                                 }

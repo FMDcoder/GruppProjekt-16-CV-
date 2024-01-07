@@ -48,7 +48,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 					prevSymbolic = false;
 				}
 			}
-			return str;
+			return result;
 		}
 
 		public IActionResult EducationExperinceView()
@@ -62,7 +62,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 				select education
 			).ToList();
 
-			educationExperinceModelView.yourExperince = (
+			educationExperinceModelView.yourExperience = (
 				from experince in userExperience.GetAll()
 				where experince.UserId == userId
 				select experince
@@ -118,7 +118,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 				{
 					List<int> professionExists = (
 						from professionSearch in professions.GetAll()
-						where professionSearch.Title == school && professionSearch.Time == time
+						where professionSearch.Title == profession && professionSearch.Time == time
 						select professionSearch.Id
 					).ToList();
 
@@ -153,6 +153,8 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
 		public IActionResult EducationEdit(EducationValidate changedEducation, string collectiveId)
 		{
+			changedEducation.id = int.Parse(collectiveId);
+
 			UserEducation education = (
 				from userEducationSearch in userEducation.GetAll()
 				where userEducationSearch.Id == int.Parse(collectiveId)
@@ -234,11 +236,12 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			educationValidateGet.schoolTitle = education.SchoolObject.Title;
 			educationValidateGet.professionTitle = education.ProfesssionObject.Title;
 			educationValidateGet.time = education.ProfesssionObject.Time;
+			educationValidateGet.id = int.Parse(collectiveId);
 
 			return View(educationValidateGet);
 		}
 
-		public IActionResult ExperinceAdd(ExperienceValidate experienceValidate)
+		public IActionResult ExperienceAdd(ExperienceValidate experienceValidate)
 		{
 			experienceValidate = experienceValidate != null ? experienceValidate : new ExperienceValidate();
 			if (ModelState.IsValid)
@@ -302,7 +305,8 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 				{
 					UserId = userId,
 					CompanyId = companyId,
-					JobId = jobId
+					JobId = jobId,
+					TotalTime = time
 				});
 				userExperience.Save();
 
@@ -311,8 +315,10 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			return View(experienceValidate);
 		}
 
-		public IActionResult ExperinceEdit(ExperienceValidate changedExperience, string collectiveId)
+		public IActionResult ExperienceEdit(ExperienceValidate changedExperience, string collectiveId)
 		{
+			changedExperience.id = int.Parse(collectiveId);
+
 			UserExperience experience = (
 				from userExperienceSearch in userExperience.GetAll()
 				where userExperienceSearch.Id == int.Parse(collectiveId)
@@ -380,7 +386,8 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 				{
 					UserId = userId,
 					CompanyId = companyId,
-					JobId = jobId
+					JobId = jobId,
+					TotalTime = time
 				});
 				userExperience.Save();
 
@@ -391,6 +398,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			experienceValidateGet.companyTitle = experience.CompanyObject.Title;
 			experienceValidateGet.jobTitle = experience.JobObject.Title;
 			experienceValidateGet.time = experience.TotalTime;
+			experienceValidateGet.id = int.Parse(collectiveId);
 
 			return View(experienceValidateGet);
 		}
@@ -444,6 +452,8 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
 		public IActionResult SkillsEdit(SkillsValidate changedSkills, string collectiveId)
 		{
+			changedSkills.id = int.Parse(collectiveId);
+
 			UserSkills skillsValidate = (
 				from userSkillsSearch in userSkills.GetAll()
 				where userSkillsSearch.Id == int.Parse(collectiveId)
@@ -494,6 +504,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
 			SkillsValidate skillsValidateGet = new SkillsValidate();
 			skillsValidateGet.Title = skillsValidateGet.Title;
+			skillsValidateGet.id = int.Parse(collectiveId);
 			return View(skillsValidateGet);
 		}
 	}

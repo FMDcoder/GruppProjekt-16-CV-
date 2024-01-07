@@ -99,16 +99,32 @@ namespace GruppProjekt_Grupp16_CV.Controllers
                     select message
                 ).First().Id;
 
-                foreach (var recievedUserId in recievedUserIdList)
+                if (User.Identity.IsAuthenticated)
                 {
-                    messageBox.Insert(new MessageBox
+                    foreach (var recievedUserId in recievedUserIdList)
                     {
-                        SentUserId = sentUserId,
-                        RecievedUserId = recievedUserId,
-                        MessageId = messageId
-                    });
+                        messageBox.Insert(new MessageBox
+                        {
+                            SentUserId = sentUserId,
+                            RecievedUserId = recievedUserId,
+                            MessageId = messageId
+                        });
+                    }
                 }
-                messageBox.Save();
+                else
+                {
+					foreach (var recievedUserId in recievedUserIdList)
+					{
+						messageBox.Insert(new MessageBox
+						{
+							SentUserId = sentUserId,
+							RecievedUserId = recievedUserId,
+							MessageId = messageId,
+							AnonymName = sendMessageViewModel.AnonymName
+						});
+					}
+				}
+                    messageBox.Save();
                 sendMessageViewModel.success = true;
             }
             return View("SendMessage", sendMessageViewModel);

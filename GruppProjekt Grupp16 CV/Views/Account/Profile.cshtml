@@ -122,6 +122,15 @@
 						Skicka Meddelande
 					</a>
 				</li>
+				<li class="col-12">
+					@{
+						@using Microsoft.AspNetCore.Identity;
+						@using System.Security.Claims;
+
+						var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+						<a asp-action="CVsite" asp-controller="Home" asp-route-id="@userId">Se ditt CV</a>
+					}
+				</li>
 			</ul>
 		</div>
 	</div>

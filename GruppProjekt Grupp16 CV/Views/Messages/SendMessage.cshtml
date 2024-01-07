@@ -1,4 +1,5 @@
-﻿@using Models;
+﻿@using GruppProjekt_Grupp16_CV.ModelHelper;
+@using Models;
 @model SendMessageViewModel;
  
 <form asp-action="SendMessageAction" asp-controller="Messages" method="post">
@@ -24,6 +25,17 @@
 					<input asp-for="Title" class="form-control"/>
 				</div>
 			</div>
+			@if(!User.Identity.IsAuthenticated)
+			{
+				<div class="row form-group space">
+					<div class="col-lg-2 col-12">
+						<label>Ditt Namn: </label>
+					</div>
+					<div class="col-lg-8 col-12">
+						<input asp-for="AnonymName" class="form-control" />
+					</div>
+				</div>
+			}
 			<div class="row form-group space">
 				<div class="col-lg-2 col-12">
 					<label>Skicka till: </label>

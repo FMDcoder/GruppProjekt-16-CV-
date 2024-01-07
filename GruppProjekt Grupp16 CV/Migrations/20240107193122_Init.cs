@@ -267,6 +267,7 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SentUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     RecievedUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    AnonymName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MessageId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

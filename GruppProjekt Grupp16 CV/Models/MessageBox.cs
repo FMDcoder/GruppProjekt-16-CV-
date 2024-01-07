@@ -9,6 +9,7 @@ namespace GruppProjekt_Grupp16_CV.Models
         public int Id { get; set; }
 		public string? SentUserId { get; set; }
         public string RecievedUserId { get; set; }
+        public string? AnonymName { get; set; } = "";
         public int MessageId { get; set; }
 
         [ForeignKey(nameof(SentUserId))]

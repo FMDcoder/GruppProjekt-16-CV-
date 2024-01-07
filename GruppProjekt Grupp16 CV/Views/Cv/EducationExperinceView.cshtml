@@ -10,7 +10,7 @@
 			</form>
 		</div>
 		<div class="col-4 col-lg-3">
-			<form asp-action="ExperinceAdd" method="post">
+			<form asp-action="ExperienceAdd" method="post">
 				<input type="submit" value="Erfarenheter" class="btn btn-primary" />
 			</form>
 		</div>
@@ -44,7 +44,7 @@
 							<input type="hidden" name="collectiveId" value="@wholeId" />
 						}
 					</div>
-					<div>
+					<div class="col-2">
 						<input type="submit" value="Ändra" class="btn btn-primary" />
 					</div>
 				</div>
@@ -54,14 +54,14 @@
 	</div>
 	<hr />
 	<div class="row col-12">
-		<h2>Dina Erfarenheter (@Model.yourExperince.Count())</h2>
-		@if (Model.yourExperince.Count() == 0)
+		<h2>Dina Erfarenheter (@Model.yourExperience.Count())</h2>
+		@if (Model.yourExperience.Count() == 0)
 		{
 			<p>Du har inga erfarenheter!</p>
 		}
-		@foreach(var experinceItem in Model.yourExperince)
+		@foreach(var experinceItem in Model.yourExperience)
 		{
-			<form asp-action="ExperinceEdit" method="post">
+			<form asp-action="ExperienceEdit" method="post">
 				<div class="row">
 					<div class="col-8">
 						@{
@@ -76,7 +76,7 @@
 							<input type="hidden" name="collectiveId" value="@wholeId" />
 						}
 					</div>
-					<div>
+					<div class="col-2">
 						<input type="submit" value="Ändra" class="btn btn-primary" />
 					</div>
 				</div>
@@ -106,7 +106,7 @@
 							<input type="hidden" name="collectiveId" value="@wholeId" />
 						}
 					</div>
-					<div>
+					<div class="col-2">
 						<input type="submit" value="Ändra" class="btn btn-primary" />
 					</div>
 				</div>

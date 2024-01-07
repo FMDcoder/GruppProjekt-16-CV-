@@ -91,6 +91,9 @@ namespace GruppProjekt_Grupp16_CV.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("AnonymName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("MessageId")
                         .HasColumnType("int");
 

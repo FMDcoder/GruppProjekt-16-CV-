@@ -1,10 +1,16 @@
 ﻿@model List<User>
 
-@{
-    ViewData["Title"] = "Home Page";
-}
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container centered">
+	@foreach(var user in Model)
+	{
+		<div class="row col-12 col-lg-6">
+			<div class="col-lg-4 col-12">
+				<img class="profile-img" src="@user.ProfilePicture" />
+			</div>
+			<div class="col-lg-8 col-12">
+				<h2>@user.UserName</h2>
+				<a asp-action="CVsite" asp-controller="Home" asp-route-id="@user.Id">Se CV</a>
+			</div>
+		</div>
+	}
 </div>

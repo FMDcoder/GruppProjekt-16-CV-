@@ -62,7 +62,6 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 						await UserRegVal.ProfilePicture.CopyToAsync(stream);
 					}
 
-					bool isImage = false;
 					string[] allowedContentTypes = { "image/jpeg", "image/png", "image/gif" };
 					if(allowedContentTypes.Contains(UserRegVal.ProfilePicture.ContentType))
 					{

@@ -1,5 +1,156 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@using GruppProjekt_Grupp16_CV.ModelHelper;
+@using Models;
+@model CvDisplayViewModel;
+
+<div class="container centered">
+	<div class="row col-lg-8 col-12 space">
+		<img src="..\@Model.user.ProfilePicture" class="profile-img" />
+	</div>
+	@if(Model.isOwner)
+	{
+		<span>@Model.Visited har sätt ditt CV!</span>
+	}
+	<div class="row col-lg-8 col-12 space">
+		<h2>@Model.user.UserName</h2>
+		<h4>@Model.user.Adress</h4>
+		<h4>@Model.user.PhoneNumber</h4>
+		<h4>@Model.user.Email</h4>
+	</div>
+	<div class="row col-lg-8 col-12 space">
+		@if (Model.user.CreatedUserProjects.Count() == 0)
+		{
+			<span>@Model.user.UserName har inga skapade projekt!</span>
+		}
+		<h3>Mina project</h3>
+		@foreach (var project in Model.user.CreatedUserProjects)
+		{
+			<h4>@project.Title</h4>
+			<small>@project.LatestUpdate</small>
+			<p>@project.Description</p>
+		}
+	</div>
+	<div class="row col-lg-8 col-12 space">
+		<h3>Collab project</h3>
+		@if (Model.user.UserProjects.Count() == 0)
+		{
+			<span>@Model.user.UserName har inga deltagande projekt!</span>
+		}
+		@foreach (var project in Model.user.UserProjects)
+		{
+			<h4>@project.ProjectObject.Title</h4>
+			<small>@project.ProjectObject.LatestUpdate</small>
+			<p>@project.ProjectObject.Description</p>
+		}
+	</div>
+	<div class="row col-lg-8 col-12 space">
+		<h3>Utbildningar</h3>
+		@if (Model.user.UserEducations.Count() == 0)
+		{
+			<span>@Model.user.UserName har ingen utbildning!</span>
+		}
+		@foreach(var education in Model.user.UserEducations){
+			<p>
+				Har pluggat på @education.SchoolObject.Title i @education.ProfesssionObject.Time år inom @education.ProfesssionObject.Title
+			</p>
+		}
+	</div>
+	<div class="row col-lg-8 col-12 space">
+		<h3>Erfarenheter</h3>
+		@if (Model.user.UserExperinces.Count() == 0)
+		{
+			<span>@Model.user.UserName har inga erfarenheter!</span>
+		}
+		@foreach(var experience in Model.user.UserExperinces){
+			<p>
+				Har jobbat på @experience.CompanyObject.Title i @experience.TotalTime år inom @experience.JobObject.Title
+			</p>
+		}
+	</div>
+	<div class="row col-lg-8 col-12 space">
+		<h3>Kompetenser</h3>
+		@if (Model.user.UserSkills.Count() == 0)
+		{
+			<span>@Model.user.UserName har inga kompetenser!</span>
+		}
+		@foreach (var skills in Model.user.UserSkills)
+		{
+			<p>
+				Jag är @skills.SkillsObject.Title
+			</p>
+		}
+	</div>
+	<div class="row col-lg-8 col-12 space">
+		<form asp-action="downloadCV" method="post">
+			<input type="hidden" value="@Model.user.Id" name="userId" />
+			<input type="submit" value="Ladda ner CV" class="form-control"/>
+		</form>
+	</div>
+	<div class="row col-12 space">
+		@if (!Model.isOwner)
+		{
+			<form asp-action="SendMessageAction" method="post">
+				<input type="hidden" name="id" value="@Model.user.Id" />
+				<div class="container centered">
+					<div class="col-lg-6 col-12">
+						<div class="row">
+							<h2>Skicka meddelande</h2>
+						</div>
+						<div class="row form-group space">
+							@{
+								if (Model.success)
+								{
+									<div class="col-lg-8 col-12 text-success">Lyckades skicka!</div>
+								}
+							}
+							<div asp-validation-summary="All" class="col-lg-8 col-12 text-danger"></div>
+						</div>
+						<div class="row form-group space">
+							<div class="col-lg-2 col-12">
+								<label>Titel: </label>
+							</div>
+							<div class="col-lg-8 col-12">
+								<input asp-for="Title" class="form-control" />
+							</div>
+						</div>
+						@if (!User.Identity.IsAuthenticated)
+						{
+							<div class="row form-group space">
+								<div class="col-lg-2 col-12">
+									<label>Ditt Namn: </label>
+								</div>
+								<div class="col-lg-8 col-12">
+									<input asp-for="AnonymName" class="form-control" />
+								</div>
+							</div>
+						}
+						else
+						{
+							<span>Skickar från: @Model.user.UserName</span>
+						}
+						<div class="row form-group space">
+							<div class="col-lg-2 col-12">
+								<label>Skicka till: </label>
+							</div>
+							<div class="col-lg-8 col-12">
+								<input asp-for="SendTo" class="form-control" />
+							</div>
+						</div>
+						<div class="row form-group space">
+							<div class="col-lg-2 col-12">
+								<label>Meddelande: </label>
+							</div>
+							<div class="col-lg-8 col-12">
+								<textarea asp-for="Description" class="form-control"></textarea>
+							</div>
+						</div>
+						<div class="row form-group space">
+							<div class="col-lg-2 col-12">
+								<input type="submit" class="btn btn-primary" value="Skicka" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+		}
+	</div>
+</div>

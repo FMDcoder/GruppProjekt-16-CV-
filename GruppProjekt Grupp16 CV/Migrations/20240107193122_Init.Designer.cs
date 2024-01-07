@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GruppProjekt_Grupp16_CV.Migrations
 {
     [DbContext(typeof(CvContext))]
-    [Migration("20240107162236_Init")]
+    [Migration("20240107193122_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -93,6 +93,9 @@ namespace GruppProjekt_Grupp16_CV.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AnonymName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("MessageId")
                         .HasColumnType("int");

@@ -12,6 +12,9 @@ namespace Models
         [StringLength(100, ErrorMessage = "Titeln får inte ha mer än 100 karaktärer!")]
         public string Title { get; set; }
 
+        [RegularExpression("^[A-Za-zåäöÅÄÖ - ]*$", ErrorMessage = "Namnet får endast ha bokstäver, bindesträck och mellanslag!")]
+        public string AnonymName { get; set; } = "";
+
         [Required(ErrorMessage = "Du måste skriva något som meddelande!")]
 		[DataType(DataType.MultilineText)]
 		[StringLength(1000, ErrorMessage = "Meddalandet får inte ha mer än 1000 karaktärer!")]
