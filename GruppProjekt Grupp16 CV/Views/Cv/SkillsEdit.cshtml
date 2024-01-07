@@ -1,0 +1,30 @@
+﻿@using Models;
+@model SkillsValidate;
+
+<div class="container">
+	<div class="row">
+		<h2 class="center-text">Ändra</h2>
+		<input type="hidden" name="id" value="@Model.id" />
+		<form asp-action="SkillsEdit" method="post" class="centered">
+			<div class="row">
+				<div class="col-lg-8 col-12">
+					<div asp-validation-summary="All" class="text-danger"></div>
+				</div>
+			</div>
+			<div class="row space col-lg-6 col-12">
+				<div class="col-lg-2 col-12">
+					<label>Namn: </label>
+				</div>
+				<div class="col-lg-8 col-12">
+					<input asp-for="@Model.Title" class="form-control" />
+				</div>
+			</div>
+			<div class="row space col-lg-6 col-12">
+				<div class="col-lg-3">
+					<input type="submit" value="Ändra" class="form-control btn btn-primary" />
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+</div>

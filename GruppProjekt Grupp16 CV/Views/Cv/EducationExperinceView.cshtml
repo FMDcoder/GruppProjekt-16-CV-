@@ -36,11 +36,10 @@
 							var timeStudied = educationItem.ProfesssionObject.Time;
 							var profession = educationItem.ProfesssionObject.Title;
 							var school = educationItem.SchoolObject.Title;
-							var wholeId =
-								educationItem.SchoolId + "," + educationItem.ProfessionId + "," + educationItem.UserId;
+							var wholeId = educationItem.Id;
 
 							<p>
-								Du har pluggat på @school i @timeStudied inom @profession
+								Du har pluggat på @school i @timeStudied år inom @profession
 							</p>
 							<input type="hidden" name="collectiveId" value="@wholeId" />
 						}
@@ -62,18 +61,17 @@
 		}
 		@foreach(var experinceItem in Model.yourExperince)
 		{
-			<form asp-action="EducationEdit" method="post">
+			<form asp-action="ExperinceEdit" method="post">
 				<div class="row">
 					<div class="col-8">
 						@{
 							var timeWorked = experinceItem.TotalTime;
 							var jobType = experinceItem.JobObject.Title;
 							var company = experinceItem.CompanyObject.Title;
-							var wholeId =
-							experinceItem.JobId + "," + experinceItem.CompanyId + "," + experinceItem.UserId;
+							var wholeId = experinceItem.Id;
 
 							<p>
-								Du har jobbat @timeWorked på företaget @company inom rollen @jobType
+								Du har jobbat @timeWorked år på företaget @company inom rollen @jobType
 							</p>
 							<input type="hidden" name="collectiveId" value="@wholeId" />
 						}
@@ -93,20 +91,17 @@
 		{
 			<p>Du har inga kompetenser!</p>
 		}
-		@foreach (var experinceItem in Model.yourExperince)
+		@foreach (var skillsItem in Model.yourSkills)
 		{
-			<form asp-action="EducationEdit" method="post">
+			<form asp-action="SkillsEdit" method="post">
 				<div class="row">
 					<div class="col-8">
 						@{
-							var timeWorked = experinceItem.TotalTime;
-							var jobType = experinceItem.JobObject.Title;
-							var company = experinceItem.CompanyObject.Title;
-							var wholeId =
-							experinceItem.JobId + "," + experinceItem.CompanyId + "," + experinceItem.UserId;
+							var skillType = skillsItem.SkillsObject.Title;
+							var wholeId = skillsItem.Id;
 
 							<p>
-								Du har jobbat @timeWorked på företaget @company inom rollen @jobType
+								Du är @skillType
 							</p>
 							<input type="hidden" name="collectiveId" value="@wholeId" />
 						}

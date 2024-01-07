@@ -1,5 +1,44 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@using Models;
+@model ExperienceValidate;
+
+<div class="container">
+	<div class="row">
+		<h2 class="center-text">Skapa</h2>
+		<form asp-action="ExperienceAdd" method="post" class="centered">
+			<div class="row">
+				<div class="col-lg-8 col-12">
+					<div asp-validation-summary="All" class="text-danger"></div>
+				</div>
+			</div>
+			<div class="row space col-lg-6 col-12">
+				<div class="col-lg-2 col-12">
+					<label>Företag: </label>
+				</div>
+				<div class="col-lg-8 col-12">
+					<input asp-for="@Model.companyTitle" class="form-control" />
+				</div>
+			</div>
+			<div class="row space col-lg-6 col-12">
+				<div class="col-lg-2 col-12">
+					<label>Job: </label>
+				</div>
+				<div class="col-lg-8 col-12">
+					<input asp-for="@Model.jobTitle" class="form-control" />
+				</div>
+			</div>
+			<div class="row space col-lg-6 col-12">
+				<div class="col-lg-2 col-12">
+					<label>Tid: </label>
+				</div>
+				<div class="col-lg-8 col-12">
+					<input asp-for="@Model.time" class="form-control" />
+				</div>
+			</div>
+			<div class="row space col-lg-6 col-12">
+				<div class="col-lg-3">
+					<input type="submit" value="Skapa" class="form-control btn btn-primary" />
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

@@ -37,17 +37,8 @@ namespace GruppProjekt_Grupp16_CV.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Fixar så att tabeller med fler än en primär nyckel funkar
-            modelBuilder.Entity<UserEducation>()
-                .HasKey(mb => new { mb.UserId, mb.ProfessionId, mb.SchoolId});
-
-            modelBuilder.Entity<UserExperince>()
-                .HasKey(mb => new { mb.UserId, mb.JobId, mb.CompanyId});
-
             modelBuilder.Entity<UserProject>()
                 .HasKey(mb => new { mb.UserId, mb.ProjectId});
-
-            modelBuilder.Entity<UserSkills>()
-                .HasKey(mb => new { mb.UserId, mb.SkillsId });
 
 			modelBuilder.Entity<VisitedCV>()
 				.HasKey(mb => new { mb.OwnerUserId, mb.VisitorUserId});

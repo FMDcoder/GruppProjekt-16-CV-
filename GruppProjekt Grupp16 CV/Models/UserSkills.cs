@@ -5,10 +5,11 @@ namespace GruppProjekt_Grupp16_CV.Models
 {
     public class UserSkills
     {
-        [Key, Column(Order = 0)]
-        public string UserId { get; set; }
+		[Key]
+		public int Id { get; set; }
 
-        [Key, Column(Order = 1)]
+		public string UserId { get; set; }
+
         public int SkillsId { get; set; }
 
         [ForeignKey(nameof(UserId))]
