@@ -42,10 +42,14 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 					result += character;
 					prevSymbolic = true;
 				}
-				if(prevSymbolic)
+				else if(prevSymbolic)
 				{
 					result += char.ToUpper(character);
 					prevSymbolic = false;
+				}
+				else 
+				{
+					result += character;
 				}
 			}
 			return result;

@@ -69,12 +69,25 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 
         public IActionResult Index()
         {
-            List<User> usersList = (
-                from user in users.GetAll()
-                where user.UserName != "Anonym" && !user.Deactivated
-                select user
-           ).ToList();
-            
+			List<User> usersList = new List<User>();
+
+			if(User.Identity.IsAuthenticated)
+			{
+				usersList = (
+					from user in users.GetAll()
+					where user.UserName != "Anonym" && !user.Deactivated
+					select user
+			   ).ToList();
+			}
+			else
+			{
+				usersList = (
+					from user in users.GetAll()
+					where user.UserName != "Anonym" && !user.Deactivated && user.StatusId == 2
+					select user
+			   ).ToList();
+			}
+			
 			return View(usersList);
         }
 
@@ -331,6 +344,10 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 				});
 			}
 
+			foreach (var skill in exportUser.Skills)
+			{
+				Console.WriteLine(skill.skill);
+			}
 
 			var xmlContent = "";
 			using(var stringWriter = new StringWriter())

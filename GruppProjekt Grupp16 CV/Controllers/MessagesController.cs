@@ -167,7 +167,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
                         ).Contains(unreadmessage.MessageId)
                         && !unreadmessage.SentUserObject.Deactivated
                         select unreadmessage.MessageObject
-                     ).GroupBy(msg => msg.Id).Select(group => group.First()).ToList();
+                     ).ToList();
 
                     List<Message> readMessages = (
                         from readmessage in user.ReadMessages
@@ -178,7 +178,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
                         ).Contains(readmessage.MessageId) 
                         && !readmessage.MessageObject.MessageBoxes[0].SentUserObject.Deactivated
                         select readmessage.MessageObject
-                    ).GroupBy(msg => msg.Id).Select(group => group.First()).ToList();
+                    ).ToList();
 
                     List<Message> sentMessages = (
                         from sentMessage in user.SentMessageBoxes
@@ -189,7 +189,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 						).Contains(sentMessage.MessageId)
                         && !sentMessage.RecievedUserObject.Deactivated
 						select sentMessage.MessageObject
-                    ).GroupBy(msg => msg.Id).Select(group => group.First()).ToList();
+                    ).ToList();
 
 					messageViewModel.unreadMessages = unreadMessages;
                     messageViewModel.readMessages = readMessages;

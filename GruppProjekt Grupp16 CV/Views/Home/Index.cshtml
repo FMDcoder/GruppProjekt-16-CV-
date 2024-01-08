@@ -1,5 +1,9 @@
 ﻿@model List<User>
 
+@if(Model.Count() == 0)
+{
+	<p>Det finns inga användare att visa!</p>
+}
 <div class="container centered">
 	@foreach(var user in Model)
 	{

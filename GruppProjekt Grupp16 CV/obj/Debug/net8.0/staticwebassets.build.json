@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "R6j/qYl50aJYop5bZaspB8864B1+R1Raw6nBTiqx7fo=",
+  "Hash": "CHlE8jj640Mi+qL0hmX1PiEVlLd9I2APT+P18dr6eOU=",
   "Source": "GruppProjekt_Grupp16_CV",
   "BasePath": "_content/GruppProjekt_Grupp16_CV",
   "Mode": "Default",
@@ -1307,6 +1307,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Uploads\\1132f0b4-abdb-4c29-89b5-ce7befa5053c_profile.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\nilss\\Documents\\GruppProjekt Grupp16 CV\\GruppProjekt Grupp16 CV\\wwwroot\\Uploads\\14ce79cb-8346-494d-b2e7-aae811960d33_profile.jpg",
+      "SourceId": "GruppProjekt_Grupp16_CV",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\nilss\\Documents\\GruppProjekt Grupp16 CV\\GruppProjekt Grupp16 CV\\wwwroot\\",
+      "BasePath": "_content/GruppProjekt_Grupp16_CV",
+      "RelativePath": "Uploads/14ce79cb-8346-494d-b2e7-aae811960d33_profile.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\14ce79cb-8346-494d-b2e7-aae811960d33_profile.jpg"
     },
     {
       "Identity": "C:\\Users\\nilss\\Documents\\GruppProjekt Grupp16 CV\\GruppProjekt Grupp16 CV\\wwwroot\\Uploads\\2a42e3e8-8980-48f2-b980-99dedc5ffecc_profile.jpg",
