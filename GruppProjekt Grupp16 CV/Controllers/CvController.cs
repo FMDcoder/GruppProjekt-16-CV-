@@ -29,6 +29,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			skills = new Repository<Skills>(context);
 		}
 
+		// Formatterar text för konsistens 
 		private string formatString(string str)
 		{
 			string result = "";
@@ -55,6 +56,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			return result;
 		}
 
+		// Fixar visning av alla visning av erfarenheter, utbildning och skills men även gör det möjligt att klicka sig fram till redigering 
 		public IActionResult EducationExperinceView()
 		{
 			var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -81,6 +83,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			return View(educationExperinceModelView);
 		}
 
+		// Hanterar att lägga till utbildning
 		public IActionResult EducationAdd(EducationValidate educationValidate)
 		{
 			educationValidate = educationValidate != null ? educationValidate : new EducationValidate();
@@ -155,6 +158,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			return View(educationValidate);
 		}
 
+		// Hanterar att ändra utbildning
 		public IActionResult EducationEdit(EducationValidate changedEducation, string collectiveId)
 		{
 			changedEducation.id = int.Parse(collectiveId);
@@ -245,6 +249,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			return View(educationValidateGet);
 		}
 
+		// Hanterar att lägga till erfarenhet
 		public IActionResult ExperienceAdd(ExperienceValidate experienceValidate)
 		{
 			experienceValidate = experienceValidate != null ? experienceValidate : new ExperienceValidate();
@@ -319,6 +324,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			return View(experienceValidate);
 		}
 
+		// Hanterar att ändra erfarenhet
 		public IActionResult ExperienceEdit(ExperienceValidate changedExperience, string collectiveId)
 		{
 			changedExperience.id = int.Parse(collectiveId);
@@ -407,6 +413,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			return View(experienceValidateGet);
 		}
 
+		// Hanterar att lägga till kompetenser
 		public IActionResult SkillsAdd(SkillsValidate skillsValidate)
 		{
 			skillsValidate = skillsValidate == null ? new SkillsValidate() : skillsValidate;
@@ -454,6 +461,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			return View(skillsValidate);
 		}
 
+		// Hanterar att ändra kompetenser
 		public IActionResult SkillsEdit(SkillsValidate changedSkills, string collectiveId)
 		{
 			changedSkills.id = int.Parse(collectiveId);

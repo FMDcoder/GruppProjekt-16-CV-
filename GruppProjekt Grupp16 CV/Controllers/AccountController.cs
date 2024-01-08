@@ -26,6 +26,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			users = new Repository<User>(_cvContext);
 		}
 
+		// Hanterar registering av användare
 		public async Task<IActionResult> Register(UserRegisterValidate UserRegVal)
 		{
 			if (ModelState.IsValid && UserRegVal.ProfilePicture != null && UserRegVal.ProfilePicture.Length > 0)
@@ -86,6 +87,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
             return View(UserRegVal);
 		}
 
+		// Hanterar logga in med användare
 		public async Task<IActionResult> LogIn(UserLogInValidate UserLogInVal)
 		{
 
@@ -122,6 +124,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			return View(UserLogInVal);
 		}
 
+		// Laddar fram object för att att sedan visa profil 
 		public IActionResult Profile()
 		{
 
@@ -135,12 +138,14 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			return View(pvm);
 		}
 
+		// Loggar ut användare
 		public async Task<IActionResult> LogOut()
         {
 			await SignInManager.SignOutAsync();
 			return RedirectToAction("Index", "Home");
 		}
 
+		// Deaktiverar användare
         public async Task<IActionResult> Deactivate()
         {
 			User deactivatedUser = (
@@ -156,6 +161,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+		// Updaterar användare
         public async Task<IActionResult> UpdateUser(ProfileViewModel pvm)
 		{
 			pvm.LoggedInUser = (

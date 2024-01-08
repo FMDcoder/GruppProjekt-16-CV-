@@ -67,6 +67,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			usersVisit = new Repository<VisitedCV>(cvContext);
 		}
 
+		// Laddar model för framsidan
         public IActionResult Index()
         {
 			List<User> usersList = new List<User>();
@@ -91,6 +92,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			return View(usersList);
         }
 
+		// Laddar model syn för sökning
         public IActionResult Search()
         {
             return View(new SearchBarValidate());
@@ -109,6 +111,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
         }
 
 
+		// Laddar model syn för CV:et
         public IActionResult CVsite(string id)
         {
 			CvDisplayViewModel cvDisplayViewModel = new CvDisplayViewModel();
@@ -160,6 +163,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
             return View(cvDisplayViewModel);
         }
 
+		// Hanterar sökning av "liknande folk"
         public IActionResult SimilarPeople(string id)
 		{
             User userLogged = (
@@ -253,6 +257,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 		}
 
 
+		// Hanterar skickande av meddelande via CV:et
         [HttpPost]
 		public IActionResult SendMessageAction(CvDisplayViewModel sendMessageViewModel, string id)
 		{
@@ -396,6 +401,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
             return View("CVsite", sendMessageViewModel);
 		}
 
+		// Hanter XML fil av CV:et och ner laddning
 		public IActionResult downloadCV(string userId)
         {
             User user = (
@@ -513,6 +519,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			return File(Encoding.UTF8.GetBytes(xmlContent), contentType);
 		}
 
+		// Hanterar laddningen av project
         public IActionResult Project()
         {
             ProjectViewModel model = new ProjectViewModel();
@@ -529,7 +536,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
             return View(model);
         }
 
-
+		// Hanterar laddningen av synen efter sökningen 
         public IActionResult Users(SearchBarValidate searchBarValidate, string search)
         {
             if (ModelState.IsValid)

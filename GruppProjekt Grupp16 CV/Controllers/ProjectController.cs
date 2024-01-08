@@ -22,6 +22,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
             userProjects = new Repository<UserProject>(context);
         }
 
+        // Hanterar visning av alla olika typer av project; skapade, skapa och andras project som de kan gå med
         public IActionResult Project(ProjectCreateViewModel projectCreateViewModel)
         {
             projectCreateViewModel = projectCreateViewModel != null ? projectCreateViewModel : new ProjectCreateViewModel();
@@ -64,6 +65,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			return View(projectCreateViewModel);
         }
 
+        // Hanterar visingen av sidan där de kan ändra
         public IActionResult ProjectEdit([FromRoute] int id)
         {
             AddProjectModelView addProjectModelView = new AddProjectModelView();
@@ -79,6 +81,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
             return View(addProjectModelView);
         }
 
+        // Hanterar skapandet av project av användaren
         public IActionResult CreateProject (ProjectCreateViewModel projectCreateViewModel)
         {
 			ModelState.Remove("userProjects");
@@ -103,6 +106,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			return RedirectToAction("Project", projectCreateViewModel);
 		}
 
+        // Hanterar ändringar av formuläret från ändrings sidan
 		public IActionResult Edit(AddProjectModelView addProjectModelView, int id)
         {
             ModelState.Remove("currentProject");
@@ -127,6 +131,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			return View("ProjectEdit", addProjectModelView);
 		}
 
+        // Hanterar att användaren kan gå med och lämna projekt
         public IActionResult CollabProject (int id, string state)
         {
 			var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);

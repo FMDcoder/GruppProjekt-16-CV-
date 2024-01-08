@@ -31,11 +31,13 @@ namespace GruppProjekt_Grupp16_CV.Controllers
             messageBox = new Repository<MessageBox>(cvContext);
         }
 
+        // Hanterar visning av meddelandet
         public IActionResult MessageOpen([FromRoute] int id)
         {
             return View(messages.GetById(id));
         }
         
+        // Hanterar visningen av skicka meddelandet sidan
         public IActionResult SendMessage(SendMessageViewModel sendMessageViewModel)
         {
             return View(
@@ -43,6 +45,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
            );
         }
 
+        // Hanterar skickandet av meddalandet via send message sidan
         public IActionResult SendMessageAction(SendMessageViewModel sendMessageViewModel)
         {
 			sendMessageViewModel.success = false;
@@ -130,6 +133,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
             return View("SendMessage", sendMessageViewModel);
         }
 
+        // Hanterar visningen av alla olika typer av meddelanden läst, oläst, skickade
         public IActionResult Messages(MessageViewModel messageViewModelRedirected)
         {
             MessageViewModel messageViewModel = new MessageViewModel();
@@ -219,6 +223,7 @@ namespace GruppProjekt_Grupp16_CV.Controllers
             return View(messageViewModel);
         }
 
+        // Hanterar olästa meddelanden sektion av alla meddelanden sidan
         public IActionResult MessageActionUnread(MessageViewModel messageViewModel, string submitButton)
         {
 			var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -259,7 +264,8 @@ namespace GruppProjekt_Grupp16_CV.Controllers
             return RedirectToAction("Messages");
         }
 
-        public IActionResult MessageActionRead(MessageViewModel messageViewModel, string submitButton)
+		// Hanterar lästa meddelanden sektion av alla meddelanden sidan
+		public IActionResult MessageActionRead(MessageViewModel messageViewModel, string submitButton)
         {
 			var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             if (submitButton == "Markera som oläst")
@@ -301,7 +307,8 @@ namespace GruppProjekt_Grupp16_CV.Controllers
             return RedirectToAction("Messages");
         }
 
-        public IActionResult MessageActionSent(MessageViewModel messageViewModel)
+		// Hanterar skickade meddelanden sektion av alla meddelanden sidan
+		public IActionResult MessageActionSent(MessageViewModel messageViewModel)
         {
 			string userId = (
                 from user in users.GetAll()
