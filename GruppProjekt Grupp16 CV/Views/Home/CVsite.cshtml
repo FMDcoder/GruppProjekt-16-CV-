@@ -16,6 +16,12 @@
 		<h4>@Model.user.PhoneNumber</h4>
 		<h4>@Model.user.Email</h4>
 	</div>
+	<div class="row col-3">
+		<form asp-action="SimilarPeople" asp-controller="Home" method="post">
+			<input type="hidden" name="id" value="@Model.user.Id" />
+			<input type="submit" value="Hitta liknande personer" class="btn btn-primary" />
+		</form>
+	</div>
 	<div class="row col-lg-8 col-12 space">
 		@if (Model.user.CreatedUserProjects.Count() == 0)
 		{
