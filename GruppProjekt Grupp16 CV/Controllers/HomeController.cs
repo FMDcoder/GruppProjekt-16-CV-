@@ -169,6 +169,11 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 			ModelState.Remove("Visited");
 			ModelState.Remove("isOwner");
 
+			if(User.Identity.IsAuthenticated)
+			{
+				ModelState.Remove("AnonymName");
+            }
+
 			if (ModelState.IsValid)
 			{
 				string sentUserId = (
@@ -249,7 +254,53 @@ namespace GruppProjekt_Grupp16_CV.Controllers
 				messageBox.Save();
 				sendMessageViewModel.success = true;
 			}
-			return RedirectToAction("CVsite", new {id = id});
+
+            User client = (
+                from userSearch in users.GetAll()
+                where userSearch.Id == (id == null ? sendMessageViewModel.user.Id : id)
+                select userSearch
+            ).First();
+
+            sendMessageViewModel.isOwner = false;
+
+
+            sendMessageViewModel.user = client;
+            sendMessageViewModel.SendTo = client.UserName;
+
+
+            if (User.Identity.IsAuthenticated)
+            {
+                if (User.FindFirstValue(ClaimTypes.NameIdentifier) != id)
+                {
+                    List<VisitedCV> visitedCVs = (
+                        from userSearch in usersVisit.GetAll()
+                        where userSearch.OwnerUserId == User.FindFirstValue(ClaimTypes.NameIdentifier)
+                            && userSearch.VisitorUserId == id
+                        select userSearch
+                    ).ToList();
+
+                    if (visitedCVs.Count == 0)
+                    {
+                        usersVisit.Insert(new VisitedCV
+                        {
+                            OwnerUserId = User.FindFirstValue(ClaimTypes.NameIdentifier),
+                            VisitorUserId = client.Id
+                        });
+                        usersVisit.Save();
+                    }
+                }
+                else
+                {
+                    sendMessageViewModel.isOwner = true;
+                    sendMessageViewModel.Visited = (
+                        from visitSearch in usersVisit.GetAll()
+                        where visitSearch.OwnerUserId == client.Id
+                        select visitSearch
+                    ).Count();
+                }
+            }
+
+            return View("CVsite", sendMessageViewModel);
 		}
 
 		public IActionResult downloadCV(string userId)

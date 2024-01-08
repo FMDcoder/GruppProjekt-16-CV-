@@ -14,6 +14,32 @@
 			<div class="col-lg-8 col-12">
 				<h2>@user.UserName</h2>
 				<a asp-action="CVsite" asp-controller="Home" asp-route-id="@user.Id">Se CV</a>
+
+				<h5>Senaste projektet:</h5>
+				@{
+
+					List<Project> AllProjects = new List<Project>();
+					foreach(var projectCollab in user.UserProjects)
+					{
+						AllProjects.Add(projectCollab.ProjectObject);
+					}
+					AllProjects.AddRange(user.CreatedUserProjects);
+
+					AllProjects.Sort(
+						(project0, project1) =>
+						{
+							return project0.LatestUpdate > project1.LatestUpdate ? 1 : 0;
+						}
+					);
+					if(AllProjects.Count() > 0)
+					{
+						Project newestProject = AllProjects[0];
+
+						<h5>@newestProject.Title</h5>
+						<small>@newestProject.LatestUpdate</small>
+						<p>@newestProject.Description</p>
+					}
+				}
 			</div>
 		</div>
 	}

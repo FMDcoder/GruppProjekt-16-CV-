@@ -18,6 +18,7 @@ namespace GruppProjekt_Grupp16_CV.ModelHelper
 		[StringLength(100, ErrorMessage = "Titeln får inte ha mer än 100 karaktärer!")]
 		public string Title { get; set; }
 
+		[Required(ErrorMessage = "Du måste skriva ett namn som skickar meddelandet!")]
 		[RegularExpression("^[A-Za-zåäöÅÄÖ - ]*$", ErrorMessage = "Namnet får endast ha bokstäver, bindesträck och mellanslag!")]
 		public string AnonymName { get; set; } = "";
 

@@ -3,31 +3,33 @@
 
 <link rel="stylesheet" href="~/css/project.css">
 
-<h1>Lista över projekt</h1>
+<h3>Lista över projekt</h3>
 <div id="projectList">
 
     @foreach (var project in Model.projects)
     {
         <div class="project">
-            <h2>@project.Title</h2>
+            <h4>@project.Title</h4>
             <p>@project.Description</p>
             <p>@project.LatestUpdate</p>
-            <h3>Deltagande användare:</h3>
+            <h6>Deltagande användare:</h6>
             <ul>
-                @foreach (var user in Model.users)
+                <li>@project.CreatorObject.UserName</li>
+                @foreach (var user in project.UserProject)
                 {
 
                     if (User.Identity.IsAuthenticated)
                     {
-                        <li>@user.UserName</li>
+                        <li>@user.UserObject.UserName</li>
                     }
-                    else if (user.StatusId == 2)
+                    else if (@user.UserObject.StatusId == 2)
                     {
-                        <li>@user.UserName</li>
+                        <li>@user.UserObject.UserName</li>
                     }
 
                 }
             </ul>
         </div>
+        <hr />
     }
 </div>
